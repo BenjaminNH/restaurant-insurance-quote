@@ -11,7 +11,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build"
+    "check": "npm run lint && npm run typecheck && npm test && npm run build"
   },
   "keywords": [
     "insurance",
@@ -19,16 +19,9 @@
     "restaurant"
   ],
   "license": "UNLICENSED",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "^11.19.0",
-      "onFail": "download"
-    }
-  },
   "type": "module",
   "dependencies": {
-    "@hookform/resolvers": "^5.9.1",
+    "@hookform/resolvers": "5.2.2",
     "@phosphor-icons/react": "^2.1.10",
     "next": "^16.3.3",
     "react": "^19.2.8",

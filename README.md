@@ -29,18 +29,18 @@
 ## 本地运行
 
 ```bash
-pnpm install
-pnpm dev
+npm install
+npm run dev
 ```
 
 开发检查与静态导出：
 
 ```bash
-pnpm check
-pnpm test:e2e
+npm run check
+npm run test:e2e
 ```
 
-`pnpm check` 通过后，静态站点生成在 `out/` 目录，可部署到任意支持静态文件的网站托管服务。
+`npm run check` 通过后，静态站点生成在 `out/` 目录，可部署到任意支持静态文件的网站托管服务。
 
 ## 开发与验收
 

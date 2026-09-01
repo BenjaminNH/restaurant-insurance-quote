@@ -39,8 +39,8 @@ MVP 不保存客户留资，不接入数据库、管理后台或正式核保系�
 ## 5. 验收命令
 
 ```bash
-pnpm check
-pnpm test:e2e
+npm run check
+npm run test:e2e
 ```
 
 当前验收基线：

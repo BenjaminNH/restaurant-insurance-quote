@@ -10,7 +10,7 @@ export default defineConfig({
     trace: "on-first-retry",
   },
   webServer: {
-    command: "pnpm dev --port 3107",
+    command: "npm run dev -- --port 3107",
     url: "http://localhost:3107",
     reuseExistingServer: false,
   },

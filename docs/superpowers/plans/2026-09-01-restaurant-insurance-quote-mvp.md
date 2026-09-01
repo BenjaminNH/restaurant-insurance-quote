@@ -6,7 +6,7 @@
 
 **架构：** 使用 Next.js App Router 构建单页动态向导；React Hook Form 和 Zod 管理输入；纯 TypeScript 报价引擎读取 `mvp-1.1` 规则并输出类型化结果；UI 只渲染规则和计算结果。应用使用 `output: "export"` 生成 `out/`，不使用任何运行时服务端能力。
 
-**技术栈：** Next.js App Router、React、TypeScript、Tailwind CSS、React Hook Form、Zod、Vitest、Playwright、pnpm。
+**技术栈：** Next.js App Router、React、TypeScript、Tailwind CSS、React Hook Form、Zod、Vitest、Playwright、npm。
 
 ---
 
@@ -65,7 +65,7 @@ tests/
 
 **文件：**
 - 创建：`package.json`
-- 创建：`pnpm-lock.yaml`
+- 创建：`package-lock.json`
 - 创建：`next.config.ts`
 - 创建：`tsconfig.json`
 - 创建：`postcss.config.mjs`
@@ -76,29 +76,29 @@ tests/
 - 创建：`src/app/page.tsx`
 - 创建：`src/app/globals.css`
 
-- [ ] **步骤 1：检查 Node.js 和 pnpm**
+- [ ] **步骤 1：检查 Node.js 和 npm**
 
 运行：
 
 ```powershell
 node --version
-pnpm --version
+npm --version
 ```
 
-预期：Node.js 为 Playwright 当前支持的 22、24 或 26 主版本之一，pnpm 命令可用。若 Node.js 不符合要求，先切换运行时，不创建项目文件。
+预期：Node.js 为 Playwright 当前支持的 22、24 或 26 主版本之一，npm 命令可用。若 Node.js 不符合要求，先切换运行时，不创建项目文件。
 
 - [ ] **步骤 2：安装运行时依赖**
 
 运行：
 
 ```powershell
-pnpm init
-pnpm add next@latest react@latest react-dom@latest react-hook-form zod @hookform/resolvers @phosphor-icons/react
-pnpm add -D typescript @types/node @types/react @types/react-dom tailwindcss @tailwindcss/postcss postcss eslint eslint-config-next vitest jsdom @playwright/test
-pnpm exec playwright install chromium webkit
+npm init -y
+npm install next@latest react@latest react-dom@latest react-hook-form zod @hookform/resolvers @phosphor-icons/react
+npm install -D typescript @types/node @types/react @types/react-dom tailwindcss @tailwindcss/postcss postcss eslint eslint-config-next vitest jsdom @playwright/test
+npx playwright install chromium webkit
 ```
 
-预期：生成 `package.json` 和 `pnpm-lock.yaml`，依赖安装无错误，Chromium 和 WebKit 浏览器安装完成。
+预期：生成 `package.json` 和 `package-lock.json`，依赖安装无错误，Chromium 和 WebKit 浏览器安装完成。
 
 - [ ] **步骤 3：补齐脚本和基础配置**
 
@@ -114,7 +114,7 @@ pnpm exec playwright install chromium webkit
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build"
+    "check": "npm run lint && npm run typecheck && npm test && npm run build"
   }
 }
 ```
@@ -212,7 +212,7 @@ export default defineConfig({
   reporter: "html",
   use: { baseURL: "http://127.0.0.1:3000", trace: "on-first-retry" },
   webServer: {
-    command: "pnpm dev",
+    command: "npm run dev",
     url: "http://127.0.0.1:3000",
     reuseExistingServer: true,
   },
@@ -279,9 +279,9 @@ body {
 运行：
 
 ```powershell
-pnpm lint
-pnpm typecheck
-pnpm build
+npm run lint
+npm run typecheck
+npm run build
 Test-Path 'out\index.html'
 ```
 
@@ -290,7 +290,7 @@ Test-Path 'out\index.html'
 - [ ] **步骤 6：提交工程基线**
 
 ```powershell
-git add package.json pnpm-lock.yaml next.config.ts tsconfig.json postcss.config.mjs eslint.config.mjs vitest.config.ts playwright.config.ts src
+git add package.json package-lock.json next.config.ts tsconfig.json postcss.config.mjs eslint.config.mjs vitest.config.ts playwright.config.ts src
 git commit -m "chore: scaffold static Next.js application"
 ```
 
@@ -338,7 +338,7 @@ describe("quoteRulesSchema", () => {
 运行：
 
 ```powershell
-pnpm test -- tests/unit/quote-rules-schema.test.ts
+npm test -- tests/unit/quote-rules-schema.test.ts
 ```
 
 预期：失败，提示无法找到 `quote-rules-schema` 模块。
@@ -487,8 +487,8 @@ export const quoteRules = quoteRulesSchema.parse(rawRules);
 运行：
 
 ```powershell
-pnpm test -- tests/unit/quote-rules-schema.test.ts
-pnpm typecheck
+npm test -- tests/unit/quote-rules-schema.test.ts
+npm run typecheck
 ```
 
 预期：3 个规则测试通过，类型检查通过。
@@ -575,7 +575,7 @@ test("选择三险时显示完整五步", () => {
 运行：
 
 ```powershell
-pnpm test -- tests/unit/quote-input-schema.test.ts tests/unit/quote-step-flow.test.ts
+npm test -- tests/unit/quote-input-schema.test.ts tests/unit/quote-step-flow.test.ts
 ```
 
 预期：失败，提示两个目标模块不存在。
@@ -639,7 +639,7 @@ export function getQuoteSteps(products: Product[]): QuoteStep[] {
 运行：
 
 ```powershell
-pnpm test -- tests/unit/quote-input-schema.test.ts tests/unit/quote-step-flow.test.ts
+npm test -- tests/unit/quote-input-schema.test.ts tests/unit/quote-step-flow.test.ts
 ```
 
 预期：6 个测试通过。
@@ -709,7 +709,7 @@ test("人民币最终展示按半入规则取整", () => {
 运行：
 
 ```powershell
-pnpm test -- tests/unit/calculator.test.ts
+npm test -- tests/unit/calculator.test.ts
 ```
 
 预期：失败，提示计算模块不存在。
@@ -777,7 +777,7 @@ export function formatCny(value: number): string {
 运行：
 
 ```powershell
-pnpm test -- tests/unit/calculator.test.ts
+npm test -- tests/unit/calculator.test.ts
 ```
 
 预期：面积边界和舍入测试全部通过。
@@ -873,7 +873,7 @@ describe("整体报价", () => {
 运行：
 
 ```powershell
-pnpm test -- tests/unit/calculator.test.ts
+npm test -- tests/unit/calculator.test.ts
 ```
 
 预期：已有面积测试通过，新增测试因模块不存在而失败。
@@ -965,8 +965,8 @@ export function calculateQuote(input: QuoteInput, rules: QuoteRules): QuoteResul
 运行：
 
 ```powershell
-pnpm test -- tests/unit/calculator.test.ts
-pnpm typecheck
+npm test -- tests/unit/calculator.test.ts
+npm run typecheck
 ```
 
 预期：所有面积、人数、年龄、3984 元、5432 元和部分报价测试通过。
@@ -1028,7 +1028,7 @@ test("可以主动清除草稿", () => {
 运行：
 
 ```powershell
-pnpm test -- tests/unit/draft-storage.test.ts
+npm test -- tests/unit/draft-storage.test.ts
 ```
 
 预期：失败，提示草稿模块不存在。
@@ -1084,7 +1084,7 @@ export function clearQuoteDraft(): void {
 运行：
 
 ```powershell
-pnpm test -- tests/unit/draft-storage.test.ts
+npm test -- tests/unit/draft-storage.test.ts
 ```
 
 预期：3 个草稿测试通过。
@@ -1126,7 +1126,7 @@ test("显示报价器标题和第一步", async ({ page }) => {
 运行：
 
 ```powershell
-pnpm test:e2e -- --project=chromium-mobile --grep "显示报价器标题"
+npm run test:e2e -- --project=chromium-mobile --grep "显示报价器标题"
 ```
 
 预期：失败，因为当前页面只有初始化文字。
@@ -1253,8 +1253,8 @@ export default function HomePage() {
 运行：
 
 ```powershell
-pnpm test:e2e -- --project=chromium-mobile --grep "显示报价器标题"
-pnpm build
+npm run test:e2e -- --project=chromium-mobile --grep "显示报价器标题"
+npm run build
 ```
 
 预期：烟雾测试通过，`out/index.html` 生成。
@@ -1311,7 +1311,7 @@ test("可以录入三险正常路径", async ({ page }) => {
 运行：
 
 ```powershell
-pnpm test:e2e -- --project=chromium-mobile --grep "录入三险"
+npm run test:e2e -- --project=chromium-mobile --grep "录入三险"
 ```
 
 预期：失败，找不到“经营面积”输入。
@@ -1494,8 +1494,8 @@ export function LiabilityPlansStep() {
 运行：
 
 ```powershell
-pnpm typecheck
-pnpm lint
+npm run typecheck
+npm run lint
 ```
 
 预期：无类型错误和 lint 错误。E2E 仍会失败，因为向导尚未编排，这是本任务的预期中间状态。
@@ -1542,7 +1542,7 @@ test("必填错误阻止进入下一步", async ({ page }) => {
 运行：
 
 ```powershell
-pnpm test:e2e -- --project=chromium-mobile --grep "跳过雇主险|必填错误"
+npm run test:e2e -- --project=chromium-mobile --grep "跳过雇主险|必填错误"
 ```
 
 预期：失败，因为首页尚未使用真实向导。
@@ -1652,7 +1652,7 @@ export default function HomePage() {
 运行：
 
 ```powershell
-pnpm test:e2e -- --project=chromium-mobile --grep "跳过雇主险|必填错误"
+npm run test:e2e -- --project=chromium-mobile --grep "跳过雇主险|必填错误"
 ```
 
 预期：两个测试通过。
@@ -1727,7 +1727,7 @@ test("少于 8 人明确显示不承保", async ({ page }) => {
 运行：
 
 ```powershell
-pnpm test:e2e -- --project=chromium-mobile --grep "正常结果|部分报价|少于 8 人"
+npm run test:e2e -- --project=chromium-mobile --grep "正常结果|部分报价|少于 8 人"
 ```
 
 预期：失败，因为结果步骤尚未渲染计算结果。
@@ -1827,7 +1827,7 @@ export function QuoteResultStep() {
 运行：
 
 ```powershell
-pnpm test:e2e -- --project=chromium-mobile --grep "正常结果|部分报价|少于 8 人|录入三险"
+npm run test:e2e -- --project=chromium-mobile --grep "正常结果|部分报价|少于 8 人|录入三险"
 ```
 
 预期：4 个测试通过。
@@ -1882,7 +1882,7 @@ test("取消险种后不保留该险种方案", async ({ page }) => {
 运行：
 
 ```powershell
-pnpm test:e2e -- --project=chromium-mobile --grep "恢复当前会话|取消险种"
+npm run test:e2e -- --project=chromium-mobile --grep "恢复当前会话|取消险种"
 ```
 
 预期：草稿恢复或下游清理尚不完整，测试失败。
@@ -1949,7 +1949,7 @@ progress { height: 8px; accent-color: var(--color-navy); }
 运行：
 
 ```powershell
-pnpm test:e2e -- --grep "恢复当前会话|取消险种"
+npm run test:e2e -- --grep "恢复当前会话|取消险种"
 ```
 
 预期：Chromium Mobile 和 WebKit Mobile 均通过。
@@ -1974,7 +1974,7 @@ git commit -m "feat: refine quote recovery and mobile flow"
 运行：
 
 ```powershell
-pnpm test
+npm test
 ```
 
 预期：规则 schema、输入 schema、动态步骤、面积边界、人数边界、状态聚合和草稿测试全部通过。
@@ -1984,7 +1984,7 @@ pnpm test
 运行：
 
 ```powershell
-pnpm test:e2e
+npm run test:e2e
 ```
 
 预期：Chromium Mobile 和 WebKit Mobile 的正常、跳步、错误、人工、部分、不承保、返回修改和刷新恢复路径全部通过。
@@ -1994,9 +1994,9 @@ pnpm test:e2e
 运行：
 
 ```powershell
-pnpm lint
-pnpm typecheck
-pnpm build
+npm run lint
+npm run typecheck
+npm run build
 Test-Path 'out\index.html'
 rg -n "_next/image|vercel|netlify|cloudflare" out
 ```
@@ -2008,7 +2008,7 @@ rg -n "_next/image|vercel|netlify|cloudflare" out
 运行：
 
 ```powershell
-pnpm dlx serve out -l 4173
+npx serve out -l 4173
 ```
 
 在另一个终端或浏览器访问 `http://127.0.0.1:4173`，完成一次三险 3,984 元路径和一次 2,500㎡ 部分报价路径。
@@ -2019,7 +2019,7 @@ pnpm dlx serve out -l 4173
 
 `docs/02-餐饮保险报价器-MVP开发与验收.md` 使用中文记录：
 
-- 环境要求和 pnpm 命令。
+- 环境要求和 npm 命令。
 - 规则版本 `mvp-1.1`。
 - 静态构建和本地预览方式。
 - 五类报价状态含义。
@@ -2035,8 +2035,8 @@ pnpm dlx serve out -l 4173
 运行：
 
 ```powershell
-pnpm check
-pnpm test:e2e
+npm run check
+npm run test:e2e
 git diff --check
 git status --short
 ```
@@ -2067,7 +2067,7 @@ git log --oneline --decorate -12
 
 只有同时满足以下条件，MVP 才算完成：
 
-1. `pnpm check` 和 `pnpm test:e2e` 全部通过。
+1. `npm run check` 和 `npm run test:e2e` 全部通过。
 2. `out/index.html` 存在，使用通用静态服务器可完成报价。
 3. 规则示例 5,432 元和设计正常路径 3,984 元均由自动化测试锁定。
 4. 少于 8 人显示不承保且不转人工。
@@ -2084,4 +2084,4 @@ git log --oneline --decorate -12
 
 - [Next.js 静态导出](https://nextjs.org/docs/app/guides/static-exports)：使用 `output: "export"`，由 `next build` 生成 `out/`。
 - [Vitest 入门指南](https://vitest.dev/guide/)：使用 `vitest run` 执行一次性单元测试。
-- [Playwright 安装与运行](https://playwright.dev/docs/intro)：使用 pnpm 安装浏览器并通过 `pnpm exec playwright test` 执行浏览器流程测试。
+- [Playwright 安装与运行](https://playwright.dev/docs/intro)：使用 npm 安装依赖并通过 `npx playwright test` 执行浏览器流程测试。
