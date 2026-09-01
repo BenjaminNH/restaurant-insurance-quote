@@ -8,6 +8,7 @@ test-results/
 .env.*
 !.env.example
 *.tsbuildinfo
+next-env.d.ts
 pnpm-debug.log*
 
 # Local workspace and agent state
