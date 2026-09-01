@@ -1,0 +1,5346 @@
+{
+  "version": "2.17",
+  "children": [
+    {
+      "type": "frame",
+      "id": "IxZJ9",
+      "x": 0,
+      "y": 545,
+      "name": "报价器-第1步 门店与险种",
+      "clip": true,
+      "width": 375,
+      "fill": "$bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "EGfyL",
+          "name": "状态栏",
+          "width": "fill_container",
+          "height": 62,
+          "padding": 24,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "Ja0t2",
+              "name": "时间",
+              "fill": "$fg",
+              "content": "9:41",
+              "fontFamily": "$font-body",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "NfXGb",
+              "name": "状态图标",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "c4oBg2",
+                  "name": "信号",
+                  "fill": "$fg",
+                  "width": 17,
+                  "height": 11
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "lKngn",
+                  "name": "WiFi",
+                  "fill": "$fg",
+                  "width": 16,
+                  "height": 11
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 3,
+                  "id": "kfIbP",
+                  "name": "电量",
+                  "fill": "$fg",
+                  "width": 25,
+                  "height": 12
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Pz1yJ",
+          "name": "品牌与标题",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "padding": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "pfFHe",
+              "name": "品牌行",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "z45mdV",
+                  "name": "Logo标",
+                  "width": 28,
+                  "height": 28,
+                  "fill": "$primary",
+                  "cornerRadius": 8
+                },
+                {
+                  "type": "text",
+                  "id": "i25Uvs",
+                  "name": "品牌名",
+                  "fill": "$primary",
+                  "content": "餐饮安心保",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "oVpKI",
+              "name": "页面标题",
+              "fill": "$fg",
+              "content": "餐饮门店保费智能预估",
+              "fontFamily": "$font-body",
+              "fontSize": 26,
+              "fontWeight": "bold"
+            },
+            {
+              "type": "text",
+              "id": "ZLuCq",
+              "name": "页面副标题",
+              "fill": "$muted-fg",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "填写餐饮门店经营信息，1 分钟获取公众责任险、食品安全责任险与雇主责任险的预估保费。",
+              "lineHeight": 1.6,
+              "fontFamily": "$font-body",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "oA1Ft",
+              "name": "步骤行",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "KzyAb",
+                  "name": "步骤文字",
+                  "fill": "$primary",
+                  "content": "第 1 步 / 共 5 步 · 门店与险种",
+                  "fontFamily": "$font-body",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "pY7tJ",
+                  "name": "步骤百分比",
+                  "fill": "$muted-fg",
+                  "content": "20%",
+                  "fontFamily": "$font-body",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "QiZbF",
+              "name": "进度轨道",
+              "width": "fill_container",
+              "height": 6,
+              "fill": "$muted",
+              "cornerRadius": 3,
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 3,
+                  "id": "WohYv",
+                  "name": "进度填充",
+                  "fill": "$primary",
+                  "width": 67,
+                  "height": 6
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "RtesV",
+          "name": "内容容器",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "JMsLF",
+              "name": "门店信息卡片",
+              "width": "fill_container",
+              "fill": "$card",
+              "cornerRadius": 12,
+              "stroke": "$border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "L8h7l",
+                  "name": "卡片标题行",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "BRgLZ",
+                      "name": "卡片标题",
+                      "fill": "$fg",
+                      "content": "① 餐饮门店信息",
+                      "fontFamily": "$font-body",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "A1HlLh",
+                      "name": "必填标签",
+                      "fill": "$muted",
+                      "cornerRadius": 4,
+                      "padding": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "pdlu2",
+                          "name": "必填文字",
+                          "fill": "$primary",
+                          "content": "必填",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "rr0uB",
+                  "name": "面积行",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "EG8Cw",
+                      "name": "面积标签",
+                      "fill": "$fg",
+                      "content": "经营面积",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "c6RqNA",
+                      "name": "面积输入框",
+                      "width": 140,
+                      "height": 44,
+                      "cornerRadius": 8,
+                      "stroke": "$primary",
+                      "strokeWidth": 2,
+                      "gap": 4,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "wxsmL",
+                          "name": "面积数值",
+                          "fill": "$fg",
+                          "content": "260",
+                          "fontFamily": "$font-body",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "IJsw8",
+                          "name": "面积单位",
+                          "fill": "$muted-fg",
+                          "content": "㎡",
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "g6O0a",
+                  "name": "档位提示",
+                  "width": "fill_container",
+                  "fill": "$soft",
+                  "cornerRadius": 8,
+                  "gap": 6,
+                  "padding": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "B9hYk",
+                      "name": "提示图标",
+                      "fill": "$primary",
+                      "content": "i",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "bold"
+                    },
+                    {
+                      "type": "text",
+                      "id": "uQiBr",
+                      "name": "提示文字",
+                      "fill": "$muted-fg",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "当前档位 100–500 ㎡，面积系数 ×1.8；超过 3000 ㎡ 需人工报价",
+                      "lineHeight": 1.5,
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "MZMTq",
+              "name": "险种选择卡片",
+              "width": "fill_container",
+              "fill": "$card",
+              "cornerRadius": 12,
+              "stroke": "$border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "uIqTQ",
+                  "name": "卡片标题",
+                  "fill": "$fg",
+                  "content": "② 选择险种（可多选）",
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "cOCMB",
+                  "name": "险种-雇主责任险",
+                  "width": "fill_container",
+                  "fill": "$soft",
+                  "cornerRadius": 10,
+                  "stroke": "$primary",
+                  "strokeWidth": 2,
+                  "gap": 10,
+                  "padding": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "l8mLI",
+                      "name": "勾选",
+                      "width": 22,
+                      "height": 22,
+                      "icon": "square-check-big",
+                      "library": "lucide",
+                      "fill": "$primary"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "wUYge",
+                      "name": "文案",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "lgLGd",
+                          "name": "险种名",
+                          "fill": "$fg",
+                          "content": "雇主责任险",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "xbHy0",
+                          "name": "险种描述",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "员工工伤、误工费用等，8 人起保",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "kiGmY",
+                      "name": "价格提示",
+                      "fill": "$primary",
+                      "content": "按岗位与人数计费",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "v0E4xK",
+                  "name": "险种-公众责任险",
+                  "width": "fill_container",
+                  "fill": "$soft",
+                  "cornerRadius": 10,
+                  "stroke": "$primary",
+                  "strokeWidth": 2,
+                  "gap": 10,
+                  "padding": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "Lpq6G",
+                      "name": "勾选",
+                      "width": 22,
+                      "height": 22,
+                      "icon": "square-check-big",
+                      "library": "lucide",
+                      "fill": "$primary"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "k2mU0z",
+                      "name": "文案",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ehrl1",
+                          "name": "险种名",
+                          "fill": "$fg",
+                          "content": "公众责任险",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "n3WE8p",
+                          "name": "险种描述",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "顾客在店内受伤、财物损失等第三者责任",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t6tvsB",
+                      "name": "价格提示",
+                      "fill": "$primary",
+                      "content": "¥600 起 / 店 / 年",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Ljq2T",
+                  "name": "险种-食品安全责任险",
+                  "width": "fill_container",
+                  "fill": "$soft",
+                  "cornerRadius": 10,
+                  "stroke": "$primary",
+                  "strokeWidth": 2,
+                  "gap": 10,
+                  "padding": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "L0nr3u",
+                      "name": "勾选",
+                      "width": 22,
+                      "height": 22,
+                      "icon": "square-check-big",
+                      "library": "lucide",
+                      "fill": "$primary"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "UFOvx",
+                      "name": "文案",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "MWNvE",
+                          "name": "险种名",
+                          "fill": "$fg",
+                          "content": "食品安全责任险",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "e0Akl3",
+                          "name": "险种描述",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "食物中毒等食品安全事故赔偿责任",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "soXun",
+                      "name": "价格提示",
+                      "fill": "$primary",
+                      "content": "¥800 起 / 店 / 年",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "toWA8",
+          "name": "底部吸底栏",
+          "width": "fill_container",
+          "fill": "$card",
+          "stroke": "$border",
+          "strokeWidth": 1,
+          "gap": 12,
+          "padding": 16,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "kuzsC",
+              "name": "合计区",
+              "layout": "vertical",
+              "gap": 2,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "pZ7wW",
+                  "name": "合计标签",
+                  "fill": "$muted-fg",
+                  "content": "预估合计 · 3 个险种",
+                  "fontFamily": "$font-body",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "rKRpu",
+                  "name": "合计金额行",
+                  "gap": 4,
+                  "alignItems": "end",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "EXDAK",
+                      "name": "合计金额",
+                      "fill": "$primary",
+                      "content": "¥2,640",
+                      "fontFamily": "$font-body",
+                      "fontSize": 22,
+                      "fontWeight": "bold"
+                    },
+                    {
+                      "type": "text",
+                      "id": "X48bOi",
+                      "name": "合计单位",
+                      "fill": "$muted-fg",
+                      "content": "起 / 年",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Wg19S",
+              "name": "下一步按钮",
+              "height": 48,
+              "fill": "$accent",
+              "cornerRadius": 24,
+              "gap": 6,
+              "padding": [
+                0,
+                28
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ifKnp",
+                  "name": "按钮文字",
+                  "fill": "#FFFFFF",
+                  "content": "下一步",
+                  "fontFamily": "$font-body",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "icon",
+                  "id": "Eu5lj",
+                  "name": "箭头",
+                  "width": 18,
+                  "height": 18,
+                  "icon": "arrow-right",
+                  "library": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "P43hR",
+          "name": "免责声明",
+          "width": "fill_container",
+          "padding": [
+            0,
+            20,
+            20,
+            20
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "QUT6a",
+              "name": "免责文字",
+              "fill": "$muted-fg",
+              "content": "预估保费仅供参考，最终以保险公司正式核保与保单为准",
+              "fontFamily": "$font-body",
+              "fontSize": 10,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "n0DQu",
+      "x": 0,
+      "y": 0,
+      "name": "信息架构-五步报价流程",
+      "width": 1176,
+      "layout": "vertical",
+      "gap": 20,
+      "children": [
+        {
+          "type": "text",
+          "id": "IqLAs",
+          "name": "IA标题",
+          "fill": "$fg",
+          "content": "报价器信息架构 · 5 步漏斗",
+          "fontFamily": "$font-body",
+          "fontSize": 22,
+          "fontWeight": "bold"
+        },
+        {
+          "type": "text",
+          "id": "wZa9q",
+          "name": "IA副标题",
+          "fill": "$muted-fg",
+          "content": "每屏一个意图；选项依赖按顺序展开；底部吸底栏（预估合计+CTA）全程常驻",
+          "fontFamily": "$font-body",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "hiypj",
+          "name": "步骤卡片行",
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "oQg10",
+              "name": "步骤列-门店与险种",
+              "layout": "vertical",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "TDIvv",
+                  "name": "步骤卡-门店与险种",
+                  "width": 200,
+                  "fill": "$card",
+                  "cornerRadius": 12,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "LrQUn",
+                      "name": "卡头",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "fJx78",
+                          "name": "序号",
+                          "width": 26,
+                          "height": 26,
+                          "fill": "$primary",
+                          "cornerRadius": 13,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "SufcI",
+                              "name": "序号字",
+                              "fill": "#FFFFFF",
+                              "content": "1",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "bold"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "RGzp5",
+                          "name": "屏名",
+                          "fill": "$fg",
+                          "content": "门店与险种",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "r118td",
+                      "name": "意图",
+                      "fill": "$primary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "回答：你的店、保什么",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "bTusS",
+                      "name": "条目",
+                      "width": "fill_container",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "z3TLW3",
+                          "name": "点",
+                          "fill": "$muted-fg",
+                          "content": "·",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Q0M76I",
+                          "name": "条目文",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "经营面积（实时档位系数提示）",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "u3eSS",
+                      "name": "条目",
+                      "width": "fill_container",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "KHhqW",
+                          "name": "点",
+                          "fill": "$muted-fg",
+                          "content": "·",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "hsAog",
+                          "name": "条目文",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "险种多选：雇主 / 公众 / 食责",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "rfmQ9",
+                      "name": "条目",
+                      "width": "fill_container",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "DMH83",
+                          "name": "点",
+                          "fill": "$muted-fg",
+                          "content": "·",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "E10Rn",
+                          "name": "条目文",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "雇主险 8 人起保提示",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "x2U3x2",
+                      "name": "条目",
+                      "width": "fill_container",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "b2p9xF",
+                          "name": "点",
+                          "fill": "$muted-fg",
+                          "content": "·",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "cvpVx",
+                          "name": "条目文",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "超面积 → 提示人工报价",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "SlBtD",
+                      "name": "底栏说明",
+                      "width": "fill_container",
+                      "fill": "$soft",
+                      "cornerRadius": 6,
+                      "padding": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "NaX7Y",
+                          "name": "底栏文",
+                          "fill": "$fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "吸底栏：常驻",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "icon",
+              "id": "fz25k",
+              "name": "箭头0",
+              "width": 20,
+              "height": 20,
+              "icon": "arrow-right",
+              "library": "lucide",
+              "fill": "$muted-fg"
+            },
+            {
+              "type": "frame",
+              "id": "WkRVB",
+              "name": "步骤列-雇主险档位",
+              "layout": "vertical",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "PArKF",
+                  "name": "步骤卡-雇主险档位",
+                  "width": 200,
+                  "fill": "$card",
+                  "cornerRadius": 12,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "msdXT",
+                      "name": "卡头",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "A9cBn",
+                          "name": "序号",
+                          "width": 26,
+                          "height": 26,
+                          "fill": "$primary",
+                          "cornerRadius": 13,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Uh5tW",
+                              "name": "序号字",
+                              "fill": "#FFFFFF",
+                              "content": "2",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "bold"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "K0tu5t",
+                          "name": "屏名",
+                          "fill": "$fg",
+                          "content": "雇主险档位",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "mC7Es",
+                      "name": "意图",
+                      "fill": "$primary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "每人保多少 · 条件屏",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "NTr8K",
+                      "name": "条目",
+                      "width": "fill_container",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "fTzlu",
+                          "name": "点",
+                          "fill": "$muted-fg",
+                          "content": "·",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "EibPa",
+                          "name": "条目文",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "仅选了雇主责任险才出现",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "G8Uryx",
+                      "name": "条目",
+                      "width": "fill_container",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "PM5eI",
+                          "name": "点",
+                          "fill": "$muted-fg",
+                          "content": "·",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "gzecB",
+                          "name": "条目文",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "基础 / 升级 / 高端 / 尊享",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "jFUbw",
+                      "name": "条目",
+                      "width": "fill_container",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "uqnbO",
+                          "name": "点",
+                          "fill": "$muted-fg",
+                          "content": "·",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "A6zL6W",
+                          "name": "条目文",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "只展示保额差别，不标价格",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "h09OI",
+                      "name": "条目",
+                      "width": "fill_container",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "o4h1ey",
+                          "name": "点",
+                          "fill": "$muted-fg",
+                          "content": "·",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "GDovv",
+                          "name": "条目文",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "保费下一步按人数计算",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "qfskY",
+                      "name": "底栏说明",
+                      "width": "fill_container",
+                      "fill": "$soft",
+                      "cornerRadius": 6,
+                      "padding": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "geDjZ",
+                          "name": "底栏文",
+                          "fill": "$fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "吸底栏：常驻",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "icon",
+              "id": "M66zZ",
+              "name": "箭头1",
+              "width": 20,
+              "height": 20,
+              "icon": "arrow-right",
+              "library": "lucide",
+              "fill": "$muted-fg"
+            },
+            {
+              "type": "frame",
+              "id": "cU8Od",
+              "name": "步骤列-员工信息",
+              "layout": "vertical",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "selYl",
+                  "name": "步骤卡-员工信息",
+                  "width": 200,
+                  "fill": "$card",
+                  "cornerRadius": 12,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "EjGb7",
+                      "name": "卡头",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "e8oKf",
+                          "name": "序号",
+                          "width": 26,
+                          "height": 26,
+                          "fill": "$secondary",
+                          "cornerRadius": 13,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "UXUTy",
+                              "name": "序号字",
+                              "fill": "#FFFFFF",
+                              "content": "3",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "bold"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "wDlGL",
+                          "name": "屏名",
+                          "fill": "$fg",
+                          "content": "员工信息",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "hZ0oW",
+                      "name": "意图",
+                      "fill": "$secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "各岗位多少人 · 条件屏",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "HrdyD",
+                      "name": "条目",
+                      "width": "fill_container",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "jFuoy",
+                          "name": "点",
+                          "fill": "$muted-fg",
+                          "content": "·",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "G9pHQ",
+                          "name": "条目文",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "内勤收银 / 服务员 / 厨师保洁",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "oZkTt",
+                      "name": "条目",
+                      "width": "fill_container",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "C8CrM",
+                          "name": "点",
+                          "fill": "$muted-fg",
+                          "content": "·",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "l7t1g",
+                          "name": "条目文",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "校验：≥8 人、年龄 16–65",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "MbAo3",
+                      "name": "条目",
+                      "width": "fill_container",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "j1inO5",
+                          "name": "点",
+                          "fill": "$muted-fg",
+                          "content": "·",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "WJtWI",
+                          "name": "条目文",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "不满足 → 人工报价",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "kIoM5",
+                      "name": "底栏说明",
+                      "width": "fill_container",
+                      "fill": "$soft",
+                      "cornerRadius": 6,
+                      "padding": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "a9EcSl",
+                          "name": "底栏文",
+                          "fill": "$fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "吸底栏：常驻",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "icon",
+              "id": "SLLCA",
+              "name": "箭头2",
+              "width": 20,
+              "height": 20,
+              "icon": "arrow-right",
+              "library": "lucide",
+              "fill": "$muted-fg"
+            },
+            {
+              "type": "frame",
+              "id": "jZVs9",
+              "name": "步骤列-公众与食责",
+              "layout": "vertical",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "iCpNl",
+                  "name": "步骤卡-公众与食责",
+                  "width": 200,
+                  "fill": "$card",
+                  "cornerRadius": 12,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "eU4pJ",
+                      "name": "卡头",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "wIuBp",
+                          "name": "序号",
+                          "width": 26,
+                          "height": 26,
+                          "fill": "$primary",
+                          "cornerRadius": 13,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Mu8Ln",
+                              "name": "序号字",
+                              "fill": "#FFFFFF",
+                              "content": "4",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "bold"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "R0Z9FQ",
+                          "name": "屏名",
+                          "fill": "$fg",
+                          "content": "公众与食责",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "GaTkf",
+                      "name": "意图",
+                      "fill": "$primary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "回答：两险各保多少",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "l6gLaV",
+                      "name": "条目",
+                      "width": "fill_container",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "M6DXh",
+                          "name": "点",
+                          "fill": "$muted-fg",
+                          "content": "·",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "J9nwCf",
+                          "name": "条目文",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "公众 P1–P4 四档",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "IPhUX",
+                      "name": "条目",
+                      "width": "fill_container",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "OAM7t",
+                          "name": "点",
+                          "fill": "$muted-fg",
+                          "content": "·",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "HGEsf",
+                          "name": "条目文",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "食责 方案一~三",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "rCjET",
+                      "name": "条目",
+                      "width": "fill_container",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "aSPtH",
+                          "name": "点",
+                          "fill": "$muted-fg",
+                          "content": "·",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "kOaDF",
+                          "name": "条目文",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "每组单选，展示限额与价格",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "bir6H",
+                      "name": "底栏说明",
+                      "width": "fill_container",
+                      "fill": "$soft",
+                      "cornerRadius": 6,
+                      "padding": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "S64aD",
+                          "name": "底栏文",
+                          "fill": "$fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "吸底栏：常驻",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "icon",
+              "id": "E45XYb",
+              "name": "箭头3",
+              "width": 20,
+              "height": 20,
+              "icon": "arrow-right",
+              "library": "lucide",
+              "fill": "$muted-fg"
+            },
+            {
+              "type": "frame",
+              "id": "KPArR",
+              "name": "步骤列-报价结果",
+              "layout": "vertical",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "wREPa",
+                  "name": "步骤卡-报价结果",
+                  "width": 200,
+                  "fill": "$card",
+                  "cornerRadius": 12,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "YFdmS",
+                      "name": "卡头",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "J0nToe",
+                          "name": "序号",
+                          "width": 26,
+                          "height": 26,
+                          "fill": "$accent",
+                          "cornerRadius": 13,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "e7PqTt",
+                              "name": "序号字",
+                              "fill": "#FFFFFF",
+                              "content": "5",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "bold"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "d7yyF",
+                          "name": "屏名",
+                          "fill": "$fg",
+                          "content": "报价结果",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "AKYSF",
+                      "name": "意图",
+                      "fill": "$accent",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "回答：合计多少、怎么买",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "m6eCTk",
+                      "name": "条目",
+                      "width": "fill_container",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "bjApO",
+                          "name": "点",
+                          "fill": "$muted-fg",
+                          "content": "·",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "upCtH",
+                          "name": "条目文",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "分险种明细 + 年度合计",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "rfQzT",
+                      "name": "条目",
+                      "width": "fill_container",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Fwx0P",
+                          "name": "点",
+                          "fill": "$muted-fg",
+                          "content": "·",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "OoEyQ",
+                          "name": "条目文",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "限额 / 免赔 / 所需资料",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "mtnR0",
+                      "name": "条目",
+                      "width": "fill_container",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "BMvXq",
+                          "name": "点",
+                          "fill": "$muted-fg",
+                          "content": "·",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Uhiwf",
+                          "name": "条目文",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "人工报价兜底卡 + 联系销售",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "t1JApY",
+                      "name": "条目",
+                      "width": "fill_container",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "I1nZ0K",
+                          "name": "点",
+                          "fill": "$muted-fg",
+                          "content": "·",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "wxotO",
+                          "name": "条目文",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "免责声明 + 重新计算",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "kniKm",
+                      "name": "底栏说明",
+                      "width": "fill_container",
+                      "fill": "$soft",
+                      "cornerRadius": 6,
+                      "padding": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "vLbvs",
+                          "name": "底栏文",
+                          "fill": "$fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "吸底栏：转化为 CTA",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "v4Drk",
+          "name": "分支与规则",
+          "width": "fill_container",
+          "fill": "$card",
+          "cornerRadius": 12,
+          "stroke": "$border",
+          "strokeWidth": 1,
+          "layout": "vertical",
+          "gap": 10,
+          "padding": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "EDwBX",
+              "name": "规则标题",
+              "fill": "$fg",
+              "content": "分支与全局规则",
+              "fontFamily": "$font-body",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "KdFqB",
+              "name": "规则-流程分支",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ow0Gq",
+                  "name": "规则标",
+                  "fill": "$soft",
+                  "cornerRadius": 4,
+                  "padding": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Skkhq",
+                      "name": "规则标文",
+                      "fill": "$primary",
+                      "content": "流程分支",
+                      "fontFamily": "$font-body",
+                      "fontSize": 10,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "EY1tf",
+                  "name": "规则文",
+                  "fill": "$muted-fg",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "未选雇主责任险 → 自动跳过第 2、3 步，流程收缩为 3 步；第 4 步只显示第 1 步已选险种的方案组",
+                  "lineHeight": 1.5,
+                  "fontFamily": "$font-body",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "NKLhD",
+              "name": "规则-人工报价兜底",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "KNoSd",
+                  "name": "规则标",
+                  "fill": "$soft",
+                  "cornerRadius": 4,
+                  "padding": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "oXX9J",
+                      "name": "规则标文",
+                      "fill": "$destructive",
+                      "content": "人工报价兜底",
+                      "fontFamily": "$font-body",
+                      "fontSize": 10,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "O1RzV",
+                  "name": "规则文",
+                  "fill": "$muted-fg",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "公众 ≥3000㎡ / 食责 ≥2000㎡ / 员工 <8 人 / 年龄超出 16–65 / 岗位未覆盖 → 结果页显示「需人工报价」卡 + 联系销售，绝不给出价格",
+                  "lineHeight": 1.5,
+                  "fontFamily": "$font-body",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Z5jlb",
+              "name": "规则-细节规则",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "N5YCCj",
+                  "name": "规则标",
+                  "fill": "$soft",
+                  "cornerRadius": 4,
+                  "padding": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "wHKMo",
+                      "name": "规则标文",
+                      "fill": "$muted-fg",
+                      "content": "细节规则",
+                      "fontFamily": "$font-body",
+                      "fontSize": 10,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "kiVn9",
+                  "name": "规则文",
+                  "fill": "$muted-fg",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "食责险 P3 展示名为「方案三」；多门店面积系数逐店计算；同一报价内同一险种只能选一个方案",
+                  "lineHeight": 1.5,
+                  "fontFamily": "$font-body",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "LLVII",
+      "x": 415,
+      "y": 545,
+      "name": "报价器-第2步 雇主责任险档位",
+      "clip": true,
+      "width": 375,
+      "fill": "$bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "aW9zf",
+          "name": "状态栏",
+          "width": "fill_container",
+          "height": 62,
+          "padding": 24,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "i9rei3",
+              "name": "时间",
+              "fill": "$fg",
+              "content": "9:41",
+              "fontFamily": "$font-body",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "QrBnC",
+              "name": "状态图标",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "ayK2m",
+                  "name": "信号",
+                  "fill": "$fg",
+                  "width": 17,
+                  "height": 11
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "MzMNu",
+                  "name": "WiFi",
+                  "fill": "$fg",
+                  "width": 16,
+                  "height": 11
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 3,
+                  "id": "iQuAe",
+                  "name": "电量",
+                  "fill": "$fg",
+                  "width": 25,
+                  "height": 12
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "N4sso9",
+          "name": "页头",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "padding": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "H8h2y",
+              "name": "返回行",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "uJnls",
+                  "name": "返回箭头",
+                  "width": 20,
+                  "height": 20,
+                  "icon": "arrow-left",
+                  "library": "lucide",
+                  "fill": "$fg"
+                },
+                {
+                  "type": "text",
+                  "id": "hRBvt",
+                  "name": "页面标题",
+                  "fill": "$fg",
+                  "content": "雇主责任险档位",
+                  "fontFamily": "$font-body",
+                  "fontSize": 22,
+                  "fontWeight": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "pnGMA",
+              "name": "页面副标题",
+              "fill": "$muted-fg",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "雇主责任险独立选择、独立计算。档位决定每位员工的赔付上限，保费在下一步按岗位人数计算。",
+              "lineHeight": 1.5,
+              "fontFamily": "$font-body",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "e3E2E",
+              "name": "步骤行",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "jBKge",
+                  "name": "步骤文字",
+                  "fill": "$primary",
+                  "content": "第 2 步 / 共 5 步 · 雇主险档位",
+                  "fontFamily": "$font-body",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "KRcwT",
+                  "name": "步骤百分比",
+                  "fill": "$muted-fg",
+                  "content": "40%",
+                  "fontFamily": "$font-body",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "k7YpD",
+              "name": "进度轨道",
+              "width": "fill_container",
+              "height": 6,
+              "fill": "$muted",
+              "cornerRadius": 3,
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 3,
+                  "id": "RjtJg",
+                  "name": "进度填充",
+                  "fill": "$primary",
+                  "width": 134,
+                  "height": 6
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "v6NWRU",
+          "name": "内容容器",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "OIaGJ",
+              "name": "方案组-雇主责任险",
+              "width": "fill_container",
+              "height": 310,
+              "fill": "$card",
+              "cornerRadius": 12,
+              "stroke": "$border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "hB5b6",
+                  "name": "组标题行",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "x6wHm",
+                      "name": "组标题",
+                      "fill": "$fg",
+                      "content": "选择保障档位",
+                      "fontFamily": "$font-body",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "CgPdU",
+                      "name": "组说明",
+                      "fill": "$muted-fg",
+                      "content": "保额越高，单人事故赔付上限越高",
+                      "fontFamily": "$font-body",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "l4Yywq",
+                  "name": "档-基础版",
+                  "width": "fill_container",
+                  "fill": "$card",
+                  "cornerRadius": 10,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "gap": 8,
+                  "padding": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "s6qlv",
+                      "name": "单选",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "circle",
+                      "library": "lucide",
+                      "fill": "$muted-fg"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Iuy5u",
+                      "name": "文案",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "M66c1",
+                          "name": "名称行",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "pH8rb",
+                              "name": "档名",
+                              "fill": "$muted-fg",
+                              "content": "基础版",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "E6JFAx",
+                          "name": "限额",
+                          "fill": "$fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "每人伤亡 10 万 · 每人医疗 1 万",
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Z5g1aB",
+                  "name": "档-升级版",
+                  "width": "fill_container",
+                  "fill": "$soft",
+                  "cornerRadius": 10,
+                  "stroke": "$primary",
+                  "strokeWidth": 2,
+                  "gap": 8,
+                  "padding": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "Q1COS",
+                      "name": "单选",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "circle-dot",
+                      "library": "lucide",
+                      "fill": "$primary"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "F2S1Oj",
+                      "name": "文案",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "ZZQxB",
+                          "name": "名称行",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "cZDKk",
+                              "name": "档名",
+                              "fill": "$fg",
+                              "content": "升级版",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "ZOpv0",
+                              "name": "推荐标",
+                              "fill": "$accent",
+                              "cornerRadius": 4,
+                              "padding": 3,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "pRNF6",
+                                  "name": "推荐文",
+                                  "fill": "#FFFFFF",
+                                  "content": "推荐",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 9,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "AZ7bX",
+                          "name": "限额",
+                          "fill": "$fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "每人伤亡 30 万 · 每人医疗 3 万",
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "V2GVRS",
+                  "name": "档-高端版",
+                  "width": "fill_container",
+                  "fill": "$card",
+                  "cornerRadius": 10,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "gap": 8,
+                  "padding": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "qkjOA",
+                      "name": "单选",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "circle",
+                      "library": "lucide",
+                      "fill": "$muted-fg"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "M5WlU",
+                      "name": "文案",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "psCtz",
+                          "name": "名称行",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "hl0Be",
+                              "name": "档名",
+                              "fill": "$muted-fg",
+                              "content": "高端版",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "z7IfNU",
+                          "name": "限额",
+                          "fill": "$fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "每人伤亡 50 万 · 每人医疗 5 万",
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "stzoB",
+                  "name": "档-尊享版",
+                  "width": "fill_container",
+                  "fill": "$card",
+                  "cornerRadius": 10,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "gap": 8,
+                  "padding": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "IVKUt",
+                      "name": "单选",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "circle",
+                      "library": "lucide",
+                      "fill": "$muted-fg"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "NDFGu",
+                      "name": "文案",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "ls72D",
+                          "name": "名称行",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "mynsq",
+                              "name": "档名",
+                              "fill": "$muted-fg",
+                              "content": "尊享版",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "XQRzk",
+                          "name": "限额",
+                          "fill": "$fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "每人伤亡 80 万 · 每人医疗 8 万",
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "DoCfA",
+              "name": "计费说明",
+              "width": "fill_container",
+              "fill": "$soft",
+              "cornerRadius": 8,
+              "padding": 10,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "p9DB4d",
+                  "name": "计费说明文",
+                  "fill": "$muted-fg",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "保费 = 各岗位人数 × 对应岗位费率，下一步录入人数后自动计算",
+                  "lineHeight": 1.5,
+                  "fontFamily": "$font-body",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "cG0Oe",
+          "name": "底部吸底栏",
+          "width": "fill_container",
+          "fill": "$card",
+          "stroke": "$border",
+          "strokeWidth": 1,
+          "gap": 10,
+          "padding": 16,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "ACca8",
+              "name": "上一步按钮",
+              "height": 48,
+              "cornerRadius": 24,
+              "stroke": "$primary",
+              "strokeWidth": 2,
+              "padding": [
+                0,
+                18
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "c9Kd5",
+                  "name": "上一步文",
+                  "fill": "$primary",
+                  "content": "上一步",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Gvc1K",
+              "name": "合计区",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 2,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "VcruJ",
+                  "name": "合计标签",
+                  "fill": "$muted-fg",
+                  "content": "雇主险保费 · 下一步按人数计算",
+                  "fontFamily": "$font-body",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "yJeQf",
+                  "name": "金额行",
+                  "gap": 4,
+                  "alignItems": "end",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "T9Zt0",
+                      "name": "合计金额",
+                      "fill": "$primary",
+                      "content": "按人数计算",
+                      "fontFamily": "$font-body",
+                      "fontSize": 16,
+                      "fontWeight": "bold"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ipUlO",
+              "name": "下一步按钮",
+              "height": 48,
+              "fill": "$accent",
+              "cornerRadius": 24,
+              "gap": 6,
+              "padding": [
+                0,
+                22
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "H1Jx1a",
+                  "name": "按钮文字",
+                  "fill": "#FFFFFF",
+                  "content": "下一步",
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "icon",
+                  "id": "v8wWS",
+                  "name": "箭头",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "arrow-right",
+                  "library": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "lrFee",
+      "x": 830,
+      "y": 545,
+      "name": "报价器-第3步 员工信息",
+      "clip": true,
+      "width": 375,
+      "fill": "$bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "ReUOk",
+          "name": "状态栏",
+          "width": "fill_container",
+          "height": 62,
+          "padding": 24,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "uYJdf",
+              "name": "时间",
+              "fill": "$fg",
+              "content": "9:41",
+              "fontFamily": "$font-body",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "tg1PM",
+              "name": "状态图标",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "snJu4",
+                  "name": "信号",
+                  "fill": "$fg",
+                  "width": 17,
+                  "height": 11
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "ZBh8q",
+                  "name": "WiFi",
+                  "fill": "$fg",
+                  "width": 16,
+                  "height": 11
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 3,
+                  "id": "m3SsO",
+                  "name": "电量",
+                  "fill": "$fg",
+                  "width": 25,
+                  "height": 12
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ww9Kw",
+          "name": "页头",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "padding": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "w39z6e",
+              "name": "返回行",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "Cnig1",
+                  "name": "返回箭头",
+                  "width": 20,
+                  "height": 20,
+                  "icon": "arrow-left",
+                  "library": "lucide",
+                  "fill": "$fg"
+                },
+                {
+                  "type": "text",
+                  "id": "jCu47",
+                  "name": "页面标题",
+                  "fill": "$fg",
+                  "content": "员工信息",
+                  "fontFamily": "$font-body",
+                  "fontSize": 22,
+                  "fontWeight": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "VC6PP",
+              "name": "页面副标题",
+              "fill": "$muted-fg",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "雇主责任险 · 升级版：按岗位逐条录入人数，费率已含附加险。",
+              "lineHeight": 1.5,
+              "fontFamily": "$font-body",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "aUmtj",
+              "name": "步骤行",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "GXVm8",
+                  "name": "步骤文字",
+                  "fill": "$primary",
+                  "content": "第 3 步 / 共 5 步 · 员工信息",
+                  "fontFamily": "$font-body",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "xzgbp",
+                  "name": "步骤百分比",
+                  "fill": "$muted-fg",
+                  "content": "60%",
+                  "fontFamily": "$font-body",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ySVda",
+              "name": "进度轨道",
+              "width": "fill_container",
+              "height": 6,
+              "fill": "$muted",
+              "cornerRadius": 3,
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 3,
+                  "id": "nyv2F",
+                  "name": "进度填充",
+                  "fill": "$primary",
+                  "width": 201,
+                  "height": 6
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ibjlu",
+          "name": "内容容器",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "pudp5",
+              "name": "员工录入卡片",
+              "width": "fill_container",
+              "fill": "$card",
+              "cornerRadius": 12,
+              "stroke": "$border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "k46G1",
+                  "name": "卡头",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "r33XUq",
+                      "name": "卡标题",
+                      "fill": "$fg",
+                      "content": "按岗位录入人数",
+                      "fontFamily": "$font-body",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "zvJFj",
+                      "name": "卡说明",
+                      "fill": "$muted-fg",
+                      "content": "年龄限 16–65 岁",
+                      "fontFamily": "$font-body",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "eGFNN",
+                  "name": "岗位-内勤 / 收银",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "NwuZZ",
+                      "name": "岗位文案",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "y8Gd2",
+                          "name": "岗位名",
+                          "fill": "$fg",
+                          "content": "内勤 / 收银",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "SmPF1",
+                          "name": "岗位费率",
+                          "fill": "$muted-fg",
+                          "content": "¥76 / 人 / 年",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Awuu3",
+                      "name": "步进器",
+                      "height": 36,
+                      "fill": "$muted",
+                      "cornerRadius": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "a9aqUi",
+                          "name": "减",
+                          "fill": "$muted-fg",
+                          "content": "－",
+                          "fontFamily": "$font-body",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f3fpk",
+                          "name": "值框",
+                          "width": 44,
+                          "height": 36,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "MW0Ox",
+                              "name": "人数",
+                              "fill": "$fg",
+                              "content": "2",
+                              "fontFamily": "$font-body",
+                              "fontSize": 15,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "oGgvQ",
+                          "name": "加",
+                          "fill": "$primary",
+                          "content": "＋",
+                          "fontFamily": "$font-body",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "xUmmG",
+                  "name": "岗位-服务员",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "m1YY5",
+                      "name": "岗位文案",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "T2mdm",
+                          "name": "岗位名",
+                          "fill": "$fg",
+                          "content": "服务员",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "rvD3E",
+                          "name": "岗位费率",
+                          "fill": "$muted-fg",
+                          "content": "¥108 / 人 / 年",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Yt6Ee",
+                      "name": "步进器",
+                      "height": 36,
+                      "fill": "$muted",
+                      "cornerRadius": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "dTYtN",
+                          "name": "减",
+                          "fill": "$muted-fg",
+                          "content": "－",
+                          "fontFamily": "$font-body",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "EcRfv",
+                          "name": "值框",
+                          "width": 44,
+                          "height": 36,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "oKwPG",
+                              "name": "人数",
+                              "fill": "$fg",
+                              "content": "6",
+                              "fontFamily": "$font-body",
+                              "fontSize": 15,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "BFInX",
+                          "name": "加",
+                          "fill": "$primary",
+                          "content": "＋",
+                          "fontFamily": "$font-body",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "t6WAu",
+                  "name": "岗位-厨师 / 保洁",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ymkDc",
+                      "name": "岗位文案",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "dRH0A",
+                          "name": "岗位名",
+                          "fill": "$fg",
+                          "content": "厨师 / 保洁",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "mQjAL",
+                          "name": "岗位费率",
+                          "fill": "$muted-fg",
+                          "content": "¥136 / 人 / 年",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "MSWd5",
+                      "name": "步进器",
+                      "height": 36,
+                      "fill": "$muted",
+                      "cornerRadius": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "j8P77U",
+                          "name": "减",
+                          "fill": "$muted-fg",
+                          "content": "－",
+                          "fontFamily": "$font-body",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "TJgrf",
+                          "name": "值框",
+                          "width": 44,
+                          "height": 36,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "LhT6L",
+                              "name": "人数",
+                              "fill": "$fg",
+                              "content": "4",
+                              "fontFamily": "$font-body",
+                              "fontSize": 15,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "Vp2BG",
+                          "name": "加",
+                          "fill": "$primary",
+                          "content": "＋",
+                          "fontFamily": "$font-body",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "v7eAo",
+              "name": "校验提示卡",
+              "width": "fill_container",
+              "fill": "$soft",
+              "cornerRadius": 12,
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 14,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "O9EQID",
+                  "name": "校验行",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "gaVRT",
+                      "name": "图标",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "circle-check",
+                      "library": "lucide",
+                      "fill": "$accent"
+                    },
+                    {
+                      "type": "text",
+                      "id": "gIYYi",
+                      "name": "校验文",
+                      "fill": "$fg",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "共 12 人，满足最低 8 人的承保要求",
+                      "lineHeight": 1.4,
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "T132rh",
+                  "name": "校验行",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "WjIS1",
+                      "name": "图标",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "circle-check",
+                      "library": "lucide",
+                      "fill": "$accent"
+                    },
+                    {
+                      "type": "text",
+                      "id": "KuGpA",
+                      "name": "校验文",
+                      "fill": "$fg",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "员工年龄均在 16–65 岁范围内",
+                      "lineHeight": 1.4,
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "R7rKq",
+                  "name": "校验行",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "y7mMl",
+                      "name": "图标",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "info",
+                      "library": "lucide",
+                      "fill": "$muted-fg"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "VTnAu",
+          "name": "底部吸底栏",
+          "width": "fill_container",
+          "fill": "$card",
+          "stroke": "$border",
+          "strokeWidth": 1,
+          "gap": 10,
+          "padding": 16,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "AlESF",
+              "name": "上一步按钮",
+              "height": 48,
+              "cornerRadius": 24,
+              "stroke": "$primary",
+              "strokeWidth": 2,
+              "padding": [
+                0,
+                18
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Jx203",
+                  "name": "上一步文",
+                  "fill": "$primary",
+                  "content": "上一步",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Nszln",
+              "name": "合计区",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 2,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "gPznE",
+                  "name": "合计标签",
+                  "fill": "$muted-fg",
+                  "content": "雇主责任险小计 · 12 人",
+                  "fontFamily": "$font-body",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "YFxOX",
+                  "name": "金额行",
+                  "gap": 4,
+                  "alignItems": "end",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "U3qcs6",
+                      "name": "合计金额",
+                      "fill": "$primary",
+                      "content": "¥1,344",
+                      "fontFamily": "$font-body",
+                      "fontSize": 20,
+                      "fontWeight": "bold"
+                    },
+                    {
+                      "type": "text",
+                      "id": "xj7Eq",
+                      "name": "合计单位",
+                      "fill": "$muted-fg",
+                      "content": "/ 年",
+                      "fontFamily": "$font-body",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "OZVOa",
+              "name": "查看报价按钮",
+              "height": 48,
+              "fill": "$accent",
+              "cornerRadius": 24,
+              "gap": 6,
+              "padding": [
+                0,
+                20
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "d2Johb",
+                  "name": "按钮文字",
+                  "fill": "#FFFFFF",
+                  "content": "下一步",
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "icon",
+                  "id": "XSEDh",
+                  "name": "箭头",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "arrow-right",
+                  "library": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "gCgzD",
+      "x": 1660,
+      "y": 545,
+      "name": "报价器-第5步 报价结果",
+      "clip": true,
+      "width": 375,
+      "fill": "$bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "BnEk9",
+          "name": "状态栏",
+          "width": "fill_container",
+          "height": 62,
+          "padding": 24,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "WBi3c",
+              "name": "时间",
+              "fill": "$fg",
+              "content": "9:41",
+              "fontFamily": "$font-body",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "I9ldE",
+              "name": "状态图标",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "hCYG3",
+                  "name": "信号",
+                  "fill": "$fg",
+                  "width": 17,
+                  "height": 11
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "fFkaY",
+                  "name": "WiFi",
+                  "fill": "$fg",
+                  "width": 16,
+                  "height": 11
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 3,
+                  "id": "m09Y3J",
+                  "name": "电量",
+                  "fill": "$fg",
+                  "width": 25,
+                  "height": 12
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "wDOxc",
+          "name": "页头",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "padding": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "GwbeJ",
+              "name": "返回行",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "cZqw0",
+                  "name": "返回箭头",
+                  "width": 20,
+                  "height": 20,
+                  "icon": "arrow-left",
+                  "library": "lucide",
+                  "fill": "$fg"
+                },
+                {
+                  "type": "text",
+                  "id": "woSIG",
+                  "name": "页面标题",
+                  "fill": "$fg",
+                  "content": "报价结果",
+                  "fontFamily": "$font-body",
+                  "fontSize": 22,
+                  "fontWeight": "bold"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "n4tzLB",
+              "name": "步骤行",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "jGT8f",
+                  "name": "步骤文字",
+                  "fill": "$primary",
+                  "content": "第 5 步 / 共 5 步 · 报价结果",
+                  "fontFamily": "$font-body",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "fa9cW",
+                  "name": "步骤百分比",
+                  "fill": "$muted-fg",
+                  "content": "100%",
+                  "fontFamily": "$font-body",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "KWOqV",
+              "name": "进度轨道",
+              "width": "fill_container",
+              "height": 6,
+              "fill": "$muted",
+              "cornerRadius": 3,
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 3,
+                  "id": "w41tk",
+                  "name": "进度填充",
+                  "fill": "$accent",
+                  "width": 335,
+                  "height": 6
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "QHtmZ",
+          "name": "内容容器",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "m4lCC9",
+              "name": "合计大卡",
+              "width": "fill_container",
+              "fill": "$primary",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 6,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "qIXEc",
+                  "name": "合计标签",
+                  "fill": "#FFFFFFCC",
+                  "content": "年度预估合计",
+                  "fontFamily": "$font-body",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "rcgwB",
+                  "name": "金额行",
+                  "gap": 6,
+                  "alignItems": "end",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "nsrIb",
+                      "name": "总金额",
+                      "fill": "#FFFFFF",
+                      "content": "¥3,984",
+                      "fontFamily": "$font-body",
+                      "fontSize": 34,
+                      "fontWeight": "bold"
+                    },
+                    {
+                      "type": "text",
+                      "id": "jtU1H",
+                      "name": "单位",
+                      "fill": "#FFFFFFCC",
+                      "content": "/ 年",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "F589II",
+                  "name": "合计摘要",
+                  "fill": "#FFFFFFCC",
+                  "content": "3 个险种 · 1 家门店（260 ㎡）· 12 名员工",
+                  "fontFamily": "$font-body",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "v7rBo",
+              "name": "保费明细卡",
+              "width": "fill_container",
+              "fill": "$card",
+              "cornerRadius": 12,
+              "stroke": "$border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 10,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "DkT1T",
+                  "name": "明细标题",
+                  "fill": "$fg",
+                  "content": "保费明细",
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "s7nNY",
+                  "name": "明细-公众责任险 · 方案 P2",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "cDKE9",
+                      "name": "明细文案",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "MWLoF",
+                          "name": "明细名",
+                          "fill": "$fg",
+                          "content": "公众责任险 · 方案 P2",
+                          "fontFamily": "$font-body",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "nQ59D",
+                          "name": "计算式",
+                          "fill": "$muted-fg",
+                          "content": "¥800 × 面积系数 1.8",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "VHfcF",
+                      "name": "明细价",
+                      "fill": "$primary",
+                      "content": "¥1,440",
+                      "fontFamily": "$font-body",
+                      "fontSize": 15,
+                      "fontWeight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tKXGx",
+                  "name": "明细-食品安全责任险 · 方案一",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Epz80",
+                      "name": "明细文案",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "NNeLi",
+                          "name": "明细名",
+                          "fill": "$fg",
+                          "content": "食品安全责任险 · 方案一",
+                          "fontFamily": "$font-body",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "oFCQs",
+                          "name": "计算式",
+                          "fill": "$muted-fg",
+                          "content": "¥800 × 面积系数 1.5",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "ZDomW",
+                      "name": "明细价",
+                      "fill": "$primary",
+                      "content": "¥1,200",
+                      "fontFamily": "$font-body",
+                      "fontSize": 15,
+                      "fontWeight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "zPS8Y",
+                  "name": "明细-雇主责任险 · 升级版",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "QDQNC",
+                      "name": "明细文案",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ORjtp",
+                          "name": "明细名",
+                          "fill": "$fg",
+                          "content": "雇主责任险 · 升级版",
+                          "fontFamily": "$font-body",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Df5gW",
+                          "name": "计算式",
+                          "fill": "$muted-fg",
+                          "content": "2×76 + 6×108 + 4×136",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "NqGL5",
+                      "name": "明细价",
+                      "fill": "$primary",
+                      "content": "¥1,344",
+                      "fontFamily": "$font-body",
+                      "fontSize": 15,
+                      "fontWeight": "bold"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "EK2sb",
+              "name": "保障要点卡",
+              "width": "fill_container",
+              "fill": "$card",
+              "cornerRadius": 12,
+              "stroke": "$border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Q2nmef",
+                  "name": "要点标题",
+                  "fill": "$fg",
+                  "content": "保障与免赔要点",
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "QIWXt",
+                  "name": "要点行",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "TPOFO",
+                      "name": "盾",
+                      "width": 15,
+                      "height": 15,
+                      "icon": "shield-check",
+                      "library": "lucide",
+                      "fill": "$primary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "c0pF0",
+                      "name": "要点文",
+                      "fill": "$muted-fg",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "公众 / 食责：免赔 100 元或损失金额 10%，两者取高",
+                      "lineHeight": 1.5,
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "M7Tzog",
+                  "name": "要点行",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "j9qKlE",
+                      "name": "盾",
+                      "width": 15,
+                      "height": 15,
+                      "icon": "shield-check",
+                      "library": "lucide",
+                      "fill": "$primary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t6VMb",
+                      "name": "要点文",
+                      "fill": "$muted-fg",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "雇主医疗：免赔 200 元后按 90% 赔付",
+                      "lineHeight": 1.5,
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Z97bbX",
+                  "name": "要点行",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "CYRxj",
+                      "name": "盾",
+                      "width": 15,
+                      "height": 15,
+                      "icon": "shield-check",
+                      "library": "lucide",
+                      "fill": "$primary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "w2azQF",
+                      "name": "要点文",
+                      "fill": "$muted-fg",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "雇主误工：绝对免赔 3 天，单次 ≤90 天，累计 ≤180 天",
+                      "lineHeight": 1.5,
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "nBSDZ",
+                  "name": "要点行",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "ZJ5b1",
+                      "name": "盾",
+                      "width": 15,
+                      "height": 15,
+                      "icon": "shield-check",
+                      "library": "lucide",
+                      "fill": "$primary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "FjsQu",
+                      "name": "要点文",
+                      "fill": "$muted-fg",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "雇主误工费标准：100 元 / 天",
+                      "lineHeight": 1.5,
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "B8kB9s",
+              "name": "所需资料卡",
+              "width": "fill_container",
+              "fill": "$card",
+              "cornerRadius": 12,
+              "stroke": "$border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "AGO1W",
+                  "name": "资料标题",
+                  "fill": "$fg",
+                  "content": "承保所需资料",
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "zF1jP",
+                  "name": "资料行",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "I1lhZD",
+                      "name": "文件",
+                      "width": 15,
+                      "height": 15,
+                      "icon": "file-text",
+                      "library": "lucide",
+                      "fill": "$muted-fg"
+                    },
+                    {
+                      "type": "text",
+                      "id": "uEMq8",
+                      "name": "资料文",
+                      "fill": "$muted-fg",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "营业执照（副本）",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "QZZJR",
+                  "name": "资料行",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "U8Gza5",
+                      "name": "文件",
+                      "width": 15,
+                      "height": 15,
+                      "icon": "file-text",
+                      "library": "lucide",
+                      "fill": "$muted-fg"
+                    },
+                    {
+                      "type": "text",
+                      "id": "J0zDt",
+                      "name": "资料文",
+                      "fill": "$muted-fg",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "食品经营许可证（投食责险必需）",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "iVSjF",
+                  "name": "资料行",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "m81q9",
+                      "name": "文件",
+                      "width": 15,
+                      "height": 15,
+                      "icon": "file-text",
+                      "library": "lucide",
+                      "fill": "$muted-fg"
+                    },
+                    {
+                      "type": "text",
+                      "id": "VeQQZ",
+                      "name": "资料文",
+                      "fill": "$muted-fg",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "员工花名册（含岗位与出生日期）",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "t5FJCU",
+                  "name": "资料行",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "Vo1uQ",
+                      "name": "文件",
+                      "width": 15,
+                      "height": 15,
+                      "icon": "file-text",
+                      "library": "lucide",
+                      "fill": "$muted-fg"
+                    },
+                    {
+                      "type": "text",
+                      "id": "qcGZd",
+                      "name": "资料文",
+                      "fill": "$muted-fg",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "门店经营面积证明或租赁合同",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "FRtbx",
+          "name": "底部操作栏",
+          "width": "fill_container",
+          "fill": "$card",
+          "stroke": "$border",
+          "strokeWidth": 1,
+          "layout": "vertical",
+          "gap": 10,
+          "padding": 16,
+          "children": [
+            {
+              "type": "frame",
+              "id": "hTalc",
+              "name": "联系销售按钮",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "$accent",
+              "cornerRadius": 24,
+              "gap": 6,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "dkQK0",
+                  "name": "电话",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "phone",
+                  "library": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "bENrv",
+                  "name": "按钮文字",
+                  "fill": "#FFFFFF",
+                  "content": "联系销售 · 确认方案",
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Lcxb6",
+              "name": "重新计算",
+              "width": "fill_container",
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "P8ewN",
+                  "name": "重算文",
+                  "fill": "$primary",
+                  "content": "修改条件，重新计算",
+                  "fontFamily": "$font-body",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f3VOI6",
+          "name": "免责声明",
+          "width": "fill_container",
+          "padding": [
+            0,
+            20,
+            20,
+            20
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "L1Yce",
+              "name": "免责文",
+              "fill": "$muted-fg",
+              "content": "预估保费仅供参考，最终以保险公司正式核保与保单为准",
+              "fontFamily": "$font-body",
+              "fontSize": 10,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "IWTRc",
+      "x": 1245,
+      "y": 545,
+      "name": "报价器-第4步 公众与食责方案",
+      "clip": true,
+      "width": 375,
+      "height": 890,
+      "fill": "$bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "a09h7K",
+          "name": "状态栏",
+          "width": "fill_container",
+          "height": 62,
+          "padding": 24,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "aFRxn",
+              "name": "时间",
+              "fill": "$fg",
+              "content": "9:41",
+              "fontFamily": "$font-body",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "Gx6pB",
+              "name": "状态图标",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "pJah2",
+                  "name": "信号",
+                  "fill": "$fg",
+                  "width": 17,
+                  "height": 11
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "DSQZv",
+                  "name": "WiFi",
+                  "fill": "$fg",
+                  "width": 16,
+                  "height": 11
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 3,
+                  "id": "Dl3Lo",
+                  "name": "电量",
+                  "fill": "$fg",
+                  "width": 25,
+                  "height": 12
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "r5hMe",
+          "name": "页头",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "padding": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "MPtKP",
+              "name": "返回行",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "gvAvD",
+                  "name": "返回箭头",
+                  "width": 20,
+                  "height": 20,
+                  "icon": "arrow-left",
+                  "library": "lucide",
+                  "fill": "$fg"
+                },
+                {
+                  "type": "text",
+                  "id": "wzBsl",
+                  "name": "页面标题",
+                  "fill": "$fg",
+                  "content": "公众与食责方案",
+                  "fontFamily": "$font-body",
+                  "fontSize": 22,
+                  "fontWeight": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "O3h5e1",
+              "name": "页面副标题",
+              "fill": "$muted-fg",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "为公众责任险与食品安全责任险分别选择一档保障方案。",
+              "lineHeight": 1.5,
+              "fontFamily": "$font-body",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "KNEBE",
+              "name": "步骤行",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "x9htZ",
+                  "name": "步骤文字",
+                  "fill": "$primary",
+                  "content": "第 4 步 / 共 5 步 · 公众与食责",
+                  "fontFamily": "$font-body",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "q1lSFb",
+                  "name": "步骤百分比",
+                  "fill": "$muted-fg",
+                  "content": "80%",
+                  "fontFamily": "$font-body",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "U10F1",
+              "name": "进度轨道",
+              "width": "fill_container",
+              "height": 6,
+              "fill": "$muted",
+              "cornerRadius": 3,
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 3,
+                  "id": "g5zAfO",
+                  "name": "进度填充",
+                  "fill": "$primary",
+                  "width": 268,
+                  "height": 6
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "HwFwu",
+          "name": "内容容器",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "s8WIv",
+              "name": "方案组-公众责任险",
+              "width": "fill_container",
+              "fill": "$card",
+              "cornerRadius": 12,
+              "stroke": "$border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "YVM4V",
+                  "name": "组标题行",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "KKQR5",
+                      "name": "组标题",
+                      "fill": "$fg",
+                      "content": "公众责任险",
+                      "fontFamily": "$font-body",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "FOjCr",
+                      "name": "组说明",
+                      "fill": "$muted-fg",
+                      "content": "按门店计费",
+                      "fontFamily": "$font-body",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Mx3Pg",
+                  "name": "档-方案 P1",
+                  "width": "fill_container",
+                  "fill": "$card",
+                  "cornerRadius": 10,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "gap": 8,
+                  "padding": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "zNyVx",
+                      "name": "单选",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "circle",
+                      "library": "lucide",
+                      "fill": "$muted-fg"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "dchkp",
+                      "name": "文案",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "b9fiC",
+                          "name": "名称行",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "e2qbIa",
+                              "name": "档名",
+                              "fill": "$muted-fg",
+                              "content": "方案 P1",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "arjlN",
+                          "name": "限额",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "累计 100 万 · 每次事故 50 万",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "p3FX2E",
+                      "name": "价格区",
+                      "gap": 2,
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "wm7Sr",
+                          "name": "价格",
+                          "fill": "$muted-fg",
+                          "content": "¥600",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "bold"
+                        },
+                        {
+                          "type": "text",
+                          "id": "l9Gp8y",
+                          "name": "价格单位",
+                          "fill": "$muted-fg",
+                          "content": "/ 店 / 年",
+                          "fontFamily": "$font-body",
+                          "fontSize": 9,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "zmkm2",
+                  "name": "档-方案 P2",
+                  "width": "fill_container",
+                  "fill": "$soft",
+                  "cornerRadius": 10,
+                  "stroke": "$primary",
+                  "strokeWidth": 2,
+                  "gap": 8,
+                  "padding": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "gGSpC",
+                      "name": "单选",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "circle-dot",
+                      "library": "lucide",
+                      "fill": "$primary"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vJOls",
+                      "name": "文案",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "GHMSr",
+                          "name": "名称行",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "w8KzO",
+                              "name": "档名",
+                              "fill": "$fg",
+                              "content": "方案 P2",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "XM2xt",
+                              "name": "推荐标",
+                              "fill": "$accent",
+                              "cornerRadius": 4,
+                              "padding": 3,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "d6Hwu",
+                                  "name": "推荐文",
+                                  "fill": "#FFFFFF",
+                                  "content": "推荐",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 9,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "veCqt",
+                          "name": "限额",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "累计 200 万 · 每次事故 100 万",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "U5Zluz",
+                      "name": "价格区",
+                      "gap": 2,
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "fcLOa",
+                          "name": "价格",
+                          "fill": "$primary",
+                          "content": "¥800",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "bold"
+                        },
+                        {
+                          "type": "text",
+                          "id": "k5yAw",
+                          "name": "价格单位",
+                          "fill": "$muted-fg",
+                          "content": "/ 店 / 年",
+                          "fontFamily": "$font-body",
+                          "fontSize": 9,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "rws6q",
+                  "name": "档-方案 P3",
+                  "width": "fill_container",
+                  "fill": "$card",
+                  "cornerRadius": 10,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "gap": 8,
+                  "padding": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "k3ZWb",
+                      "name": "单选",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "circle",
+                      "library": "lucide",
+                      "fill": "$muted-fg"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "A0duT",
+                      "name": "文案",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "ZWOrH",
+                          "name": "名称行",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "c2pTzk",
+                              "name": "档名",
+                              "fill": "$muted-fg",
+                              "content": "方案 P3",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "VPpsv",
+                          "name": "限额",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "累计 300 万 · 每次事故 150 万",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "OCovo",
+                      "name": "价格区",
+                      "gap": 2,
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "s8Mu6Y",
+                          "name": "价格",
+                          "fill": "$muted-fg",
+                          "content": "¥1,300",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "bold"
+                        },
+                        {
+                          "type": "text",
+                          "id": "uHCfD",
+                          "name": "价格单位",
+                          "fill": "$muted-fg",
+                          "content": "/ 店 / 年",
+                          "fontFamily": "$font-body",
+                          "fontSize": 9,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "vG4zs",
+                  "name": "档-方案 P4",
+                  "width": "fill_container",
+                  "fill": "$card",
+                  "cornerRadius": 10,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "gap": 8,
+                  "padding": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "dQUpQ",
+                      "name": "单选",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "circle",
+                      "library": "lucide",
+                      "fill": "$muted-fg"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "bbIqc",
+                      "name": "文案",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "BOrBG",
+                          "name": "名称行",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "fCBuT",
+                              "name": "档名",
+                              "fill": "$muted-fg",
+                              "content": "方案 P4",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "H4OaO",
+                          "name": "限额",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "累计 500 万 · 每次事故 250 万",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "SsdgG",
+                      "name": "价格区",
+                      "gap": 2,
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "iBHqc",
+                          "name": "价格",
+                          "fill": "$muted-fg",
+                          "content": "¥2,000",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "bold"
+                        },
+                        {
+                          "type": "text",
+                          "id": "b2DYDz",
+                          "name": "价格单位",
+                          "fill": "$muted-fg",
+                          "content": "/ 店 / 年",
+                          "fontFamily": "$font-body",
+                          "fontSize": 9,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "xcyHW",
+              "name": "方案组-食品安全责任险",
+              "width": "fill_container",
+              "fill": "$card",
+              "cornerRadius": 12,
+              "stroke": "$border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "JdlPC",
+                  "name": "组标题行",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "E7xiUb",
+                      "name": "组标题",
+                      "fill": "$fg",
+                      "content": "食品安全责任险",
+                      "fontFamily": "$font-body",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "J1tAxr",
+                      "name": "组说明",
+                      "fill": "$muted-fg",
+                      "content": "需食品经营许可证",
+                      "fontFamily": "$font-body",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "vYB3s",
+                  "name": "档-方案一",
+                  "width": "fill_container",
+                  "fill": "$soft",
+                  "cornerRadius": 10,
+                  "stroke": "$primary",
+                  "strokeWidth": 2,
+                  "gap": 8,
+                  "padding": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "BhG4A",
+                      "name": "单选",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "circle-dot",
+                      "library": "lucide",
+                      "fill": "$primary"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "k7cYux",
+                      "name": "文案",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "PYzNB",
+                          "name": "名称行",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "f388L",
+                              "name": "档名",
+                              "fill": "$fg",
+                              "content": "方案一",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "p8LQjc",
+                          "name": "限额",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "累计 100 万 · 每人 10 万",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "MfOdh",
+                      "name": "价格区",
+                      "gap": 2,
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "IBZe6",
+                          "name": "价格",
+                          "fill": "$primary",
+                          "content": "¥800",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "bold"
+                        },
+                        {
+                          "type": "text",
+                          "id": "IFkNu",
+                          "name": "价格单位",
+                          "fill": "$muted-fg",
+                          "content": "/ 店 / 年",
+                          "fontFamily": "$font-body",
+                          "fontSize": 9,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "QmC2l",
+                  "name": "档-方案二",
+                  "width": "fill_container",
+                  "fill": "$card",
+                  "cornerRadius": 10,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "gap": 8,
+                  "padding": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "XQI6F",
+                      "name": "单选",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "circle",
+                      "library": "lucide",
+                      "fill": "$muted-fg"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "UDXcI",
+                      "name": "文案",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "zQU2x",
+                          "name": "名称行",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "EgCwL",
+                              "name": "档名",
+                              "fill": "$muted-fg",
+                              "content": "方案二",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "e2IqrE",
+                          "name": "限额",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "累计 200 万 · 每人 20 万",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "doqT5",
+                      "name": "价格区",
+                      "gap": 2,
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "cuuKr",
+                          "name": "价格",
+                          "fill": "$muted-fg",
+                          "content": "¥1,500",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "bold"
+                        },
+                        {
+                          "type": "text",
+                          "id": "HQiNx",
+                          "name": "价格单位",
+                          "fill": "$muted-fg",
+                          "content": "/ 店 / 年",
+                          "fontFamily": "$font-body",
+                          "fontSize": 9,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "hW2Qj",
+                  "name": "档-方案三",
+                  "width": "fill_container",
+                  "fill": "$card",
+                  "cornerRadius": 10,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "gap": 8,
+                  "padding": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "TIGJ4",
+                      "name": "单选",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "circle",
+                      "library": "lucide",
+                      "fill": "$muted-fg"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "LOIl4",
+                      "name": "文案",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "iyKQM",
+                          "name": "名称行",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "zFx7E",
+                              "name": "档名",
+                              "fill": "$muted-fg",
+                              "content": "方案三",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "Rf0HR",
+                          "name": "限额",
+                          "fill": "$muted-fg",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "累计 200 万 · 每人 30 万",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "BNZRS",
+                      "name": "价格区",
+                      "gap": 2,
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "DGZKt",
+                          "name": "价格",
+                          "fill": "$muted-fg",
+                          "content": "¥2,000",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "bold"
+                        },
+                        {
+                          "type": "text",
+                          "id": "y8Ti1C",
+                          "name": "价格单位",
+                          "fill": "$muted-fg",
+                          "content": "/ 店 / 年",
+                          "fontFamily": "$font-body",
+                          "fontSize": 9,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "xSYkZ",
+          "name": "底部吸底栏",
+          "width": "fill_container",
+          "fill": "$card",
+          "stroke": "$border",
+          "strokeWidth": 1,
+          "gap": 10,
+          "padding": 16,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "eExpN",
+              "name": "上一步按钮",
+              "height": 48,
+              "cornerRadius": 24,
+              "stroke": "$primary",
+              "strokeWidth": 2,
+              "padding": [
+                0,
+                18
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "zcjyD",
+                  "name": "上一步文",
+                  "fill": "$primary",
+                  "content": "上一步",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "G0PZi",
+              "name": "合计区",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 2,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "djHbu",
+                  "name": "合计标签",
+                  "fill": "$muted-fg",
+                  "content": "预估合计 · 公众+食责",
+                  "fontFamily": "$font-body",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "WkBR9",
+                  "name": "金额行",
+                  "gap": 4,
+                  "alignItems": "end",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "CPuf2",
+                      "name": "合计金额",
+                      "fill": "$primary",
+                      "content": "¥2,640",
+                      "fontFamily": "$font-body",
+                      "fontSize": 20,
+                      "fontWeight": "bold"
+                    },
+                    {
+                      "type": "text",
+                      "id": "V1a1R",
+                      "name": "合计单位",
+                      "fill": "$muted-fg",
+                      "content": "起 / 年",
+                      "fontFamily": "$font-body",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "twRD7",
+              "name": "查看报价按钮",
+              "height": 48,
+              "fill": "$accent",
+              "cornerRadius": 24,
+              "gap": 6,
+              "padding": [
+                0,
+                20
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Kk8KY",
+                  "name": "按钮文字",
+                  "fill": "#FFFFFF",
+                  "content": "查看报价",
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "icon",
+                  "id": "UWxzK",
+                  "name": "箭头",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "arrow-right",
+                  "library": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "primary": {
+      "type": "color",
+      "value": "#1E3A5F"
+    },
+    "secondary": {
+      "type": "color",
+      "value": "#2563EB"
+    },
+    "accent": {
+      "type": "color",
+      "value": "#16A34A"
+    },
+    "bg": {
+      "type": "color",
+      "value": "#F8FAFC"
+    },
+    "fg": {
+      "type": "color",
+      "value": "#0F172A"
+    },
+    "muted": {
+      "type": "color",
+      "value": "#E9EEF5"
+    },
+    "muted-fg": {
+      "type": "color",
+      "value": "#475569"
+    },
+    "border": {
+      "type": "color",
+      "value": "#CBD5E1"
+    },
+    "destructive": {
+      "type": "color",
+      "value": "#DC2626"
+    },
+    "card": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "font-body": {
+      "type": "string",
+      "value": "Noto Sans SC"
+    },
+    "soft": {
+      "type": "color",
+      "value": "#E9EEF7"
+    }
+  },
+  "fileToken": "8133208b-bc84-43df-9fa9-90d2cce404bf"
+}

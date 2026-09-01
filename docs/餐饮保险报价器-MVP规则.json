@@ -1,0 +1,102 @@
+{
+  "schema_version": "mvp-1.1",
+  "rule_status": "MVP_CONFIRMED",
+  "confirmed_at": "2026-09-01",
+  "source_date": "2026-08",
+  "currency": "CNY",
+  "disclaimer": "当前规则仅用于客户保费预估，不替代正式核保或出单。",
+  "calculation_defaults": {
+    "area_accepts_decimals": true,
+    "area_rounding_before_band_match": "NONE",
+    "band_boundary_convention": "MIN_INCLUSIVE_MAX_EXCLUSIVE",
+    "display_currency_unit": "CNY_YUAN",
+    "final_rounding": "ROUND_HALF_UP_TO_YUAN",
+    "minimum_premium": null,
+    "discount_factor": 1.0,
+    "tax_factor": 1.0,
+    "regional_factor": 1.0,
+    "unlisted_adjustments_applied": false
+  },
+  "quote_scope": {
+    "products_can_be_selected_independently": true,
+    "multi_store_area_factor_applied_per_store": true,
+    "same_plan_required_within_product_per_quote": true,
+    "food_production_license_affects_estimate": false
+  },
+  "public_liability": {
+    "premium_period": "annual",
+    "premium_period_confirmation_required": false,
+    "plans": {
+      "P1": {"aggregate_limit_10k": 100, "per_accident_limit_10k": 50, "per_person_limit_10k": 10, "per_person_medical_limit_10k": 1, "base_premium_per_store": 600},
+      "P2": {"aggregate_limit_10k": 200, "per_accident_limit_10k": 100, "per_person_limit_10k": 20, "per_person_medical_limit_10k": 2, "base_premium_per_store": 800},
+      "P3": {"aggregate_limit_10k": 300, "per_accident_limit_10k": 150, "per_person_limit_10k": 30, "per_person_medical_limit_10k": 3, "base_premium_per_store": 1300},
+      "P4": {"aggregate_limit_10k": 500, "per_accident_limit_10k": 250, "per_person_limit_10k": 50, "per_person_medical_limit_10k": 5, "base_premium_per_store": 2000}
+    },
+    "area_bands": [
+      {"min_exclusive": 0, "max_exclusive": 100, "factor": 1.0},
+      {"min_inclusive": 100, "max_exclusive": 500, "factor": 1.8},
+      {"min_inclusive": 500, "max_exclusive": 1000, "factor": 2.5},
+      {"min_inclusive": 1000, "max_exclusive": 3000, "factor": 3.5},
+      {"min_inclusive": 3000, "max_exclusive": null, "result": "MANUAL_QUOTE"}
+    ],
+    "formula": "base_premium_per_store * area_factor",
+    "deductible": "100元或损失金额的10%，两者以高者为准"
+  },
+  "food_liability": {
+    "premium_period": "annual",
+    "premium_period_confirmation_required": false,
+    "food_production_license_required": true,
+    "plans": {
+      "P1": {"source_label": "方案一", "aggregate_limit_10k": 100, "per_accident_limit_10k": 50, "per_person_limit_10k": 10, "per_person_medical_limit_10k": 1, "base_premium_per_store": 800},
+      "P2": {"source_label": "方案二", "aggregate_limit_10k": 200, "per_accident_limit_10k": 100, "per_person_limit_10k": 20, "per_person_medical_limit_10k": 2, "base_premium_per_store": 1500},
+      "P3": {"source_label": "方案二", "display_label": "方案三", "label_confirmation_required": false, "aggregate_limit_10k": 200, "per_accident_limit_10k": 100, "per_person_limit_10k": 30, "per_person_medical_limit_10k": 3, "base_premium_per_store": 2000}
+    },
+    "area_bands": [
+      {"min_exclusive": 0, "max_exclusive": 100, "factor": 0.8},
+      {"min_inclusive": 100, "max_exclusive": 500, "factor": 1.5},
+      {"min_inclusive": 500, "max_exclusive": 1000, "factor": 2.4},
+      {"min_inclusive": 1000, "max_exclusive": 2000, "factor": 3.6},
+      {"min_inclusive": 2000, "max_exclusive": null, "result": "MANUAL_QUOTE"}
+    ],
+    "formula": "base_premium_per_store * area_factor",
+    "deductible": "100元或损失金额的10%，两者以高者为准"
+  },
+  "employers_liability": {
+    "premium_period": "annual",
+    "minimum_people_per_policy": 8,
+    "minimum_people_failure_result": "NOT_ELIGIBLE",
+    "age_min_inclusive": 16,
+    "age_max_inclusive": 65,
+    "out_of_age_range_result": "MANUAL_QUOTE",
+    "daily_lost_wage_benefit": 100,
+    "roles": ["BACK_OFFICE_OR_CASHIER", "WAITER", "CHEF_OR_CLEANER"],
+    "unmapped_role_result": "MANUAL_QUOTE",
+    "plans": {
+      "BASIC": {"death_disability_limit_10k_per_person": 10, "medical_limit_10k_per_person": 1, "annual_rate_by_role": {"BACK_OFFICE_OR_CASHIER": 38, "WAITER": 56, "CHEF_OR_CLEANER": 76}},
+      "UPGRADED": {"death_disability_limit_10k_per_person": 30, "medical_limit_10k_per_person": 3, "annual_rate_by_role": {"BACK_OFFICE_OR_CASHIER": 76, "WAITER": 108, "CHEF_OR_CLEANER": 136}},
+      "PREMIUM": {"death_disability_limit_10k_per_person": 50, "medical_limit_10k_per_person": 5, "annual_rate_by_role": {"BACK_OFFICE_OR_CASHIER": 188, "WAITER": 266, "CHEF_OR_CLEANER": 365}},
+      "ULTIMATE": {"death_disability_limit_10k_per_person": 80, "medical_limit_10k_per_person": 8, "annual_rate_by_role": {"BACK_OFFICE_OR_CASHIER": 288, "WAITER": 388, "CHEF_OR_CLEANER": 588}}
+    },
+    "formula": "sum(employee_count_by_role * annual_rate_by_role)",
+    "required_riders": [
+      "附加雇员年龄范围保险（2026版）",
+      "附加误工费用赔偿标准调整保险（2026版）"
+    ],
+    "required_riders_included_in_annual_rate": true,
+    "required_rider_premium_inclusion_confirmation_required": false,
+    "medical_deductible": "免赔200元后按90%赔付",
+    "lost_wage_deductible": "绝对免赔3天；单次不超过90天；累计不超过180天"
+  },
+  "internal_cost_indicators_not_used_in_customer_quote": {
+    "public_liability": 0.30,
+    "food_liability": 0.30,
+    "employers_liability": 0.15
+  },
+  "recommended_quote_statuses": [
+    "QUOTED",
+    "NOT_ELIGIBLE",
+    "MANUAL_QUOTE",
+    "PARTIAL_MANUAL",
+    "MISSING_INPUT"
+  ]
+}
