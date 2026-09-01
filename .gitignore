@@ -14,5 +14,5 @@ pnpm-debug.log*
 .agents/
 .skillshare/
 .workbuddy/
+.worktrees/
 docs/_local/
-
