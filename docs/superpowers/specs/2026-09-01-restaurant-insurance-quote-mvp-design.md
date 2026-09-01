@@ -1,68 +1,68 @@
-# Restaurant Insurance Quote MVP Design
+# 餐饮保险报价器 MVP 设计规格
 
-## 1. Status
+## 1. 文档状态
 
-- Status: Approved
-- Approved on: 2026-09-01
-- Rule version: `mvp-1.1`
-- Delivery target: Mobile-first, statically exported MVP
+- 状态：已批准
+- 批准日期：2026-09-01
+- 规则版本：`mvp-1.1`
+- 交付目标：移动端优先、支持静态导出的 MVP
 
-## 2. Goal
+## 2. 项目目标
 
-Build a standalone mobile insurance estimator for a single restaurant location. A customer selects public liability insurance, food safety liability insurance, employers' liability insurance, or any combination of the three; completes only the steps relevant to those products; and receives an estimated annual premium or a clear non-standard outcome.
+建设一套可独立运行的单门店餐饮保险报价器。客户可以选择公众责任险、食品安全责任险、雇主责任险或三者的任意组合，只填写与所选险种相关的信息，最后获得年度预估保费或明确的非标准报价结果。
 
-The estimator supports early consultation only. It does not perform underwriting, bind coverage, issue a policy, or save a formal quotation.
+报价器仅用于咨询早期预估，不执行正式核保、承保、出单，也不保存正式报价记录。
 
-## 3. Confirmed Product Decisions
+## 3. 已确认的产品决策
 
-1. The Markdown business rules and `docs/餐饮保险报价器-MVP规则.json` are the business source of truth. Pencil is the visual and interaction reference when it does not conflict with those rules.
-2. The employers' liability plan names are 基础版、升级版、尊享版 and 臻享版.
-3. Fewer than eight covered employees produces `NOT_ELIGIBLE`. It does not produce an automatic premium and does not move to manual quotation.
-4. The food safety document prompt uses 食品生产许可证.
-5. The MVP accepts one restaurant location only. It has one business-area input and no store-count, add-store, or per-store editing interface.
-6. Employers' liability includes an explicit yes/no input asking whether all covered employees are between 16 and 65 years old, inclusive.
-7. Partial quotation is allowed. Known premiums may be shown as a subtotal, but a complete final premium must not be shown when one or more selected products cannot be automatically quoted.
-8. Non-happy-path screens may be designed during implementation by following the established Pencil visual language. Their business meaning and displayed amounts must follow the rule source of truth.
-9. Employee-specific configuration, employee routes, authentication, lead capture, a database, and an admin interface are outside the MVP. The code will retain a narrow configuration seam for adding an employee or sales-contact context later.
-10. The project is an independent Git repository rooted in the current directory.
+1. Markdown 业务规则和 `docs/餐饮保险报价器-MVP规则.json` 是业务事实来源。Pencil 仅作为视觉与交互参考；两者不一致时以规则为准。
+2. 雇主责任险档位名称为“基础版、升级版、尊享版、臻享版”。
+3. 参保员工少于 8 人时返回 `NOT_ELIGIBLE`，不计算自动报价，也不转为人工报价。
+4. 食品安全责任险所需资料统一使用“食品生产许可证”。
+5. MVP 仅支持一家餐饮门店，只提供一个经营面积输入，不提供门店数量、新增门店或逐店编辑能力。
+6. 雇主责任险必须提供明确的是/否控件，询问参保员工是否全部处于 16—65 周岁范围内。
+7. 允许部分报价。系统可以展示已知保费小计，但当任一已选险种无法自动报价时，不得展示完整最终总价。
+8. 非正常路径页面由开发 Agent 按现有 Pencil 视觉语言补充；业务含义和金额展示必须遵循规则事实来源。
+9. 员工专属配置、员工路由、认证、客户留资、数据库和管理后台不属于 MVP，但代码应保留一个窄而清晰的员工或销售联系人配置扩展点。
+10. 项目在当前目录中作为独立 Git 仓库管理。
 
-## 4. Scope
+## 4. 范围
 
-### 4.1 Included
+### 4.1 MVP 包含内容
 
-- One restaurant location with a decimal business-area input greater than zero.
-- Independent selection of the three supported insurance products.
-- Four public liability plans.
-- Three food safety liability plans.
-- Four employers' liability plans.
-- Employers' liability headcount by the three rule-defined role groups.
-- Employers' liability minimum-headcount and age-eligibility checks.
-- Versioned rule loading and validation.
-- Automatic, ineligible, manual, partial-manual, and missing-input outcomes.
-- Annual premium detail, known subtotal, final total when valid, coverage highlights, document prompts, disclaimer, and contact action.
-- Draft recovery with `sessionStorage`.
-- Static export with no platform-specific runtime dependency.
-- Automated unit and browser-flow tests.
+- 单一餐饮门店，经营面积允许输入大于 0 的小数。
+- 三个险种可以独立选择或组合选择。
+- 公众责任险四档方案。
+- 食品安全责任险三档方案。
+- 雇主责任险四档方案。
+- 按规则定义的三类岗位录入雇主责任险人数。
+- 雇主责任险最低人数和年龄资格校验。
+- 版本化规则加载与校验。
+- 自动报价、不符合承保条件、人工报价、部分人工报价和输入缺失状态。
+- 年度保费明细、已知小计、有效时的最终总价、保障要点、资料提示、免责声明和联系销售操作。
+- 使用 `sessionStorage` 恢复当前会话草稿。
+- 不依赖托管平台专属运行时的静态导出。
+- 自动化单元测试和浏览器流程测试。
 
-### 4.2 Excluded
+### 4.2 MVP 不包含内容
 
-- Multiple restaurant locations in one quotation.
-- Employee-specific public URLs such as `/e/[employeeSlug]`.
-- Employee or administrator authentication.
-- Customer contact capture and persistence.
-- Databases, server actions, runtime route handlers, or hosted functions.
-- Formal underwriting, policy issuance, payment, discounts, tax, commission, regional adjustments, or minimum premiums.
-- Collection of employee names, identity numbers, exact ages, or per-person job records.
+- 一次报价录入多家门店。
+- `/e/[employeeSlug]` 等员工专属公开地址。
+- 员工或管理员登录。
+- 客户联系方式收集和持久化。
+- 数据库、Server Actions、运行时 Route Handlers 或托管商函数。
+- 正式核保、出单、支付、折扣、税费、佣金、地区调整或最低保费。
+- 员工姓名、身份证号、准确年龄或逐人岗位记录。
 
-## 5. Architecture
+## 5. 总体架构
 
-Use a modular single-page wizard in a Next.js App Router application. React Hook Form owns the quotation draft, Zod validates user input and rule configuration, and a pure TypeScript calculation module produces the complete result model. Tailwind CSS and CSS variables implement the Pencil visual language.
+使用 Next.js App Router 建设模块化单页向导。React Hook Form 管理整份报价草稿，Zod 校验用户输入和规则配置，纯 TypeScript 报价引擎生成完整结果模型，Tailwind CSS 和 CSS Variables 负责实现 Pencil 的视觉语言。
 
-The UI never contains premium rates, area boundaries, or underwriting outcomes. It renders typed rule data and calculator results. The calculator has no React, browser, network, storage, or database dependency.
+UI 不包含保费费率、面积边界或承保状态判断。UI 只渲染类型化规则数据和报价引擎结果。报价引擎不得依赖 React、浏览器 API、网络、存储或数据库。
 
-The application uses `output: "export"` and must build to `out/`. Fonts and important assets are hosted locally, and image handling must not require a server-side optimizer.
+应用使用 `output: "export"`，构建产物输出到 `out/`。字体和关键资源在本地托管，图片处理不得依赖服务端图片优化器。
 
-## 6. Proposed File Boundaries
+## 6. 建议文件边界
 
 ```text
 src/
@@ -116,37 +116,39 @@ tests/
   unit/
 ```
 
-Each calculator file handles one product or one shared calculation concern. Step components handle form interaction only. Shared components express the visual system without owning business decisions. Storage and dynamic step selection are isolated from both calculation and presentation.
+每个报价计算文件只处理一个险种或一个公共计算问题。步骤组件只负责表单交互。公共组件表达视觉系统，不负责业务判断。草稿存储和动态步骤选择分别与计算层、展示层隔离。
 
-## 7. Wizard Flow
+## 7. 报价流程
 
-The conceptual flow contains five possible screens, but only relevant screens are included in a particular run.
+完整流程最多包含五个页面，但单次报价只显示与当前选择有关的步骤。
 
-1. **门店与险种:** Enter one business area and select one or more products.
-2. **雇主险档位:** Include only when employers' liability is selected.
-3. **员工信息:** Include only when employers' liability is selected. Enter counts for the three supported role groups and answer the age-eligibility question.
-4. **公众与食责方案:** Include when public liability or food safety liability is selected, showing only selected product groups.
-5. **报价结果:** Calculate and present the outcome.
+1. **门店与险种：** 输入一个经营面积并选择一个或多个险种。
+2. **雇主险档位：** 仅在选择雇主责任险时出现。
+3. **员工信息：** 仅在选择雇主责任险时出现。录入三类岗位人数，并回答年龄资格问题。
+4. **公众与食责方案：** 选择公众责任险或食品安全责任险时出现，只展示已选险种的方案组。
+5. **报价结果：** 计算并展示报价结果。
 
-Progress is computed from the active step list. A public-liability-only quotation therefore has three displayed steps: 门店与险种, 公众与食责方案, and 报价结果. Returning to an earlier step preserves valid input. Removing a product clears or ignores its downstream selections and premiums.
+进度根据当前生效的步骤列表动态计算。例如，只选择公众责任险时，页面显示“门店与险种 → 公众与食责方案 → 报价结果”，共 3 步。
 
-## 8. Input Model and Validation
+返回上一步时保留仍然有效的输入。取消某个险种后，该险种的下游方案和保费必须被清除或忽略，不能继续影响结果。
 
-The quotation input contains:
+## 8. 输入模型与校验
 
-- Selected products: a non-empty set.
-- Business area: decimal number greater than zero.
-- Public liability plan: required only when that product is selected.
-- Food safety liability plan: required only when that product is selected.
-- Employers' liability plan: required only when that product is selected.
-- Counts for BACK_OFFICE_OR_CASHIER, WAITER, and CHEF_OR_CLEANER: non-negative integers required when employers' liability is selected.
-- Age eligibility: explicit boolean required when employers' liability is selected.
+报价输入包括：
 
-Every visible control has a persistent label, an associated error message, and a mobile-appropriate input mode. Headcounts can be typed directly even if increment and decrement buttons are also provided.
+- 已选险种：至少选择一项。
+- 经营面积：大于 0 的小数。
+- 公众责任险方案：选择该险种时必填。
+- 食品安全责任险方案：选择该险种时必填。
+- 雇主责任险方案：选择该险种时必填。
+- `BACK_OFFICE_OR_CASHIER`、`WAITER` 和 `CHEF_OR_CLEANER` 三类岗位人数：选择雇主责任险时必填，且必须是非负整数。
+- 年龄资格：选择雇主责任险时必须明确选择是或否。
 
-## 9. Calculation and Status Semantics
+每个可见控件都必须提供持续可见的标签、与控件关联的错误提示以及适合移动端的输入模式。岗位人数即使提供加减按钮，也必须允许用户直接输入。
 
-Each selected product produces its own result item. The aggregate result contains:
+## 9. 报价计算与状态语义
+
+每个已选险种生成一条独立结果，整体结果包含：
 
 ```ts
 type QuoteStatus =
@@ -165,86 +167,89 @@ type QuoteResult = {
 }
 ```
 
-Calculation order is deterministic:
+计算顺序必须保持确定性：
 
-1. Reject incomplete inputs with `MISSING_INPUT`.
-2. For employers' liability, calculate total headcount first.
-3. If total headcount is below eight, return `NOT_ELIGIBLE` for that product without evaluating age for a price.
-4. If headcount is eligible but the age answer is false, return `MANUAL_QUOTE` for employers' liability.
-5. Match public and food liability area bands without rounding the input first.
-6. Calculate every selected product independently.
-7. Aggregate product results.
+1. 缺少必填输入时返回 `MISSING_INPUT`。
+2. 雇主责任险首先汇总总人数。
+3. 总人数少于 8 人时，直接为该险种返回 `NOT_ELIGIBLE`，不继续通过年龄校验计算价格。
+4. 人数符合要求但年龄答案为否时，为雇主责任险返回 `MANUAL_QUOTE`。
+5. 公众责任险和食品安全责任险使用原始面积匹配档位，匹配前不取整。
+6. 每个已选险种独立计算。
+7. 最后聚合各险种结果。
 
-Aggregate behavior:
+整体状态规则：
 
-- All selected products are quoted: overall `QUOTED`, `knownSubtotal` and `totalPremium` contain the same complete amount.
-- One or more products require manual quotation and at least one product is quoted: overall `PARTIAL_MANUAL`, `knownSubtotal` contains quoted items, and `totalPremium` is `null`.
-- Every selected product requires manual quotation: overall `MANUAL_QUOTE`, with no final total.
-- Employers' liability is not eligible: overall `NOT_ELIGIBLE`; other automatically calculated products may remain visible as a known subtotal, but `totalPremium` is `null` because the requested selection was not fully quotable.
-- Missing required data: overall `MISSING_INPUT`; the wizard remains on the relevant input step instead of presenting a result page.
+- 所有已选险种均可自动报价：整体为 `QUOTED`，`knownSubtotal` 和 `totalPremium` 都保存完整金额。
+- 至少一个险种需人工报价，且至少一个险种已成功报价：整体为 `PARTIAL_MANUAL`，`knownSubtotal` 保存可计算小计，`totalPremium` 为 `null`。
+- 所有已选险种均需人工报价：整体为 `MANUAL_QUOTE`，不展示最终总价。
+- 雇主责任险不符合承保条件：整体为 `NOT_ELIGIBLE`；其他已自动计算的险种可以作为已知小计展示，但由于客户所选组合未能完整报价，`totalPremium` 必须为 `null`。
+- 缺少必填数据：整体为 `MISSING_INPUT`；向导停留在对应输入步骤，不进入结果页。
 
-Premium display rounds half up to whole CNY only at the defined final display boundary. Calculations retain the rule-defined numeric precision until then.
+保费计算保留规则定义的数值精度，只在最终展示边界按四舍五入规则显示为人民币整数元。
 
-## 10. Draft Persistence
+## 10. 草稿保存
 
-The form draft is stored in `sessionStorage` under a versioned key. The stored envelope contains a draft schema version, rule version, timestamp, and form values. Invalid, incompatible, or corrupted drafts are discarded safely and the user receives a non-blocking message.
+表单草稿保存在 `sessionStorage` 中，使用带版本号的存储键。存储结构包含草稿结构版本、规则版本、保存时间和表单值。
 
-No formal quote, customer personal information, or authoritative premium record is persisted. A future server-backed version must validate input and recalculate from the saved rule version rather than trusting a client result.
+当草稿损坏、版本不兼容或无法通过校验时，系统安全丢弃草稿，并向用户展示不阻塞流程的提示。
 
-## 11. Employee-Configuration Extension Seam
+MVP 不持久化正式报价、客户个人信息或具有权威性的保费记录。未来接入服务端后，服务端必须重新校验输入，并根据记录中的规则版本重新计算，不能信任客户端结果。
 
-The MVP exposes only the root quotation page. Sales contact rendering is isolated in `sales-contact-action.tsx`, and its default public data comes from `src/config/site.ts`. The wizard may receive a small public context object containing a source identifier and display-safe contact configuration.
+## 11. 员工配置扩展边界
 
-A later `/e/[employeeSlug]` route can resolve an enabled employee profile and pass that same context to the existing wizard. It must not copy the wizard, step components, schemas, or calculator. No employee registry, dynamic route, authentication, or database abstraction is implemented in this MVP.
+MVP 只提供根路径报价页面。联系销售的展示逻辑隔离在 `sales-contact-action.tsx` 中，默认公开信息从 `src/config/site.ts` 读取。报价向导可以接收一个很小的公开上下文对象，其中包含来源标识和可公开展示的联系配置。
 
-## 12. UI and Error Handling
+未来增加 `/e/[employeeSlug]` 时，只需解析启用状态下的员工公开配置，并把相同上下文传给现有报价向导。不得复制报价向导、步骤组件、校验 schema 或计算逻辑。
 
-The current Pencil frames define the visual baseline: dark navy text, green primary actions, light blue informational surfaces, outlined cards, mobile-first spacing, and a sticky bottom summary/action area. The implementation may create missing states in that language without modifying `docs/design.pen`.
+本期不实现员工注册表、动态员工路由、认证或数据库抽象。
 
-Required non-happy-path presentations include:
+## 12. UI 与错误处理
 
-- Inline field validation.
-- Fewer-than-eight-employees non-eligibility.
-- Age-based manual quotation.
-- Public or food liability area-based manual quotation.
-- Partial quotation with known subtotal and no final total.
-- Invalid saved draft recovery.
-- Rule configuration failure with a safe unavailable state rather than a guessed quote.
+现有 Pencil 画板作为视觉基线：深海军蓝文字、绿色主操作、浅蓝信息区、描边卡片、移动端优先间距和吸底汇总操作栏。实现阶段可以按这一视觉语言补充缺失状态，但不得修改 `docs/design.pen`。
 
-Business errors are never hidden behind a generic failure message. Technical failures never produce a premium.
+必须覆盖以下非正常展示状态：
 
-## 13. Testing Strategy
+- 字段内联校验错误。
+- 员工不足 8 人导致的不符合承保条件。
+- 年龄不符合导致的人工报价。
+- 公众责任险或食品安全责任险超面积导致的人工报价。
+- 显示已知小计但不显示最终总价的部分报价。
+- 无效草稿恢复提示。
+- 规则配置无法读取时的安全不可用状态。
 
-### 13.1 Unit Tests
+业务错误必须展示具体原因，不能统一隐藏成模糊的失败提示。技术故障不得产生任何保费结果。
 
-- Validate a correct rule file and reject malformed plans or area bands.
-- Public liability boundaries: 99.99, 100, 499.99, 500, 999.99, 1000, 2999.99, and 3000.
-- Food safety boundaries: 99.99, 100, 499.99, 500, 999.99, 1000, 1999.99, and 2000.
-- Employers' liability: seven, eight, and nine people; each plan and role rate; false age confirmation.
-- Status aggregation for fully quoted, not eligible, fully manual, and partial-manual selections.
-- Confirmed examples: CNY 5,432 from the rule document and CNY 3,984 from the approved happy-path design.
-- Whole-yuan rounding behavior.
+## 13. 测试策略
 
-### 13.2 Browser Tests
+### 13.1 单元测试
 
-- Public-only, food-only, employer-only, two-product, and three-product flows.
-- Dynamic step count and skipped conditional steps.
-- Back navigation and downstream-value invalidation.
-- Refresh recovery from a valid draft and safe recovery from a corrupt draft.
-- Inline error focus and keyboard-accessible controls.
-- Mobile viewports, sticky footer, scrolling, and bottom safe-area behavior.
-- Normal, not-eligible, manual, and partial-manual result presentations.
+- 正确规则配置可以通过校验，方案或面积档位损坏时明确失败。
+- 公众责任险面积边界：`99.99`、`100`、`499.99`、`500`、`999.99`、`1000`、`2999.99` 和 `3000`。
+- 食品安全责任险面积边界：`99.99`、`100`、`499.99`、`500`、`999.99`、`1000`、`1999.99` 和 `2000`。
+- 雇主责任险：7 人、8 人、9 人；每个档位和岗位费率；年龄答案为否。
+- 全部可报价、不符合承保、全部人工报价和部分人工报价的状态聚合。
+- 已确认示例：规则文档中的 5,432 元和正常设计路径中的 3,984 元。
+- 人民币整数元四舍五入。
 
-### 13.3 Build Verification
+### 13.2 浏览器流程测试
 
-- Lint, TypeScript checking, unit tests, and browser tests pass.
-- `pnpm build` creates `out/` without a server runtime.
-- The exported application completes a quote when served by a generic static file server.
-- Fonts, icons, and required assets do not depend on inaccessible third-party CDNs.
+- 仅公众险、仅食责险、仅雇主险、两险组合和三险组合。
+- 动态步骤总数及条件步骤跳过。
+- 返回修改以及下游失效数据清理。
+- 刷新恢复有效草稿，以及安全处理损坏草稿。
+- 错误字段聚焦和键盘可操作性。
+- 移动端视口、吸底栏、滚动和底部安全区。
+- 正常报价、不符合承保、人工报价和部分人工报价结果。
 
-## 14. Delivery and Version-Control Policy
+### 13.3 构建验证
 
-Implementation proceeds in test-driven, independently verifiable slices. Commits use English and remain narrowly scoped: repository/tooling setup, rule schema, calculation engine, wizard state, individual UI stages, result states, persistence, and end-to-end verification.
+- ESLint、TypeScript 类型检查、单元测试和浏览器测试全部通过。
+- `pnpm build` 成功生成 `out/`，不依赖服务端运行时。
+- 使用通用静态文件服务器加载 `out/` 后，可以完成完整报价流程。
+- 字体、图标和关键资源不依赖可能无法访问的第三方 CDN。
 
-The implementation must preserve `docs/design.pen`, the approved Markdown business rules, the source JSON rule file, and unrelated user files. Any later rule change requires a new rule version or an explicitly approved correction plus matching tests.
+## 14. 交付与版本控制规则
 
+实施过程采用测试驱动、可独立验证的小批次推进。Git 提交信息使用英文，并按仓库与工具配置、规则 schema、报价引擎、向导状态、各步骤 UI、结果状态、草稿恢复和端到端验证等职责拆分。
+
+实施过程中必须保留 `docs/design.pen`、已确认的 Markdown 业务规则、原始 JSON 规则文件和用户无关文件。后续规则变更必须产生新规则版本，或在获得明确批准后修正当前规则并同步更新测试。
