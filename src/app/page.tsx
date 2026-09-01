@@ -1,3 +1,5 @@
+import { QuoteWizard } from "@/features/quote/components/quote-wizard";
+
 export default function HomePage() {
-  return <main>餐饮保险报价器正在初始化</main>;
+  return <QuoteWizard />;
 }

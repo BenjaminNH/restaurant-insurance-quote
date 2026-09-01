@@ -6,13 +6,13 @@ export default defineConfig({
   retries: 1,
   reporter: "html",
   use: {
-    baseURL: "http://127.0.0.1:3000",
+    baseURL: "http://localhost:3107",
     trace: "on-first-retry",
   },
   webServer: {
-    command: "pnpm dev",
-    url: "http://127.0.0.1:3000",
-    reuseExistingServer: true,
+    command: "pnpm dev --port 3107",
+    url: "http://localhost:3107",
+    reuseExistingServer: false,
   },
   projects: [
     { name: "chromium-mobile", use: { ...devices["Pixel 7"] } },
