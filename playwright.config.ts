@@ -16,6 +16,13 @@ export default defineConfig({
   },
   projects: [
     { name: "chromium-mobile", use: { ...devices["Pixel 7"] } },
-    { name: "webkit-mobile", use: { ...devices["iPhone 15"] } },
+    {
+      name: "webkit-iphone-17-pro",
+      use: { ...devices["iPhone 15 Pro"], viewport: { width: 402, height: 874 } },
+    },
+    {
+      name: "webkit-iphone-17-pro-max",
+      use: { ...devices["iPhone 15 Pro Max"], viewport: { width: 440, height: 956 } },
+    },
   ],
 });
