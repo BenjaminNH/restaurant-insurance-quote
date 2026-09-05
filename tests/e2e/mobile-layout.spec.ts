@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test("目标手机视口无横向溢出且使用紧凑字号", async ({ page }) => {
   await page.goto("/");
+  await expect(page.getByLabel("经营面积")).toBeVisible();
 
   const metrics = await page.evaluate(() => {
     const heading = document.querySelector("h1");
