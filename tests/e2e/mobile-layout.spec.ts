@@ -1,5 +1,24 @@
 import { expect, test } from "@playwright/test";
 
+for (const viewport of [
+  { name: "360px 窄屏", width: 360, height: 780 },
+  { name: "iPhone 17 Pro", width: 402, height: 874 },
+  { name: "iPhone 17 Pro Max", width: 440, height: 956 },
+  { name: "iPhone 17 Pro 横屏", width: 874, height: 402 },
+]) {
+  test(`${viewport.name} 无横向溢出`, async ({ page }) => {
+    await page.setViewportSize({ width: viewport.width, height: viewport.height });
+    await page.goto("/");
+
+    const sizes = await page.evaluate(() => ({
+      viewport: window.innerWidth,
+      document: document.documentElement.scrollWidth,
+    }));
+
+    expect(sizes.document).toBeLessThanOrEqual(sizes.viewport);
+  });
+}
+
 test("数字键盘压缩可视区域时收起底栏并保留当前字段", async ({ page }) => {
   await page.addInitScript(() => {
     class MockVisualViewport extends EventTarget {
