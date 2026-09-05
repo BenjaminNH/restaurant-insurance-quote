@@ -25,16 +25,18 @@ async function completeThreeProductQuote(page: Page) {
   await page.getByRole("button", { name: "查看报价" }).click();
 }
 
-test("显示报价器标题、第一步与移动端表单语义", async ({ page }) => {
+test("显示紧凑进度、免责声明与移动端表单语义", async ({ page }) => {
   await page.goto("/");
 
   await expect(
     page.getByRole("heading", { name: "餐饮门店保费智能预估" }),
   ).toBeVisible();
-  await expect(page.getByText("第 1 步 / 共 2 步", { exact: false })).toBeVisible();
+  await expect(page.getByText("第 1/2 步", { exact: true })).toBeVisible();
+  await expect(page.getByRole("progressbar", { name: "报价进度" })).toHaveAttribute("aria-valuenow", "50");
   await expect(page.getByLabel("经营面积")).toHaveAttribute("inputmode", "decimal");
   await expect(page.getByRole("button", { name: "下一步" })).toBeVisible();
   await expect(page.getByText("预估保费仅供参考", { exact: false })).toBeVisible();
+  await expect(page.getByText("→", { exact: true })).toHaveCount(0);
 });
 
 test("必填错误阻止进入下一步并聚焦首个错误字段", async ({ page }) => {

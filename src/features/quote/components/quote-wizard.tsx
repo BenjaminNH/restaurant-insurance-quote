@@ -117,7 +117,8 @@ export function QuoteWizard() {
     <ProgressHeader {...currentMeta} current={visibleStepIndex + 1} total={total} />
     {errorSummary ? <div className="error-summary" role="alert">{errorSummary}</div> : null}
     {body}
-    {currentStep !== "RESULT" ? <BottomBar onBack={visibleStepIndex > 0 ? back : undefined} onNext={next} nextLabel={currentStep === "LIABILITY_PLANS" || (products.length > 0 && steps[visibleStepIndex + 1] === "RESULT") ? "查看报价" : "下一步"} summary={<><span>预估合计 · {products.length} 个险种</span><strong>{previewTotal !== null ? formatCurrency(previewTotal) : "待完善"} <small>起 / 年</small></strong>{currentStep === "EMPLOYEES" ? <small>{totalPeople} 名员工</small> : null}</>} /> : null}
+    <p className="quote-disclaimer">{siteConfig.disclaimer}</p>
+    {currentStep !== "RESULT" ? <BottomBar onBack={visibleStepIndex > 0 ? back : undefined} onNext={next} nextLabel={currentStep === "LIABILITY_PLANS" || (products.length > 0 && steps[visibleStepIndex + 1] === "RESULT") ? "查看报价" : "下一步"} summary={<><span>预估合计 · {products.length} 个险种{currentStep === "EMPLOYEES" ? ` · ${totalPeople} 名员工` : ""}</span><strong>{previewTotal !== null ? formatCurrency(previewTotal) : "待完善"} <small>起 / 年</small></strong></>} /> : null}
     {currentStep === "RESULT" && result ? <div className="result-footer-space" /> : null}
   </main></FormProvider>;
 }
