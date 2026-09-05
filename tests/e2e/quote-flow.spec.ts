@@ -126,7 +126,7 @@ test("只选择公众险时跳过雇主险步骤并得到正常报价", async ({
   await chooseProducts(page, ["公众责任险"]);
   await page.getByRole("button", { name: "下一步" }).click();
 
-  await expect(page.getByText("第 2 步 / 共 3 步", { exact: false })).toBeVisible();
+  await expect(page.getByText("第 2/3 步", { exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "公众与食责方案" })).toBeVisible();
   await page.getByLabel("公众责任险方案 P2").check();
   await page.getByRole("button", { name: "查看报价" }).click();
