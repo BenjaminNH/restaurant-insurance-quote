@@ -79,3 +79,19 @@ test("主要移动端操作的有效高度不少于 44px", async ({ page }) => {
   expect(nextBox?.height).toBeGreaterThanOrEqual(44);
   expect(productBox?.height).toBeGreaterThanOrEqual(44);
 });
+
+test("结构性字符图标被替换且结果金额不过度放大", async ({ page }) => {
+  await page.goto("/");
+  await page.getByLabel("经营面积").fill("260");
+  await page.getByLabel("公众责任险", { exact: true }).check();
+  await page.getByRole("button", { name: "下一步" }).click();
+  await page.getByLabel("公众责任险方案 P2").check();
+  await page.getByRole("button", { name: "查看报价" }).click();
+
+  const amountSize = await page
+    .locator(".total-amount")
+    .evaluate((element) => getComputedStyle(element).fontSize);
+  expect(Number.parseFloat(amountSize)).toBeLessThanOrEqual(32);
+  const bodyText = await page.locator("body").innerText();
+  expect(bodyText).not.toMatch(/[✓ⓘ▧☎→]/);
+});

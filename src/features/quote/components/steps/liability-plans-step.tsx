@@ -35,7 +35,7 @@ function LiabilityPlanChoice({ name, value, label, selected, premium, limits, re
   return <label className={`plan-choice ${selected ? "selected" : ""}`}>
     <input type="radio" value={value} aria-label={label} {...register(name)} />
     <span className="radio-mark" aria-hidden="true" />
-    <span className="choice-copy"><strong>{label} {value === "P2" && name === "publicPlan" ? <em>推荐</em> : null}</strong><span>{limits}</span></span>
+    <span className="choice-copy"><strong>{label}</strong><span>{limits}</span></span>
     <span className="choice-price">{formatCurrency(premium)} <small>/ 店 / 年</small></span>
   </label>;
 }

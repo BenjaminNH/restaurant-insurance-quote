@@ -13,14 +13,14 @@ export function EmployerPlanStep() {
     <div className="step-content">
       <p className="step-intro">雇主责任险独立选择、独立计算。档位决定每位员工的赔付上限，保费在下一步按岗位人数计算。</p>
       <SectionCard>
-        <div className="card-heading"><h2>选择保障档位</h2><span className="muted">保额越高，单人事故赔付上限越高</span></div>
+        <div className="card-heading"><h2>选择保障档位</h2></div>
         <div className="radio-list" role="radiogroup" aria-label="雇主责任险档位">
           {plans.map((plan) => {
             const details = quoteRules.employers_liability.plans[plan];
             return <label className={`plan-choice ${selected === plan ? "selected" : ""}`} key={plan}>
               <input type="radio" value={plan} aria-label={employerPlanCopy[plan]} {...register("employerPlan")} />
               <span className="radio-mark" aria-hidden="true" />
-              <span className="choice-copy"><strong>{employerPlanCopy[plan]} {plan === "UPGRADED" ? <em>推荐</em> : null}</strong><span>每人伤亡 {details.death_disability_limit_10k_per_person} 万 · 每人医疗 {details.medical_limit_10k_per_person} 万</span></span>
+              <span className="choice-copy"><strong>{employerPlanCopy[plan]}</strong><span>每人伤亡 {details.death_disability_limit_10k_per_person} 万 · 每人医疗 {details.medical_limit_10k_per_person} 万</span></span>
             </label>;
           })}
         </div>

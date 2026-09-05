@@ -1,4 +1,5 @@
 import { employerPlanCopy, foodPlanCopy, publicPlanCopy, siteConfig } from "@/config/site";
+import { CheckCircle, FileText, Phone } from "@phosphor-icons/react";
 import type { QuoteInput, QuoteItem, QuoteResult } from "@/features/quote/types";
 import { SectionCard, formatCurrency } from "../ui";
 
@@ -19,10 +20,10 @@ export function ResultStep({ result, input, onRestart }: { result: QuoteResult; 
     {result.status === "PARTIAL_MANUAL" ? <SectionCard><div className="result-subtotal"><span>已知保费小计</span><strong>{formatCurrency(result.knownSubtotal)}</strong></div></SectionCard> : null}
     {result.items.length ? <SectionCard><h2>保费明细</h2><div className="result-items">{result.items.map((item) => <ResultItem key={item.product} item={item} input={input} />)}</div></SectionCard> : null}
     {result.status === "QUOTED" ? <>
-      <SectionCard><h2>保障与免赔要点</h2><ul className="detail-list"><li>✓ 公众 / 食责：免赔 100 元或损失金额 10%，两者取高</li><li>✓ 雇主医疗：免赔 200 元后按 90% 赔付</li><li>✓ 雇主误工：绝对免赔 3 天，单次 ≤90 天，累计 ≤180 天</li><li>✓ 雇主误工费标准：100 元 / 天</li></ul></SectionCard>
-      <SectionCard><h2>承保所需资料</h2><ul className="detail-list"><li>▧ 营业执照（副本）</li>{input.products.includes("FOOD") ? <li>▧ 食品生产许可证（投食责险必需）</li> : null}{input.products.includes("EMPLOYERS") ? <li>▧ 员工花名册（含岗位与出生日期）</li> : null}<li>▧ 门店经营面积证明或租赁合同</li></ul></SectionCard>
+      <SectionCard><h2>保障与免赔要点</h2><ul className="detail-list"><li><CheckCircle aria-hidden="true" />公众 / 食责：免赔 100 元或损失金额 10%，两者取高</li><li><CheckCircle aria-hidden="true" />雇主医疗：免赔 200 元后按 90% 赔付</li><li><CheckCircle aria-hidden="true" />雇主误工：绝对免赔 3 天，单次 ≤90 天，累计 ≤180 天</li><li><CheckCircle aria-hidden="true" />雇主误工费标准：100 元 / 天</li></ul></SectionCard>
+      <SectionCard><h2>承保所需资料</h2><ul className="detail-list"><li><FileText aria-hidden="true" />营业执照（副本）</li>{input.products.includes("FOOD") ? <li><FileText aria-hidden="true" />食品生产许可证（投食责险必需）</li> : null}{input.products.includes("EMPLOYERS") ? <li><FileText aria-hidden="true" />员工花名册（含岗位与出生日期）</li> : null}<li><FileText aria-hidden="true" />门店经营面积证明或租赁合同</li></ul></SectionCard>
     </> : null}
-    <div className="sales-contact"><strong>{siteConfig.salesContact}</strong><span>可协助确认承保条件与正式方案</span><button type="button" className="contact-button">☎ 联系销售 · 确认方案</button></div>
+    <div className="sales-contact"><strong>{siteConfig.salesContact}</strong><span>可协助确认承保条件与正式方案</span><button type="button" className="contact-button"><Phone aria-hidden="true" />联系销售 · 确认方案</button></div>
     <button type="button" className="recalculate-button" onClick={onRestart}>修改条件，重新计算</button>
   </div>;
 }

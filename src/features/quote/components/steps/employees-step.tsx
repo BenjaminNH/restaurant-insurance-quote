@@ -1,4 +1,5 @@
 import { useFormContext, useWatch } from "react-hook-form";
+import { CheckCircle, Info } from "@phosphor-icons/react";
 import { employerRoleCopy, employerPlanCopy } from "@/config/site";
 import { quoteRules } from "@/config/quote-rules";
 import type { EmployerPlan, EmployerRole, QuoteInput } from "@/features/quote/types";
@@ -37,8 +38,8 @@ export function EmployeesStep() {
         {errors.allEmployeesAgeEligible ? <FieldError>{String(errors.allEmployeesAgeEligible.message)}</FieldError> : null}
       </SectionCard>
       <div className={`condition-note ${total >= 8 && ageEligible !== false ? "positive" : "warning"}`}>
-        <strong>{total >= 8 ? "✓" : "ⓘ"} 共 {total} 人，{total >= 8 ? "满足最低 8 人的承保要求" : "少于 8 人，不符合承保要求"}</strong>
-        <span>{ageEligible === false ? "ⓘ 存在年龄范围外员工，雇主责任险需人工报价" : "ⓘ 员工年龄须在 16–65 岁范围内"}</span>
+        <strong>{total >= 8 ? <CheckCircle aria-hidden="true" /> : <Info aria-hidden="true" />}共 {total} 人，{total >= 8 ? "满足最低 8 人的承保要求" : "少于 8 人，不符合承保要求"}</strong>
+        <span><Info aria-hidden="true" />{ageEligible === false ? "存在年龄范围外员工，雇主责任险需人工报价" : "员工年龄须在 16–65 岁范围内"}</span>
       </div>
     </div>
   );
