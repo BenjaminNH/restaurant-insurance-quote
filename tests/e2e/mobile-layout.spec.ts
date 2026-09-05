@@ -1,5 +1,36 @@
 import { expect, test } from "@playwright/test";
 
+test("数字键盘压缩可视区域时收起底栏并保留当前字段", async ({ page }) => {
+  await page.addInitScript(() => {
+    class MockVisualViewport extends EventTarget {
+      height = window.innerHeight;
+      width = window.innerWidth;
+      offsetLeft = 0;
+      offsetTop = 0;
+      pageLeft = 0;
+      pageTop = 0;
+      scale = 1;
+    }
+
+    const viewport = new MockVisualViewport();
+    Object.defineProperty(window, "visualViewport", { configurable: true, value: viewport });
+    (window as unknown as { __setVisualViewportHeight: (height: number) => void }).__setVisualViewportHeight = (height) => {
+      viewport.height = height;
+      viewport.dispatchEvent(new Event("resize"));
+    };
+  });
+
+  await page.goto("/");
+  await page.getByLabel("经营面积").focus();
+  await page.evaluate(() => (window as unknown as { __setVisualViewportHeight: (height: number) => void }).__setVisualViewportHeight(377));
+
+  await expect(page.locator(".bottom-wrap")).toBeHidden();
+  await expect(page.getByLabel("经营面积")).toBeInViewport();
+
+  await page.evaluate(() => (window as unknown as { __setVisualViewportHeight: (height: number) => void }).__setVisualViewportHeight(window.innerHeight));
+  await expect(page.locator(".bottom-wrap")).toBeVisible();
+});
+
 test("目标手机视口无横向溢出且使用紧凑字号", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByLabel("经营面积")).toBeVisible();

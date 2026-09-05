@@ -16,6 +16,7 @@ import { EmployerPlanStep } from "./steps/employer-plan-step";
 import { EmployeesStep } from "./steps/employees-step";
 import { LiabilityPlansStep } from "./steps/liability-plans-step";
 import { ResultStep } from "./steps/result-step";
+import { useSoftKeyboard } from "../hooks/use-soft-keyboard";
 
 const defaults: QuoteInput = {
   products: [],
@@ -32,6 +33,7 @@ const stepMeta: Record<QuoteStep, { title: string; section: string; description?
 };
 
 export function QuoteWizard() {
+  const isSoftKeyboardOpen = useSoftKeyboard();
   const methods = useForm<QuoteInput>({ resolver: zodResolver(quoteInputSchema), defaultValues: defaults, mode: "onSubmit" });
   const { reset, setError, clearErrors, setFocus, getValues } = methods;
   const values = useWatch({ control: methods.control }) as QuoteInput;
@@ -88,7 +90,15 @@ export function QuoteWizard() {
     if (step === "STORE") {
       if (!Number.isFinite(current.area) || current.area <= 0) { setError("area", { type: "manual", message: "请输入经营面积" }); issues.push("经营面积"); }
       if (!current.products.length) { setError("products", { type: "manual", message: "请选择险种" }); issues.push("险种"); }
-      if (issues.length) { setErrorSummary(`请完善：${issues.join("、")}`); setFocus("area"); return false; }
+      if (issues.length) {
+        setErrorSummary(`请完善：${issues.join("、")}`);
+        if (!Number.isFinite(current.area) || current.area <= 0) {
+          setFocus("area");
+        } else {
+          requestAnimationFrame(() => document.querySelector<HTMLInputElement>('input[name="products"]')?.focus());
+        }
+        return false;
+      }
     }
     if (step === "EMPLOYER_PLAN" && !current.employerPlan) { setError("employerPlan", { type: "manual", message: "请选择雇主责任险档位" }); setErrorSummary("请选择雇主责任险档位"); return false; }
     if (step === "EMPLOYEES") {
@@ -113,12 +123,12 @@ export function QuoteWizard() {
     <div className="step-content" role="status">正在恢复当前会话…</div>
   </main>;
   if (currentStep === "RESULT" && !result) return null;
-  return <FormProvider {...methods}><main className="quote-app">
+  return <FormProvider {...methods}><main className="quote-app" data-soft-keyboard={isSoftKeyboardOpen ? "open" : "closed"}>
     <ProgressHeader {...currentMeta} current={visibleStepIndex + 1} total={total} />
     {errorSummary ? <div className="error-summary" role="alert">{errorSummary}</div> : null}
     {body}
     <p className="quote-disclaimer">{siteConfig.disclaimer}</p>
-    {currentStep !== "RESULT" ? <BottomBar onBack={visibleStepIndex > 0 ? back : undefined} onNext={next} nextLabel={currentStep === "LIABILITY_PLANS" || (products.length > 0 && steps[visibleStepIndex + 1] === "RESULT") ? "查看报价" : "下一步"} summary={<><span>预估合计 · {products.length} 个险种{currentStep === "EMPLOYEES" ? ` · ${totalPeople} 名员工` : ""}</span><strong>{previewTotal !== null ? formatCurrency(previewTotal) : "待完善"} <small>起 / 年</small></strong></>} /> : null}
+    {currentStep !== "RESULT" ? <BottomBar onBack={visibleStepIndex > 0 ? back : undefined} onNext={next} nextLabel={currentStep === "LIABILITY_PLANS" || (products.length > 0 && steps[visibleStepIndex + 1] === "RESULT") ? "查看报价" : "下一步"} summary={<><span>预估合计 · {products.length} 个险种{currentStep === "EMPLOYEES" ? ` · ${totalPeople} 名员工` : ""}</span><strong>{previewTotal !== null ? formatCurrency(previewTotal) : "待完善"} <small>起 / 年</small></strong></>} hidden={isSoftKeyboardOpen} /> : null}
     {currentStep === "RESULT" && result ? <div className="result-footer-space" /> : null}
   </main></FormProvider>;
 }

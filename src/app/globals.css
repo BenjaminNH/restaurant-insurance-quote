@@ -52,6 +52,8 @@ button {
     calc(6rem + env(safe-area-inset-bottom));
 }
 
+.quote-app[data-soft-keyboard="open"] { padding-bottom: var(--space-4); }
+
 .quote-header { color: #0d172d; }
 .header-row,
 .brand-lockup,

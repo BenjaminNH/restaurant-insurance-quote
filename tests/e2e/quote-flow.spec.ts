@@ -112,6 +112,14 @@ test("必填错误阻止进入下一步并聚焦首个错误字段", async ({ pa
   expect(headerBox.y + headerBox.height).toBeLessThanOrEqual(alertBox.y);
 });
 
+test("面积有效但未选险种时聚焦第一个险种", async ({ page }) => {
+  await page.goto("/");
+  await page.getByLabel("经营面积").fill("120");
+  await page.getByRole("button", { name: "下一步" }).click();
+
+  await expect(page.getByLabel("雇主责任险", { exact: true })).toBeFocused();
+});
+
 test("只选择公众险时跳过雇主险步骤并得到正常报价", async ({ page }) => {
   await page.goto("/");
   await page.getByLabel("经营面积").fill("260");
