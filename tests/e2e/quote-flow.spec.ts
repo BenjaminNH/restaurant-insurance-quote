@@ -46,6 +46,11 @@ test("必填错误阻止进入下一步并聚焦首个错误字段", async ({ pa
   await expect(page.getByRole("alert").filter({ hasText: "请完善" })).toContainText("经营面积");
   await expect(page.getByRole("alert").filter({ hasText: "请完善" })).toContainText("险种");
   await expect(page.getByLabel("经营面积")).toBeFocused();
+
+  const headerBox = await page.locator(".quote-header").boundingBox();
+  const alertBox = await page.getByRole("alert").filter({ hasText: "请完善" }).boundingBox();
+  if (!headerBox || !alertBox) throw new Error("Expected the header and error summary to have bounding boxes");
+  expect(headerBox.y + headerBox.height).toBeLessThanOrEqual(alertBox.y);
 });
 
 test("只选择公众险时跳过雇主险步骤并得到正常报价", async ({ page }) => {

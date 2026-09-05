@@ -138,7 +138,7 @@ em { background: #16a34a; color: #fff; border-radius: 6px; font-style: normal; f
 .condition-note.positive { color: #15395c; }
 .condition-note strong:first-letter { color: #16a34a; }
 .error-summary, .field-error { color: #b42318; font-size: 15px; line-height: 1.5; }
-.error-summary { margin: -40px 0 26px; border: 1px solid #f0b8b2; background: #fff5f3; border-radius: 10px; padding: 12px 14px; }
+.error-summary { margin: 0 0 var(--space-3); border: 1px solid #f0b8b2; background: #fff5f3; border-radius: 10px; padding: 12px 14px; }
 .quote-disclaimer { margin: var(--space-3) 0 0; color: var(--color-muted); font-size: 0.75rem; line-height: 1.5; text-align: center; }
 .bottom-wrap { position: fixed; z-index: 10; inset: auto 0 0; border-top: 1px solid var(--color-border); background: rgb(255 255 255 / 96%); padding-bottom: env(safe-area-inset-bottom); backdrop-filter: blur(12px); }
 .bottom-wrap[hidden] { display: none; }
