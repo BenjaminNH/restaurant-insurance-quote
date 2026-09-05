@@ -99,6 +99,21 @@ test("主要移动端操作的有效高度不少于 44px", async ({ page }) => {
   expect(productBox?.height).toBeGreaterThanOrEqual(44);
 });
 
+test("员工人数输入框不显示原生数字微调按钮", async ({ page }) => {
+  await page.goto("/");
+  await page.getByLabel("经营面积").fill("260");
+  await page.getByLabel("雇主责任险", { exact: true }).check();
+  await page.getByRole("button", { name: "下一步" }).click();
+  await page.getByLabel("升级版").check();
+  await page.getByRole("button", { name: "下一步" }).click();
+
+  const appearance = await page
+    .getByRole("spinbutton", { name: "服务员人数" })
+    .evaluate((input) => getComputedStyle(input).appearance);
+
+  expect(appearance).toBe("textfield");
+});
+
 test("结构性字符图标被替换且结果金额不过度放大", async ({ page }) => {
   await page.goto("/");
   await page.getByLabel("经营面积").fill("260");
