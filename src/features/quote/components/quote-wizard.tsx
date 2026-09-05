@@ -69,6 +69,9 @@ export function QuoteWizard() {
     if (!parsed.success) return null;
     return calculateQuote(parsed.data as QuoteInput, quoteRules).totalPremium;
   }, [values]);
+  const summaryStatus = currentStep === "EMPLOYEES"
+    ? `${products.length} 个险种 · ${totalPeople} 名员工`
+    : `${products.length} 个险种`;
 
   function next() {
     setErrorSummary("");
@@ -128,7 +131,7 @@ export function QuoteWizard() {
     {errorSummary ? <div className="error-summary" role="alert">{errorSummary}</div> : null}
     {body}
     <p className="quote-disclaimer">{siteConfig.disclaimer}</p>
-    {currentStep !== "RESULT" ? <BottomBar onBack={visibleStepIndex > 0 ? back : undefined} onNext={next} nextLabel={currentStep === "LIABILITY_PLANS" || (products.length > 0 && steps[visibleStepIndex + 1] === "RESULT") ? "查看报价" : "下一步"} summary={<><span>预估合计 · {products.length} 个险种{currentStep === "EMPLOYEES" ? ` · ${totalPeople} 名员工` : ""}</span><strong>{previewTotal !== null ? formatCurrency(previewTotal) : "待完善"} <small>起 / 年</small></strong></>} hidden={isSoftKeyboardOpen} /> : null}
+    {currentStep !== "RESULT" ? <BottomBar onBack={visibleStepIndex > 0 ? back : undefined} onNext={next} nextLabel={currentStep === "LIABILITY_PLANS" || (products.length > 0 && steps[visibleStepIndex + 1] === "RESULT") ? "查看报价" : "下一步"} summary={<><span>{summaryStatus}</span><strong>{previewTotal === null ? "待完善" : <>{formatCurrency(previewTotal)} <small>/ 年</small></>}</strong></>} hidden={isSoftKeyboardOpen} /> : null}
     {currentStep === "RESULT" && result ? <div className="result-footer-space" /> : null}
   </main></FormProvider>;
 }

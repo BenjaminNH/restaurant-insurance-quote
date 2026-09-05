@@ -88,6 +88,16 @@ test("员工人数失焦时规范为非负整数", async ({ page }) => {
   await expect(waiter).toHaveValue("2");
 });
 
+test("员工步骤的底栏摘要保持两行且无金额时不显示年费单位", async ({ page }) => {
+  await openEmployeeStep(page);
+
+  const summary = page.locator(".bottom-summary");
+  await expect(summary).toContainText("1 个险种 · 0 名员工");
+  await expect(summary).toContainText("待完善");
+  await expect(summary).not.toContainText("预估合计");
+  await expect(summary).not.toContainText("起 / 年");
+});
+
 test("隐藏的险种复选框聚焦时卡片显示焦点环", async ({ page }) => {
   await page.goto("/");
 
