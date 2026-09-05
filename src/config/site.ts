@@ -3,8 +3,7 @@ import type { Product } from "@/features/quote/types";
 export const siteConfig = {
   brand: "餐饮安心保",
   title: "餐饮门店保费智能预估",
-  description:
-    "填写餐饮门店经营信息，1 分钟获取公众责任险、食品安全责任险与雇主责任险的预估保费。",
+  description: "填写一家门店信息，约 1 分钟获得所选险种的预估保费。",
   disclaimer: "预估保费仅供参考，最终以保险公司正式核保与保单为准",
   salesContact: "餐饮安心保顾问",
 } as const;
@@ -15,17 +14,17 @@ export const productCopy: Record<
 > = {
   EMPLOYERS: {
     label: "雇主责任险",
-    description: "员工工伤、误工费用等，8 人起保（低于 8 人不保）",
+    description: "员工工作期间发生意外时提供保障，8 人起保",
     price: "按岗位与人数计费",
   },
   PUBLIC: {
     label: "公众责任险",
-    description: "顾客在店内受伤、财物损失等第三者责任",
+    description: "顾客在店内发生意外或财物损失时提供保障",
     price: "¥600 起 / 店 / 年",
   },
   FOOD: {
     label: "食品安全责任险",
-    description: "食物中毒等食品安全事故赔偿责任",
+    description: "食品安全事故造成损失时提供保障",
     price: "¥800 起 / 店 / 年",
   },
 };
