@@ -3,11 +3,19 @@
 import { useEffect, useState } from "react";
 
 const KEYBOARD_THRESHOLD = 120;
+const KEYBOARD_INPUT_TYPES = new Set([
+  "email",
+  "number",
+  "password",
+  "search",
+  "tel",
+  "text",
+  "url",
+]);
 
 function isEditable(element: Element | null): element is HTMLElement {
-  return element instanceof HTMLInputElement
-    || element instanceof HTMLTextAreaElement
-    || element instanceof HTMLSelectElement;
+  return element instanceof HTMLTextAreaElement
+    || (element instanceof HTMLInputElement && KEYBOARD_INPUT_TYPES.has(element.type));
 }
 
 export function useSoftKeyboard() {
@@ -41,14 +49,12 @@ export function useSoftKeyboard() {
     document.addEventListener("focusin", sync);
     document.addEventListener("focusout", handleFocusOut);
     viewport?.addEventListener("resize", sync);
-    viewport?.addEventListener("scroll", sync);
     sync();
 
     return () => {
       document.removeEventListener("focusin", sync);
       document.removeEventListener("focusout", handleFocusOut);
       viewport?.removeEventListener("resize", sync);
-      viewport?.removeEventListener("scroll", sync);
     };
   }, []);
 

@@ -31,6 +31,22 @@ test("数字键盘压缩可视区域时收起底栏并保留当前字段", async
   await expect(page.locator(".bottom-wrap")).toBeVisible();
 });
 
+test("无 VisualViewport 时仅键盘输入控件收起底栏", async ({ page }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(window, "visualViewport", { configurable: true, value: undefined });
+  });
+
+  await page.goto("/");
+  await page.getByLabel("公众责任险", { exact: true }).focus();
+  await expect(page.locator(".bottom-wrap")).toBeVisible();
+
+  await page.getByLabel("经营面积").focus();
+  await expect(page.locator(".bottom-wrap")).toBeHidden();
+
+  await page.getByLabel("经营面积").blur();
+  await expect(page.locator(".bottom-wrap")).toBeVisible();
+});
+
 test("目标手机视口无横向溢出且使用紧凑字号", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByLabel("经营面积")).toBeVisible();
