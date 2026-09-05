@@ -8,7 +8,7 @@
   --color-muted: #53647c;
   --color-border: #cbd8e8;
   --color-primary: #213f67;
-  --color-action: #168a43;
+  --color-action: #15803d;
   --color-soft: #e9eff7;
   --color-error: #b42318;
   --color-error-soft: #fff5f3;
@@ -215,7 +215,7 @@ em { background: #16a34a; color: #fff; border-radius: 6px; font-style: normal; f
 .sales-contact span { color: var(--color-muted); }
 .contact-button { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-1); min-height: var(--touch-target); margin-top: var(--space-1); border: 0; border-radius: var(--radius-control); background: var(--color-action); color: #fff; padding: 0 var(--space-3); font-weight: 700; font-size: 1rem; transition: background-color 160ms ease; }
 .contact-button:active { background: #0f6833; }
-.contact-button:focus-visible { outline-color: rgb(22 138 67 / 48%); }
+.contact-button:focus-visible { outline-color: rgb(21 128 61 / 48%); }
 .contact-button:disabled { opacity: .55; cursor: not-allowed; }
 .recalculate-button { min-height: var(--touch-target); border: 0; background: transparent; color: var(--color-primary); font-size: 1rem; padding: 0 var(--space-2); justify-self: center; }
 .recalculate-button:active { color: #0f2b4a; }

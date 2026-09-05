@@ -1,5 +1,22 @@
 import { expect, test } from "@playwright/test";
 
+function relativeLuminance(color: string) {
+  const channels = color.match(/\d+(?:\.\d+)?/g)?.map(Number);
+  if (!channels || channels.length < 3) throw new Error(`Expected an RGB color, received ${color}`);
+
+  return channels.slice(0, 3).reduce((sum, channel, index) => {
+    const linear = channel / 255 <= 0.04045
+      ? channel / 255 / 12.92
+      : ((channel / 255 + 0.055) / 1.055) ** 2.4;
+    return sum + linear * [0.2126, 0.7152, 0.0722][index];
+  }, 0);
+}
+
+function contrastRatio(foreground: string, background: string) {
+  const [lighter, darker] = [relativeLuminance(foreground), relativeLuminance(background)].sort((a, b) => b - a);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
 for (const viewport of [
   { name: "360px 窄屏", width: 360, height: 780 },
   { name: "iPhone 17 Pro", width: 402, height: 874 },
@@ -97,6 +114,17 @@ test("主要移动端操作的有效高度不少于 44px", async ({ page }) => {
 
   expect(nextBox?.height).toBeGreaterThanOrEqual(44);
   expect(productBox?.height).toBeGreaterThanOrEqual(44);
+});
+
+test("主操作按钮的实际渲染前景与背景满足 WCAG AA 对比度", async ({ page }) => {
+  await page.goto("/");
+
+  const colors = await page.getByRole("button", { name: "下一步" }).evaluate((button) => {
+    const styles = getComputedStyle(button);
+    return { foreground: styles.color, background: styles.backgroundColor };
+  });
+
+  expect(contrastRatio(colors.foreground, colors.background)).toBeGreaterThanOrEqual(4.5);
 });
 
 test("员工人数输入框不显示原生数字微调按钮", async ({ page }) => {
