@@ -126,12 +126,19 @@ em { background: #16a34a; color: #fff; border-radius: 6px; font-style: normal; f
 .plan-fieldset, .age-fieldset { border: 0; margin: 0; padding: 0; }
 .plan-fieldset legend { display: flex; justify-content: space-between; align-items: baseline; width: 100%; margin-bottom: 22px; font-size: 24px; font-weight: 700; }
 .plan-fieldset legend small { color: #53647c; font-size: 16px; font-weight: 400; }
-.employee-list { display: grid; gap: 20px; }
-.employee-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.employee-row > div { display: grid; gap: 6px; }
-.employee-row label { font-size: 20px; font-weight: 700; }
-.employee-row span { color: #53647c; }
-.employee-row input { width: 150px; border: 0; border-radius: 14px; background: #e9eff7; padding: 13px; text-align: center; font-size: 23px; color: #0d172d; }
+.employee-list { display: grid; gap: var(--space-2); }
+.employee-field { display: grid; gap: 0.25rem; }
+.employee-row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); min-width: 0; }
+.employee-copy { display: grid; min-width: 0; gap: 0.125rem; }
+.employee-copy label { font-size: 1rem; font-weight: 700; }
+.employee-copy span { color: var(--color-muted); font-size: 0.75rem; }
+.employee-counter { display: grid; flex: 0 0 auto; grid-template-columns: var(--touch-target) 3rem var(--touch-target); overflow: hidden; border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--color-surface); }
+.employee-counter button { display: grid; place-items: center; width: var(--touch-target); min-height: var(--touch-target); border: 0; background: transparent; color: var(--color-primary); }
+.employee-counter button:active:not(:disabled) { background: var(--color-soft); }
+.employee-counter button:disabled { color: #98a2b3; cursor: not-allowed; }
+.employee-counter button svg { width: 1rem; height: 1rem; }
+.employee-counter input { width: 3rem; min-width: 0; border: 0; border-inline: 1px solid var(--color-border); outline: 0; background: transparent; color: var(--color-text); font-size: 1rem; text-align: center; font-variant-numeric: tabular-nums; }
+.employee-counter:focus-within { border-color: var(--color-primary); box-shadow: 0 0 0 3px rgb(33 63 103 / 16%); }
 .age-fieldset { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 18px; padding-top: 18px; border-top: 1px solid #d7e0eb; }
 .age-fieldset legend { flex-basis: 100%; font-size: 18px; font-weight: 700; }
 .inline-choice { display: inline-flex; align-items: center; gap: 9px; border: 2px solid #cbd8e8; border-radius: 12px; padding: 10px 12px; color: #53647c; }

@@ -3,11 +3,12 @@ import { employerRoleCopy, employerPlanCopy } from "@/config/site";
 import { quoteRules } from "@/config/quote-rules";
 import type { EmployerPlan, EmployerRole, QuoteInput } from "@/features/quote/types";
 import { FieldError, SectionCard } from "../ui";
+import { EmployeeCountInput } from "../employee-count-input";
 
 const roles: EmployerRole[] = ["BACK_OFFICE_OR_CASHIER", "WAITER", "CHEF_OR_CLEANER"];
 
 export function EmployeesStep() {
-  const { register, setValue, formState: { errors } } = useFormContext<QuoteInput>();
+  const { setValue, formState: { errors } } = useFormContext<QuoteInput>();
   const plan = useWatch<QuoteInput>({ name: "employerPlan" }) as EmployerPlan | undefined;
   const counts = useWatch<QuoteInput>({ name: "employeeCounts" }) as Record<EmployerRole, number>;
   const ageEligible = useWatch<QuoteInput>({ name: "allEmployeesAgeEligible" });
@@ -19,12 +20,15 @@ export function EmployeesStep() {
       <SectionCard>
         <div className="card-heading"><h2>按岗位录入人数</h2><span className="muted">年龄限 16–65 岁</span></div>
         <div className="employee-list">
-          {roles.map((role) => <div className="employee-row" key={role}>
-            <div><label htmlFor={`employee-${role}`}>{employerRoleCopy[role].label}</label><span>{rates ? `¥${rates[role]} / 人 / 年` : ""}</span></div>
-            <input id={`employee-${role}`} type="number" min="0" step="1" inputMode="numeric" aria-label={employerRoleCopy[role].label} {...register(`employeeCounts.${role}`, { valueAsNumber: true })} />
-          </div>)}
+          {roles.map((role) => (
+            <EmployeeCountInput
+              key={role}
+              role={role}
+              label={employerRoleCopy[role].label}
+              rate={rates?.[role]}
+            />
+          ))}
         </div>
-        {roles.map((role) => errors.employeeCounts?.[role] ? <FieldError key={role}>{employerRoleCopy[role].label}请输入 0 或以上整数</FieldError> : null)}
         <fieldset className="age-fieldset">
           <legend>员工年龄范围确认</legend>
           <label className={`inline-choice ${ageEligible === true ? "selected" : ""}`}><input type="radio" value="yes" aria-label="是，全部符合" checked={ageEligible === true} onChange={() => setValue("allEmployeesAgeEligible", true, { shouldDirty: true })} /><span className="radio-mark" aria-hidden="true" />是，全部符合</label>
