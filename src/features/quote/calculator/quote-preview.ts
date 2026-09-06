@@ -36,9 +36,14 @@ export function calculateQuotePreview(input: QuoteInput, rules: QuoteRules): Quo
     && validCounts
     && totalPeople >= minimum
   ) {
-    // MVP age eligibility is assumed true. The field remains on QuoteInput for
-    // future underwriting integrations, while calculateQuote keeps its existing semantics.
-    items.push(calculateEmployersLiability(input.employerPlan, counts, true, rules));
+    // MVP defaults missing eligibility to compliant, while future underwriting
+    // integrations can explicitly mark employees outside the eligible range.
+    items.push(calculateEmployersLiability(
+      input.employerPlan,
+      counts,
+      input.allEmployeesAgeEligible ?? true,
+      rules,
+    ));
   }
 
   if (input.products.includes("PUBLIC") && input.publicPlan && input.area > 0) {

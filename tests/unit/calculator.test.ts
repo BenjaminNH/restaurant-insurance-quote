@@ -252,6 +252,20 @@ describe("渐进报价预览", () => {
     expect(preview.employerPeopleShortfall).toBe(1);
   });
 
+  test("年龄不合规时预览雇主险转人工报价", () => {
+    const preview = calculateQuotePreview({
+      products: ["EMPLOYERS"],
+      area: 260,
+      employerPlan: "UPGRADED",
+      employeeCounts: { BACK_OFFICE_OR_CASHIER: 0, WAITER: 8, CHEF_OR_CLEANER: 0 },
+      allEmployeesAgeEligible: false,
+    }, quoteRules);
+
+    expect(preview.items).toMatchObject([{ status: "MANUAL_QUOTE", reasonCode: "AGE_RANGE" }]);
+    expect(preview.knownSubtotal).toBeNull();
+    expect(preview.manualQuoteCount).toBe(1);
+  });
+
   test("已知项目累计金额并记录人工确认项", () => {
     const preview = calculateQuotePreview({
       products: ["EMPLOYERS", "PUBLIC", "FOOD"],
