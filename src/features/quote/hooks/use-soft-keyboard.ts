@@ -23,23 +23,33 @@ export function useSoftKeyboard() {
 
   useEffect(() => {
     const viewport = window.visualViewport;
+    let viewportBaseline = Math.max(window.innerHeight, viewport?.height ?? 0);
+    let wasOpen = false;
 
     function sync() {
       const active = document.activeElement;
       const focusWithinEditable = isEditable(active);
+      const currentViewportHeight = viewport?.height ?? window.innerHeight;
+
+      if (!focusWithinEditable) {
+        viewportBaseline = Math.max(window.innerHeight, currentViewportHeight);
+      }
+
       const heightReduced = viewport
-        ? window.innerHeight - viewport.height > KEYBOARD_THRESHOLD
+        ? viewportBaseline - currentViewportHeight > KEYBOARD_THRESHOLD
         : focusWithinEditable;
       const nextOpen = focusWithinEditable && heightReduced;
 
       setIsOpen(nextOpen);
 
-      if (nextOpen && active instanceof HTMLElement) {
+      if (nextOpen && !wasOpen && active instanceof HTMLElement) {
         const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
           ? "auto"
           : "smooth";
         requestAnimationFrame(() => active.scrollIntoView({ block: "center", behavior }));
       }
+
+      wasOpen = nextOpen;
     }
 
     function handleFocusOut() {
