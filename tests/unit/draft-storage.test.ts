@@ -36,6 +36,29 @@ test("保存并恢复同规则版本草稿", () => {
   );
 });
 
+test("旧草稿没有年龄字段时恢复为默认合规", () => {
+  sessionStorage.setItem(
+    storageKey,
+    JSON.stringify({
+      draftVersion: 1,
+      ruleVersion: "mvp-1.1",
+      savedAt: new Date().toISOString(),
+      values: {
+        products: ["EMPLOYERS"],
+        area: 260,
+        employerPlan: "UPGRADED",
+        employeeCounts: {
+          BACK_OFFICE_OR_CASHIER: 0,
+          WAITER: 8,
+          CHEF_OR_CLEANER: 0,
+        },
+      },
+    }),
+  );
+
+  expect(loadQuoteDraft()?.allEmployeesAgeEligible).toBe(true);
+});
+
 test("损坏草稿返回 null 并自动清除", () => {
   sessionStorage.setItem(storageKey, "broken-json");
 

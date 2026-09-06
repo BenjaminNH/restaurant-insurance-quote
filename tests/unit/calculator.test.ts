@@ -3,6 +3,7 @@ import { quoteRules } from "@/config/quote-rules";
 import { calculateQuote } from "@/features/quote/calculator/calculate-quote";
 import { calculateEmployersLiability } from "@/features/quote/calculator/employers-liability";
 import { calculateLiabilityByArea, getLiabilityAreaOutcome } from "@/features/quote/calculator/liability-by-area";
+import { calculateQuotePreview } from "@/features/quote/calculator/quote-preview";
 import { roundCny } from "@/features/quote/calculator/money";
 
 describe("面积责任险", () => {
@@ -219,5 +220,51 @@ describe("整体报价", () => {
       knownSubtotal: null,
       totalPremium: null,
     });
+  });
+});
+
+describe("渐进报价预览", () => {
+  test("雇主险达到 8 人后立即产生预览金额", () => {
+    const preview = calculateQuotePreview({
+      products: ["EMPLOYERS", "PUBLIC", "FOOD"],
+      area: 260,
+      employerPlan: "UPGRADED",
+      employeeCounts: { BACK_OFFICE_OR_CASHIER: 0, WAITER: 8, CHEF_OR_CLEANER: 0 },
+      allEmployeesAgeEligible: true,
+    }, quoteRules);
+
+    expect(preview.knownSubtotal).toBe(864);
+    expect(preview.items).toHaveLength(1);
+    expect(preview.missingProductCount).toBe(2);
+    expect(preview.employerPeopleShortfall).toBe(0);
+  });
+
+  test("雇主险不足 8 人时不输出预览金额", () => {
+    const preview = calculateQuotePreview({
+      products: ["EMPLOYERS"],
+      area: 260,
+      employerPlan: "UPGRADED",
+      employeeCounts: { BACK_OFFICE_OR_CASHIER: 0, WAITER: 7, CHEF_OR_CLEANER: 0 },
+      allEmployeesAgeEligible: true,
+    }, quoteRules);
+
+    expect(preview.knownSubtotal).toBeNull();
+    expect(preview.employerPeopleShortfall).toBe(1);
+  });
+
+  test("已知项目累计金额并记录人工确认项", () => {
+    const preview = calculateQuotePreview({
+      products: ["EMPLOYERS", "PUBLIC", "FOOD"],
+      area: 2500,
+      employerPlan: "UPGRADED",
+      publicPlan: "P1",
+      foodPlan: "P1",
+      employeeCounts: { BACK_OFFICE_OR_CASHIER: 0, WAITER: 8, CHEF_OR_CLEANER: 0 },
+      allEmployeesAgeEligible: true,
+    }, quoteRules);
+
+    expect(preview.knownSubtotal).toBe(2964);
+    expect(preview.manualQuoteCount).toBe(1);
+    expect(preview.missingProductCount).toBe(0);
   });
 });

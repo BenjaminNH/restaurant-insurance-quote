@@ -6,7 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { quoteRules } from "@/config/quote-rules";
 import { siteConfig } from "@/config/site";
 import { calculateQuote } from "@/features/quote/calculator/calculate-quote";
-import type { QuoteInput, QuoteResult, QuoteStep } from "@/features/quote/types";
+import { calculateQuotePreview, type QuotePreview } from "@/features/quote/calculator/quote-preview";
+import type { Product, QuoteInput, QuoteResult, QuoteStep } from "@/features/quote/types";
 import { quoteInputSchema } from "@/features/quote/schemas/quote-input-schema";
 import { getCompletedProgress, getQuoteSteps } from "@/features/quote/state/quote-step-flow";
 import { loadQuoteDraft, saveQuoteDraft } from "@/features/quote/state/quote-draft-storage";
@@ -22,6 +23,7 @@ const defaults: QuoteInput = {
   products: [],
   area: Number.NaN,
   employeeCounts: { BACK_OFFICE_OR_CASHIER: 0, WAITER: 0, CHEF_OR_CLEANER: 0 },
+  allEmployeesAgeEligible: true,
 };
 
 const stepMeta: Record<QuoteStep, { title: string }> = {
@@ -31,6 +33,54 @@ const stepMeta: Record<QuoteStep, { title: string }> = {
   LIABILITY_PLANS: { title: "选择保障方案" },
   RESULT: { title: "报价结果" },
 };
+
+function getBottomSummary(
+  step: QuoteStep,
+  products: Product[],
+  preview: QuotePreview,
+): { label: string; value: string; isMoney: boolean } {
+  if (step === "STORE") {
+    return { label: `已选 ${products.length} 个险种`, value: "继续选择保障方案", isMoney: false };
+  }
+
+  if (step === "EMPLOYER_PLAN") {
+    return { label: "雇主责任险", value: "请选择保障档位", isMoney: false };
+  }
+
+  if (step === "EMPLOYEES" && (preview.employerPeopleShortfall ?? 0) > 0) {
+    return {
+      label: "雇主责任险",
+      value: `还差 ${preview.employerPeopleShortfall} 人达到起保要求`,
+      isMoney: false,
+    };
+  }
+
+  if (step === "EMPLOYEES") {
+    return {
+      label: "雇主险当前预估",
+      value: formatCurrency(preview.knownSubtotal),
+      isMoney: true,
+    };
+  }
+
+  if (preview.manualQuoteCount > 0 && preview.knownSubtotal !== null) {
+    return {
+      label: "已知保费小计",
+      value: `${formatCurrency(preview.knownSubtotal)} + ${preview.manualQuoteCount} 项待确认`,
+      isMoney: false,
+    };
+  }
+
+  if (preview.manualQuoteCount > 0) {
+    return { label: "当前报价", value: `${preview.manualQuoteCount} 项需人工确认`, isMoney: false };
+  }
+
+  return {
+    label: preview.missingProductCount === 0 ? "预估合计" : "当前已选保费",
+    value: preview.knownSubtotal === null ? "继续选择方案" : formatCurrency(preview.knownSubtotal),
+    isMoney: preview.knownSubtotal !== null,
+  };
+}
 
 export function QuoteWizard() {
   const isSoftKeyboardOpen = useSoftKeyboard();
@@ -64,15 +114,8 @@ export function QuoteWizard() {
   const currentMeta = stepMeta[currentStep];
   const total = steps.length;
   const completedProgress = getCompletedProgress(visibleStepIndex, total);
-  const totalPeople = Object.values(values.employeeCounts ?? {}).reduce((sum, count) => sum + (Number(count) || 0), 0);
-  const previewTotal = useMemo(() => {
-    const parsed = quoteInputSchema.safeParse(values);
-    if (!parsed.success) return null;
-    return calculateQuote(parsed.data as QuoteInput, quoteRules).totalPremium;
-  }, [values]);
-  const summaryStatus = currentStep === "EMPLOYEES"
-    ? `${products.length} 个险种 · ${totalPeople} 名员工`
-    : `${products.length} 个险种`;
+  const preview = useMemo(() => calculateQuotePreview(values, quoteRules), [values]);
+  const bottomSummary = getBottomSummary(currentStep, products, preview);
 
   function next() {
     setErrorSummary("");
@@ -108,7 +151,6 @@ export function QuoteWizard() {
     if (step === "EMPLOYEES") {
       const badRole = Object.entries(current.employeeCounts).find(([, value]) => !Number.isInteger(value) || value < 0);
       if (badRole) { setErrorSummary("请填写各岗位人数（0 或以上整数）"); setFocus(`employeeCounts.${badRole[0] as keyof QuoteInput["employeeCounts"]}`); return false; }
-      if (current.allEmployeesAgeEligible === undefined) { setError("allEmployeesAgeEligible", { type: "manual", message: "请确认员工年龄范围" }); setErrorSummary("请确认员工年龄范围"); return false; }
     }
     if (step === "LIABILITY_PLANS") {
       if (current.products.includes("PUBLIC") && !current.publicPlan) { setError("publicPlan", { type: "manual", message: "请选择公众责任险方案" }); issues.push("公众责任险方案"); }
@@ -132,7 +174,7 @@ export function QuoteWizard() {
     {errorSummary ? <div className="error-summary" role="alert">{errorSummary}</div> : null}
     {body}
     <p className="quote-disclaimer">{siteConfig.disclaimer}</p>
-    {currentStep !== "RESULT" ? <BottomBar onBack={visibleStepIndex > 0 ? back : undefined} onNext={next} nextLabel={currentStep === "LIABILITY_PLANS" || (products.length > 0 && steps[visibleStepIndex + 1] === "RESULT") ? "查看报价" : "下一步"} summary={<><span>{summaryStatus}</span><strong>{previewTotal === null ? "待完善" : <>{formatCurrency(previewTotal)} <small>/ 年</small></>}</strong></>} hidden={isSoftKeyboardOpen} /> : null}
+    {currentStep !== "RESULT" ? <BottomBar onBack={visibleStepIndex > 0 ? back : undefined} onNext={next} nextLabel={currentStep === "LIABILITY_PLANS" || (products.length > 0 && steps[visibleStepIndex + 1] === "RESULT") ? "查看报价" : "下一步"} summary={<><span>{bottomSummary.label}</span><strong>{bottomSummary.value}{bottomSummary.isMoney ? <small> / 年</small> : null}</strong></>} hidden={isSoftKeyboardOpen} /> : null}
     {currentStep === "RESULT" && result ? <div className="result-footer-space" /> : null}
   </main></FormProvider>;
 }

@@ -65,7 +65,7 @@ function ProductChoice({ product, checked, register }: { product: Product; check
         if (!event.target.checked) {
           if (product === "PUBLIC") setValue("publicPlan", undefined);
           if (product === "FOOD") setValue("foodPlan", undefined);
-          if (product === "EMPLOYERS") { setValue("employerPlan", undefined); setValue("allEmployeesAgeEligible", undefined); }
+          if (product === "EMPLOYERS") { setValue("employerPlan", undefined); setValue("allEmployeesAgeEligible", true); }
         }
       }} />
       <span className="checkmark" aria-hidden="true">{checked ? <Check weight="bold" /> : null}</span>

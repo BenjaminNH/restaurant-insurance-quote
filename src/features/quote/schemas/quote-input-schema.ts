@@ -23,7 +23,7 @@ export const quoteDraftSchema = z.object({
     .enum(["BASIC", "UPGRADED", "PREMIUM", "ULTIMATE"])
     .optional(),
   employeeCounts: employeeCountsSchema,
-  allEmployeesAgeEligible: z.boolean().optional(),
+  allEmployeesAgeEligible: z.boolean().optional().default(true),
 });
 
 export const quoteInputSchema = quoteDraftSchema.superRefine((value, context) => {
@@ -48,17 +48,6 @@ export const quoteInputSchema = quoteDraftSchema.superRefine((value, context) =>
       code: "custom",
       path: ["employerPlan"],
       message: "请选择雇主责任险档位",
-    });
-  }
-
-  if (
-    value.products.includes("EMPLOYERS") &&
-    value.allEmployeesAgeEligible === undefined
-  ) {
-    context.addIssue({
-      code: "custom",
-      path: ["allEmployeesAgeEligible"],
-      message: "请确认员工年龄范围",
     });
   }
 });

@@ -37,20 +37,15 @@ test("食品安全责任险需要食品安全责任险方案", () => {
   }
 });
 
-test("雇主险需要档位和明确年龄答案", () => {
-  const result = quoteInputSchema.safeParse({
+test("雇主险未传年龄确认时默认符合年龄范围", () => {
+  const parsed = quoteInputSchema.parse({
     products: ["EMPLOYERS"],
     area: 260,
     employerPlan: "UPGRADED",
     employeeCounts: { ...emptyCounts, WAITER: 8 },
   });
 
-  expect(result.success).toBe(false);
-  if (!result.success) {
-    expect(result.error.issues).toContainEqual(
-      expect.objectContaining({ path: ["allEmployeesAgeEligible"] }),
-    );
-  }
+  expect(parsed.allEmployeesAgeEligible).toBe(true);
 });
 
 test("雇主险缺少档位时报告档位错误", () => {

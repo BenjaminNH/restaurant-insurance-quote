@@ -18,7 +18,6 @@ async function completeThreeProductQuote(page: Page) {
   await page.getByRole("spinbutton", { name: "内勤 / 收银人数" }).fill("2");
   await page.getByRole("spinbutton", { name: "服务员人数" }).fill("6");
   await page.getByRole("spinbutton", { name: "厨师 / 保洁人数" }).fill("4");
-  await page.getByLabel("是，全部符合").check();
   await page.getByRole("button", { name: "下一步" }).click();
   await page.getByLabel("公众责任险方案 P2").check();
   await page.getByLabel("食品安全责任险方案一").check();
@@ -119,14 +118,50 @@ test("员工人数失焦时规范为非负整数", async ({ page }) => {
   await expect(waiter).toHaveValue("2");
 });
 
-test("员工步骤的底栏摘要保持两行且无金额时不显示年费单位", async ({ page }) => {
+test("员工步骤未满足起保人数时底栏显示人数缺口", async ({ page }) => {
   await openEmployeeStep(page);
 
   const summary = page.locator(".bottom-summary");
-  await expect(summary).toContainText("1 个险种 · 0 名员工");
-  await expect(summary).toContainText("待完善");
+  await expect(summary).toContainText("雇主责任险");
+  await expect(summary).toContainText("还差 8 人达到起保要求");
   await expect(summary).not.toContainText("预估合计");
-  await expect(summary).not.toContainText("起 / 年");
+  await expect(summary).not.toContainText("/ 年");
+});
+
+test("员工页不要求年龄确认并正确区分起保状态", async ({ page }) => {
+  await openEmployeeStep(page);
+  await expect(page.getByLabel("是，全部符合")).toHaveCount(0);
+  await expect(page.getByLabel("否，存在范围外员工")).toHaveCount(0);
+  await expect(page.getByText("投保员工须为 16–65 周岁，正式投保时核验。")).toBeVisible();
+
+  const note = page.locator(".condition-note");
+  await page.getByRole("spinbutton", { name: "服务员人数" }).fill("7");
+  await expect(note).toHaveAttribute("data-status", "warning");
+  await expect(note).toContainText("还差 1 人达到 8 人起保要求");
+  await page.getByRole("spinbutton", { name: "服务员人数" }).fill("8");
+  await expect(note).toHaveAttribute("data-status", "positive");
+  await expect(note).toContainText("满足最低承保人数");
+});
+
+test("员工和方案选择阶段逐步累计底栏金额", async ({ page }) => {
+  await page.goto("/");
+  await page.getByLabel("经营面积").fill("260");
+  await chooseProducts(page, ["雇主责任险", "公众责任险", "食品安全责任险"]);
+  await page.getByRole("button", { name: "下一步" }).click();
+  await page.getByLabel("升级版").check();
+  await page.getByRole("button", { name: "下一步" }).click();
+
+  const summary = page.locator(".bottom-summary");
+  await page.getByRole("spinbutton", { name: "服务员人数" }).fill("8");
+  await expect(summary).toContainText("雇主险当前预估");
+  await expect(summary).toContainText("¥864");
+
+  await page.getByRole("button", { name: "下一步" }).click();
+  await page.getByLabel("公众责任险方案 P2").check();
+  await expect(summary).toContainText("¥2,304");
+  await page.getByLabel("食品安全责任险方案一").check();
+  await expect(summary).toContainText("¥3,504");
+  await expect(summary).toContainText("预估合计");
 });
 
 test("隐藏的险种复选框聚焦时卡片显示焦点环", async ({ page }) => {
@@ -195,27 +230,10 @@ test("少于 8 人明确显示不承保且不转人工报价", async ({ page }) 
   await page.getByLabel("基础版").check();
   await page.getByRole("button", { name: "下一步" }).click();
   await page.getByRole("spinbutton", { name: "服务员人数" }).fill("7");
-  await page.getByLabel("是，全部符合").check();
   await page.getByRole("button", { name: "查看报价" }).click();
 
   await expect(page.getByRole("heading", { name: "不符合承保条件" })).toBeVisible();
   await expect(page.getByText("不转人工报价", { exact: false })).toBeVisible();
-  await expect(page.getByText("年度预估合计")).toHaveCount(0);
-});
-
-test("年龄范围存在例外时转人工报价", async ({ page }) => {
-  await page.goto("/");
-  await page.getByLabel("经营面积").fill("100");
-  await chooseProducts(page, ["雇主责任险"]);
-  await page.getByRole("button", { name: "下一步" }).click();
-  await page.getByLabel("升级版").check();
-  await page.getByRole("button", { name: "下一步" }).click();
-  await page.getByRole("spinbutton", { name: "服务员人数" }).fill("8");
-  await page.getByLabel("否，存在范围外员工").check();
-  await page.getByRole("button", { name: "查看报价" }).click();
-
-  await expect(page.getByRole("heading", { name: "需人工报价" })).toBeVisible();
-  await expect(page.getByText("员工年龄", { exact: false })).toBeVisible();
   await expect(page.getByText("年度预估合计")).toHaveCount(0);
 });
 
