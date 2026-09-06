@@ -8,7 +8,7 @@ import { siteConfig } from "@/config/site";
 import { calculateQuote } from "@/features/quote/calculator/calculate-quote";
 import type { QuoteInput, QuoteResult, QuoteStep } from "@/features/quote/types";
 import { quoteInputSchema } from "@/features/quote/schemas/quote-input-schema";
-import { getQuoteSteps } from "@/features/quote/state/quote-step-flow";
+import { getCompletedProgress, getQuoteSteps } from "@/features/quote/state/quote-step-flow";
 import { loadQuoteDraft, saveQuoteDraft } from "@/features/quote/state/quote-draft-storage";
 import { BottomBar, ProgressHeader, formatCurrency } from "./ui";
 import { StoreStep } from "./steps/store-step";
@@ -24,12 +24,12 @@ const defaults: QuoteInput = {
   employeeCounts: { BACK_OFFICE_OR_CASHIER: 0, WAITER: 0, CHEF_OR_CLEANER: 0 },
 };
 
-const stepMeta: Record<QuoteStep, { title: string; section: string; description?: string }> = {
-  STORE: { title: siteConfig.title, section: "门店与险种", description: siteConfig.description },
-  EMPLOYER_PLAN: { title: "雇主责任险档位", section: "雇主险档位" },
-  EMPLOYEES: { title: "员工信息", section: "员工信息" },
-  LIABILITY_PLANS: { title: "公众与食责方案", section: "公众与食责" },
-  RESULT: { title: "报价结果", section: "报价结果" },
+const stepMeta: Record<QuoteStep, { title: string }> = {
+  STORE: { title: "保费智能预估" },
+  EMPLOYER_PLAN: { title: "选择雇主险档位" },
+  EMPLOYEES: { title: "填写员工人数" },
+  LIABILITY_PLANS: { title: "选择保障方案" },
+  RESULT: { title: "报价结果" },
 };
 
 export function QuoteWizard() {
@@ -63,6 +63,7 @@ export function QuoteWizard() {
   const currentStep = steps[visibleStepIndex] ?? "STORE";
   const currentMeta = stepMeta[currentStep];
   const total = steps.length;
+  const completedProgress = getCompletedProgress(visibleStepIndex, total);
   const totalPeople = Object.values(values.employeeCounts ?? {}).reduce((sum, count) => sum + (Number(count) || 0), 0);
   const previewTotal = useMemo(() => {
     const parsed = quoteInputSchema.safeParse(values);
@@ -122,12 +123,12 @@ export function QuoteWizard() {
 
   const body = currentStep === "STORE" ? <StoreStep /> : currentStep === "EMPLOYER_PLAN" ? <EmployerPlanStep /> : currentStep === "EMPLOYEES" ? <EmployeesStep /> : currentStep === "LIABILITY_PLANS" ? <LiabilityPlansStep /> : result ? <ResultStep result={result} input={getValues()} onRestart={restart} /> : null;
   if (!hydrated) return <main className="quote-app" aria-busy="true">
-    <ProgressHeader {...stepMeta.STORE} current={1} total={2} />
+    <ProgressHeader {...stepMeta.STORE} current={1} total={2} value={0} />
     <div className="step-content" role="status">正在恢复当前会话…</div>
   </main>;
   if (currentStep === "RESULT" && !result) return null;
   return <FormProvider {...methods}><main className="quote-app" data-soft-keyboard={isSoftKeyboardOpen ? "open" : "closed"}>
-    <ProgressHeader {...currentMeta} current={visibleStepIndex + 1} total={total} />
+    <ProgressHeader {...currentMeta} current={visibleStepIndex + 1} total={total} value={completedProgress} />
     {errorSummary ? <div className="error-summary" role="alert">{errorSummary}</div> : null}
     {body}
     <p className="quote-disclaimer">{siteConfig.disclaimer}</p>

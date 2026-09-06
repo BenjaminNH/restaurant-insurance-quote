@@ -2,10 +2,22 @@ import { describe, expect, test } from "vitest";
 import { quoteRules } from "@/config/quote-rules";
 import { calculateQuote } from "@/features/quote/calculator/calculate-quote";
 import { calculateEmployersLiability } from "@/features/quote/calculator/employers-liability";
-import { calculateLiabilityByArea } from "@/features/quote/calculator/liability-by-area";
+import { calculateLiabilityByArea, getLiabilityAreaOutcome } from "@/features/quote/calculator/liability-by-area";
 import { roundCny } from "@/features/quote/calculator/money";
 
 describe("面积责任险", () => {
+  test("面积匹配结果可供界面显示系数", () => {
+    expect(getLiabilityAreaOutcome("PUBLIC", 260, quoteRules))
+      .toEqual({ status: "FACTOR", factor: 1.8 });
+    expect(getLiabilityAreaOutcome("FOOD", 260, quoteRules))
+      .toEqual({ status: "FACTOR", factor: 1.5 });
+  });
+
+  test("超出面积时返回人工报价状态", () => {
+    expect(getLiabilityAreaOutcome("FOOD", 2500, quoteRules))
+      .toEqual({ status: "MANUAL_QUOTE" });
+  });
+
   test.each([
     [99.99, 1],
     [100, 1.8],

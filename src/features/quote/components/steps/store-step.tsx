@@ -1,6 +1,8 @@
 import { useFormContext, useWatch, type UseFormRegister } from "react-hook-form";
 import { Check } from "@phosphor-icons/react";
 import { productCopy, productOrder } from "@/config/site";
+import { quoteRules } from "@/config/quote-rules";
+import { getLiabilityAreaOutcome } from "@/features/quote/calculator/liability-by-area";
 import type { Product, QuoteInput } from "@/features/quote/types";
 import { saveQuoteDraft } from "@/features/quote/state/quote-draft-storage";
 import { FieldError, SectionCard } from "../ui";
@@ -8,6 +10,18 @@ import { FieldError, SectionCard } from "../ui";
 export function StoreStep() {
   const { register, getValues, formState: { errors } } = useFormContext<QuoteInput>();
   const products = (useWatch<QuoteInput>({ name: "products" }) as Product[] | undefined) ?? [];
+  const area = Number(useWatch<QuoteInput>({ name: "area" }));
+  const publicOutcome = Number.isFinite(area) && area > 0
+    ? getLiabilityAreaOutcome("PUBLIC", area, quoteRules)
+    : null;
+  const foodOutcome = Number.isFinite(area) && area > 0
+    ? getLiabilityAreaOutcome("FOOD", area, quoteRules)
+    : null;
+  const areaHelp = !publicOutcome || !foodOutcome
+    ? "输入经营面积后显示适用系数"
+    : publicOutcome.status === "FACTOR" && foodOutcome.status === "FACTOR"
+      ? `当前系数：公众险 ×${publicOutcome.factor}，食责险 ×${foodOutcome.factor}`
+      : `当前系数：公众险${publicOutcome.status === "FACTOR" ? ` ×${publicOutcome.factor}` : "需人工报价"}；食责险${foodOutcome.status === "FACTOR" ? ` ×${foodOutcome.factor}` : "需人工报价"}`;
   return (
     <div className="step-content">
       <SectionCard>
@@ -23,8 +37,8 @@ export function StoreStep() {
             <span>㎡</span>
           </div>
         </div>
-        <FieldError>{errors.area?.message ?? (errors.products ? undefined : undefined)}</FieldError>
-        <div className="info-note" id="area-help">系统会按经营面积匹配适用档位，超出范围时提示人工报价。</div>
+        <FieldError id="area-error">{errors.area?.message ?? (errors.products ? undefined : undefined)}</FieldError>
+        <div className="info-note area-factor-note" id="area-help">{areaHelp}</div>
       </SectionCard>
       <SectionCard>
         <div className="card-heading"><h2>选择险种 <small>（可多选）</small></h2></div>

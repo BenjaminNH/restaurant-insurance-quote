@@ -19,3 +19,10 @@ export function getQuoteSteps(products: readonly Product[]): QuoteStep[] {
   steps.push("RESULT");
   return steps;
 }
+
+export function getCompletedProgress(stepIndex: number, totalSteps: number) {
+  if (totalSteps <= 1) return 100;
+
+  const boundedIndex = Math.min(Math.max(stepIndex, 0), totalSteps - 1);
+  return Math.round((boundedIndex / (totalSteps - 1)) * 100);
+}

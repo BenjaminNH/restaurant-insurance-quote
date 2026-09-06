@@ -1,34 +1,22 @@
-import { ArrowLeft, ArrowRight, ShieldCheck } from "@phosphor-icons/react";
+import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
 import type { ReactNode } from "react";
 
 export function ProgressHeader({
   title,
-  description,
   current,
   total,
-  section,
+  value,
 }: {
   title: string;
-  description?: string;
   current: number;
   total: number;
-  section: string;
+  value: number;
 }) {
-  const percent = Math.round((current / total) * 100);
   return (
     <header className="quote-header">
       <div className="header-row">
-        <div className="brand-lockup">
-          <span className="brand-mark" aria-hidden="true"><ShieldCheck weight="fill" /></span>
-          <span className="brand-name">餐饮安心保</span>
-        </div>
-        <span className="step-count">第 {current}/{total} 步</span>
-      </div>
-      <h1>{title}</h1>
-      {description ? <p className="lead">{description}</p> : null}
-      <div className="progress-label">
-        <strong>{section}</strong>
-        <span>{percent}%</span>
+        <h1>{title}</h1>
+        <span className="step-count">第 {current} / {total} 步</span>
       </div>
       <div
         className="progress-track"
@@ -36,9 +24,10 @@ export function ProgressHeader({
         aria-label="报价进度"
         aria-valuemin={0}
         aria-valuemax={100}
-        aria-valuenow={percent}
+        aria-valuenow={value}
+        aria-valuetext={`第 ${current} 步，共 ${total} 步，已完成 ${value}%`}
       >
-        <div className="progress-value" style={{ width: `${percent}%` }} />
+        <div className="progress-value" style={{ width: `${value}%` }} />
       </div>
     </header>
   );
@@ -48,8 +37,8 @@ export function SectionCard({ children, className = "" }: { children: ReactNode;
   return <section className={`section-card ${className}`}>{children}</section>;
 }
 
-export function FieldError({ children }: { children?: ReactNode }) {
-  return children ? <p className="field-error">{children}</p> : null;
+export function FieldError({ children, id }: { children?: ReactNode; id?: string }) {
+  return children ? <p className="field-error" id={id}>{children}</p> : null;
 }
 
 export function BottomBar({

@@ -1,5 +1,15 @@
 import { expect, test } from "vitest";
-import { getQuoteSteps } from "@/features/quote/state/quote-step-flow";
+import { getCompletedProgress, getQuoteSteps } from "@/features/quote/state/quote-step-flow";
+
+test.each([2, 3, 4, 5])("首屏在共 %s 步时完成度都是 0", (total) => {
+  expect(getCompletedProgress(0, total)).toBe(0);
+});
+
+test("中间步骤按已完成步骤计算，结果页为 100", () => {
+  expect(getCompletedProgress(1, 5)).toBe(25);
+  expect(getCompletedProgress(2, 5)).toBe(50);
+  expect(getCompletedProgress(4, 5)).toBe(100);
+});
 
 test("没有选择险种时仅显示门店与险种和结果步骤", () => {
   expect(getQuoteSteps([])).toEqual(["STORE", "RESULT"]);

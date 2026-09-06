@@ -34,14 +34,45 @@ async function openEmployeeStep(page: Page) {
   await page.getByRole("button", { name: "下一步" }).click();
 }
 
+test("顶部标题与步骤同排且勾选险种不会使进度倒退", async ({ page }) => {
+  await page.goto("/");
+  const header = page.locator(".header-row");
+  await expect(header.getByRole("heading", { name: "保费智能预估" })).toBeVisible();
+  await expect(header.getByText("第 1 / 2 步", { exact: true })).toBeVisible();
+  await expect(page.getByText("餐饮安心保", { exact: true })).toHaveCount(0);
+
+  const progress = page.getByRole("progressbar", { name: "报价进度" });
+  await expect(progress).toHaveAttribute("aria-valuenow", "0");
+  await chooseProducts(page, ["雇主责任险", "公众责任险", "食品安全责任险"]);
+  await expect(progress).toHaveAttribute("aria-valuenow", "0");
+  await expect(header.getByText("第 1 / 5 步", { exact: true })).toBeVisible();
+});
+
+test("经营面积只显示当前匹配系数并与输入框保持间距", async ({ page }) => {
+  await page.goto("/");
+  const note = page.locator("#area-help");
+  await expect(note).toHaveText("输入经营面积后显示适用系数");
+  await page.getByLabel("经营面积").fill("260");
+  await expect(note).toHaveText("当前系数：公众险 ×1.8，食责险 ×1.5");
+  await page.getByLabel("经营面积").fill("2500");
+  await expect(note).toHaveText("当前系数：公众险 ×3.5；食责险需人工报价");
+
+  const gap = await page.evaluate(() => {
+    const input = document.querySelector(".input-with-unit")!.getBoundingClientRect();
+    const help = document.querySelector("#area-help")!.getBoundingClientRect();
+    return help.top - input.bottom;
+  });
+  expect(gap).toBeGreaterThanOrEqual(12);
+});
+
 test("显示紧凑进度、免责声明与移动端表单语义", async ({ page }) => {
   await page.goto("/");
 
   await expect(
-    page.getByRole("heading", { name: "餐饮门店保费智能预估" }),
+    page.getByRole("heading", { name: "保费智能预估" }),
   ).toBeVisible();
-  await expect(page.getByText("第 1/2 步", { exact: true })).toBeVisible();
-  await expect(page.getByRole("progressbar", { name: "报价进度" })).toHaveAttribute("aria-valuenow", "50");
+  await expect(page.getByText("第 1 / 2 步", { exact: true })).toBeVisible();
+  await expect(page.getByRole("progressbar", { name: "报价进度" })).toHaveAttribute("aria-valuenow", "0");
   await expect(page.getByLabel("经营面积")).toHaveAttribute("inputmode", "decimal");
   await expect(page.getByRole("button", { name: "下一步" })).toBeVisible();
   await expect(page.getByText("预估保费仅供参考", { exact: false })).toBeVisible();
@@ -136,8 +167,8 @@ test("只选择公众险时跳过雇主险步骤并得到正常报价", async ({
   await chooseProducts(page, ["公众责任险"]);
   await page.getByRole("button", { name: "下一步" }).click();
 
-  await expect(page.getByText("第 2/3 步", { exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "公众与食责方案" })).toBeVisible();
+  await expect(page.getByText("第 2 / 3 步", { exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "选择保障方案" })).toBeVisible();
   await page.getByLabel("公众责任险方案 P2").check();
   await page.getByRole("button", { name: "查看报价" }).click();
 
