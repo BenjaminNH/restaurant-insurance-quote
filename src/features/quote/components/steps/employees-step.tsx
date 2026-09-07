@@ -1,6 +1,6 @@
 import { useWatch } from "react-hook-form";
 import { CheckCircle, Info, WarningCircle } from "@phosphor-icons/react";
-import { employerRoleCopy, employerPlanCopy } from "@/config/site";
+import { employerRoleCopy } from "@/config/site";
 import { quoteRules } from "@/config/quote-rules";
 import type { EmployerPlan, EmployerRole, QuoteInput } from "@/features/quote/types";
 import { SectionCard } from "../ui";
@@ -16,7 +16,6 @@ export function EmployeesStep() {
   const missingPeople = Math.max(0, quoteRules.employers_liability.minimum_people_per_policy - total);
   return (
     <div className="step-content">
-      <p className="step-intro">雇主责任险 · {plan ? employerPlanCopy[plan] : "请选择档位"}：按岗位逐条录入人数，费率已含附加险。</p>
       <SectionCard>
         <div className="card-heading"><h2>按岗位录入人数</h2><span className="muted">年龄限 16–65 岁</span></div>
         <div className="employee-list">

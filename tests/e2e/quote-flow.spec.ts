@@ -164,6 +164,34 @@ test("员工和方案选择阶段逐步累计底栏金额", async ({ page }) => 
   await expect(summary).toContainText("预估合计");
 });
 
+test("各输入步骤只保留与当前决策相关的说明", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByText("填写一家门店信息", { exact: false })).toHaveCount(0);
+  await page.getByLabel("经营面积").fill("260");
+  await chooseProducts(page, ["雇主责任险", "公众责任险"]);
+  await page.getByRole("button", { name: "下一步" }).click();
+
+  await expect(page.getByText("选择每位员工的保障额度。")).toBeVisible();
+  await expect(page.getByText("下一步按人数自动计算", { exact: false })).toHaveCount(0);
+  await page.getByLabel("升级版").check();
+  await page.getByRole("button", { name: "下一步" }).click();
+  await expect(page.getByText("按岗位逐条录入人数", { exact: false })).toHaveCount(0);
+});
+
+test("公众险结果只展示已选险种的保障说明且没有无行为销售按钮", async ({ page }) => {
+  await page.goto("/");
+  await page.getByLabel("经营面积").fill("260");
+  await chooseProducts(page, ["公众责任险"]);
+  await page.getByRole("button", { name: "下一步" }).click();
+  await page.getByLabel("公众责任险方案 P2").check();
+  await page.getByRole("button", { name: "查看报价" }).click();
+
+  await expect(page.getByText("公众 / 食责：免赔", { exact: false })).toBeVisible();
+  await expect(page.getByText("雇主医疗", { exact: false })).toHaveCount(0);
+  await expect(page.getByText("雇主误工", { exact: false })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "联系销售 · 确认方案" })).toHaveCount(0);
+});
+
 test("隐藏的险种复选框聚焦时卡片显示焦点环", async ({ page }) => {
   await page.goto("/");
 
@@ -172,6 +200,18 @@ test("隐藏的险种复选框聚焦时卡片显示焦点环", async ({ page }) 
 
   await expect(product.locator("..")).toHaveCSS("outline-style", "solid");
   await expect(product.locator("..")).toHaveCSS("outline-width", "3px");
+});
+
+test("勾选雇主险不会产生 pointer capture 控制台异常", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("console", (message) => {
+    if (message.type() === "error") errors.push(message.text());
+  });
+
+  await page.goto("/");
+  await page.getByLabel("雇主责任险", { exact: true }).check();
+
+  expect(errors.filter((message) => /pointer capture/i.test(message))).toEqual([]);
 });
 
 test("必填错误阻止进入下一步并聚焦首个错误字段", async ({ page }) => {
@@ -246,9 +286,10 @@ test("部分报价只展示已知小计而不展示最终总价", async ({ page 
   await page.getByLabel("食品安全责任险方案一").check();
   await page.getByRole("button", { name: "查看报价" }).click();
 
-  await expect(page.getByText("已知保费小计")).toBeVisible();
+  await expect(page.getByText("已知保费小计", { exact: true })).toBeVisible();
   await expect(page.locator(".result-subtotal")).toContainText("¥2,100");
-  await expect(page.getByText("最终总价待人工确认", { exact: true })).toBeVisible();
+  await expect(page.getByText("暂不展示最终总价", { exact: false })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "部分需人工确认" })).toHaveCount(1);
   await expect(page.getByText("年度预估合计")).toHaveCount(0);
 });
 

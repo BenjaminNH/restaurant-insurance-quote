@@ -2,8 +2,7 @@ import type { Product } from "@/features/quote/types";
 
 export const siteConfig = {
   brand: "餐饮安心保",
-  title: "餐饮门店保费智能预估",
-  description: "填写一家门店信息，约 1 分钟获得所选险种的预估保费。",
+  title: "保费智能预估",
   disclaimer: "预估保费仅供参考，最终以保险公司正式核保与保单为准",
   salesContact: "餐饮安心保顾问",
 } as const;

@@ -11,7 +11,7 @@ export function EmployerPlanStep() {
   const selected = useWatch<QuoteInput>({ name: "employerPlan" });
   return (
     <div className="step-content">
-      <p className="step-intro">雇主责任险独立选择、独立计算。档位决定每位员工的赔付上限，保费在下一步按岗位人数计算。</p>
+      <p className="step-intro">选择每位员工的保障额度。</p>
       <SectionCard>
         <div className="card-heading"><h2>选择保障档位</h2></div>
         <div className="radio-list" role="radiogroup" aria-label="雇主责任险档位">
@@ -26,7 +26,6 @@ export function EmployerPlanStep() {
         </div>
         {errors.employerPlan ? <FieldError>{String(errors.employerPlan.message)}</FieldError> : null}
       </SectionCard>
-      <div className="info-note">保费 = 各岗位人数 × 对应岗位费率，下一步按人数自动计算</div>
     </div>
   );
 }

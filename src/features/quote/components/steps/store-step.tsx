@@ -25,7 +25,7 @@ export function StoreStep() {
   return (
     <div className="step-content">
       <SectionCard>
-        <div className="card-heading"><h2>门店信息</h2><span className="required-badge">必填</span></div>
+        <div className="card-heading"><h2>门店信息</h2></div>
         <div className="area-row">
           <label htmlFor="area">经营面积</label>
           <div className="input-with-unit">

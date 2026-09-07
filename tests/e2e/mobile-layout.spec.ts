@@ -36,6 +36,22 @@ for (const viewport of [
   });
 }
 
+test("360px 下标题、动态面积提示与渐进底栏不溢出", async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 780 });
+  await page.goto("/");
+  await page.getByLabel("经营面积").fill("2500");
+  await page.getByLabel("雇主责任险", { exact: true }).check();
+
+  const metrics = await page.evaluate(() => ({
+    viewport: document.documentElement.clientWidth,
+    document: document.documentElement.scrollWidth,
+  }));
+  expect(metrics.document).toBeLessThanOrEqual(metrics.viewport);
+  await expect(page.locator(".header-row")).toBeVisible();
+  await expect(page.locator("#area-help")).toContainText("食责险需人工报价");
+  await expect(page.locator(".bottom-summary")).toContainText("已选 1 个险种");
+});
+
 test("数字键盘压缩可视区域时收起底栏并保留当前字段", async ({ page }) => {
   await page.addInitScript(() => {
     const initialHeight = window.innerHeight;

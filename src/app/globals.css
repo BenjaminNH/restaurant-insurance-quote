@@ -102,7 +102,6 @@ h2 { margin: 0; font-size: 1.125rem; line-height: 1.35; }
 .card-heading { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-2); margin-bottom: var(--space-3); }
 h2 small { font-size: .72em; font-weight: 500; }
 .muted { color: #53647c; font-size: 16px; }
-.required-badge { background: #e9eff6; color: #213f67; border-radius: 8px; padding: 6px 11px; }
 .area-row { display: grid; gap: var(--space-1); }
 .area-row label { font-weight: 700; }
 .input-with-unit { display: flex; align-items: center; min-height: 3rem; border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--color-surface); padding: 0 var(--space-2); }
@@ -123,7 +122,7 @@ input[type=number]::-webkit-outer-spin-button { appearance: none; margin: 0; }
 @media (hover: hover) {
   .product-choice:hover, .plan-choice:hover { border-color: var(--color-primary); }
   .back-button:hover { background: var(--color-soft); }
-  .primary-button:hover, .contact-button:hover { background: #10773a; }
+  .primary-button:hover { background: #10773a; }
   .recalculate-button:hover { text-decoration: underline; }
 }
 .product-choice input, .plan-choice input { position: absolute; opacity: 0; width: 1px; height: 1px; }
@@ -203,10 +202,6 @@ em { background: #16a34a; color: #fff; border-radius: 6px; font-style: normal; f
 .sales-contact { display: grid; gap: var(--space-1); border: 1px solid var(--color-border); border-radius: var(--radius-card); padding: var(--space-3); background: var(--color-surface); }
 .sales-contact strong { color: var(--color-primary); font-size: 1.125rem; }
 .sales-contact span { color: var(--color-muted); }
-.contact-button { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-1); min-height: var(--touch-target); margin-top: var(--space-1); border: 0; border-radius: var(--radius-control); background: var(--color-action); color: #fff; padding: 0 var(--space-3); font-weight: 700; font-size: 1rem; transition: background-color 160ms ease; }
-.contact-button:active { background: #0f6833; }
-.contact-button:focus-visible { outline-color: rgb(21 128 61 / 48%); }
-.contact-button:disabled { opacity: .55; cursor: not-allowed; }
 .recalculate-button { min-height: var(--touch-target); border: 0; background: transparent; color: var(--color-primary); font-size: 1rem; padding: 0 var(--space-2); justify-self: center; }
 .recalculate-button:active { color: #0f2b4a; }
 .result-footer-space { height: 5px; }
