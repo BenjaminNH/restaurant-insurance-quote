@@ -17,7 +17,6 @@ export function ResultStep({ result, input, onRestart }: { result: QuoteResult; 
     {result.status === "NOT_ELIGIBLE" ? <SectionCard className="status-card warning-card"><p>本单共 {totalPeople} 人，低于最低 8 人的承保要求，不转人工报价。</p></SectionCard> : null}
     {result.status === "MANUAL_QUOTE" ? <SectionCard className="status-card warning-card"><p>当前条件超出标准自动报价范围，需人工确认。</p></SectionCard> : null}
     {result.status === "PARTIAL_MANUAL" ? <SectionCard className="status-card warning-card"><p>已知保费小计 {formatCurrency(result.knownSubtotal)}；另有{result.items.filter((item) => item.status === "MANUAL_QUOTE").length} 项需人工确认，暂不展示最终总价。</p></SectionCard> : null}
-    {result.status === "PARTIAL_MANUAL" ? <SectionCard><div className="result-subtotal"><span>已知保费小计</span><strong>{formatCurrency(result.knownSubtotal)}</strong></div></SectionCard> : null}
     {result.items.length ? <SectionCard><h2>保费明细</h2><div className="result-items">{result.items.map((item) => <ResultItem key={item.product} item={item} input={input} />)}</div></SectionCard> : null}
     {result.status === "QUOTED" ? <>
       <SectionCard><h2>保障与免赔要点</h2><ul className="detail-list">{input.products.some((product) => product === "PUBLIC" || product === "FOOD") ? <li><CheckCircle aria-hidden="true" />公众 / 食责：免赔 100 元或损失金额 10%，两者取高</li> : null}{input.products.includes("EMPLOYERS") ? <><li><CheckCircle aria-hidden="true" />雇主医疗：免赔 200 元后按 90% 赔付</li><li><CheckCircle aria-hidden="true" />雇主误工：绝对免赔 3 天，单次不超过 90 天，累计不超过 180 天</li><li><CheckCircle aria-hidden="true" />雇主误工费标准：100 元 / 天</li></> : null}</ul></SectionCard>

@@ -133,6 +133,7 @@ test("员工页不要求年龄确认并正确区分起保状态", async ({ page 
   await expect(page.getByLabel("是，全部符合")).toHaveCount(0);
   await expect(page.getByLabel("否，存在范围外员工")).toHaveCount(0);
   await expect(page.getByText("投保员工须为 16–65 周岁，正式投保时核验。")).toBeVisible();
+  await expect(page.locator(".card-heading").getByText(/年龄/)).toHaveCount(0);
 
   const note = page.locator(".condition-note");
   await page.getByRole("spinbutton", { name: "服务员人数" }).fill("7");
@@ -286,8 +287,8 @@ test("部分报价只展示已知小计而不展示最终总价", async ({ page 
   await page.getByLabel("食品安全责任险方案一").check();
   await page.getByRole("button", { name: "查看报价" }).click();
 
-  await expect(page.getByText("已知保费小计", { exact: true })).toBeVisible();
-  await expect(page.locator(".result-subtotal")).toContainText("¥2,100");
+  await expect(page.locator(".result-subtotal")).toHaveCount(0);
+  await expect(page.getByText(/已知保费小计 ¥2,100/)).toHaveCount(1);
   await expect(page.getByText("暂不展示最终总价", { exact: false })).toBeVisible();
   await expect(page.getByRole("heading", { name: "部分需人工确认" })).toHaveCount(1);
   await expect(page.getByText("年度预估合计")).toHaveCount(0);

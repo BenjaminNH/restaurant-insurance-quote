@@ -189,11 +189,11 @@ em { background: #16a34a; color: #fff; border-radius: 6px; font-style: normal; f
 .result-hero p { margin: var(--space-2) 0 0; color: #cad7e8; font-size: 0.875rem; }
 .result-hero.attention p { color: #92400e; }
 .result-items { display: grid; gap: var(--space-2); margin-top: var(--space-3); }
-.result-item, .result-subtotal { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); padding-bottom: var(--space-2); border-bottom: 1px solid #e2e8f0; }
+.result-item { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); padding-bottom: var(--space-2); border-bottom: 1px solid #e2e8f0; }
 .result-item:last-child { border-bottom: 0; padding-bottom: 0; }
 .result-item div { display: grid; gap: 0.25rem; }
 .result-item span { color: var(--color-muted); font-size: 0.875rem; }
-.result-item > strong, .result-subtotal strong { color: var(--color-primary); font-size: 1.125rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.result-item > strong { color: var(--color-primary); font-size: 1.125rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .status-card h2 { color: #9a3412; }
 .status-card strong { color: #9a3412; }
 .detail-list { display: grid; gap: var(--space-2); margin: var(--space-3) 0 0; padding: 0; list-style: none; color: var(--color-muted); }

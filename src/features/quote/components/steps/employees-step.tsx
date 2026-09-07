@@ -17,7 +17,7 @@ export function EmployeesStep() {
   return (
     <div className="step-content">
       <SectionCard>
-        <div className="card-heading"><h2>按岗位录入人数</h2><span className="muted">年龄限 16–65 岁</span></div>
+        <div className="card-heading"><h2>按岗位录入人数</h2></div>
         <div className="employee-list">
           {roles.map((role) => (
             <EmployeeCountInput
