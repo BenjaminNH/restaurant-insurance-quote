@@ -17,3 +17,6 @@ pnpm-debug.log*
 .workbuddy/
 .worktrees/
 docs/_local/
+
+# Local Netlify folder
+.netlify
