@@ -193,6 +193,31 @@ test("公众险结果只展示已选险种的保障说明且没有无行为销�
   await expect(page.getByRole("button", { name: "联系销售 · 确认方案" })).toHaveCount(0);
 });
 
+test("报价结果不展示规则版本且险种明细不重复名称", async ({ page }) => {
+  await page.goto("/");
+  await page.getByLabel("经营面积").fill("260");
+  await chooseProducts(page, ["公众责任险"]);
+  await page.getByRole("button", { name: "下一步" }).click();
+  await page.getByLabel("公众责任险方案 P2").check();
+  await page.getByRole("button", { name: "查看报价" }).click();
+
+  await expect(page.getByText(/规则版本/)).toHaveCount(0);
+  await expect(page.getByText("公众责任险 · 方案 P2", { exact: true })).toBeVisible();
+  await expect(page.getByText("公众责任险 · 公众责任险方案 P2", { exact: true })).toHaveCount(0);
+});
+
+test("食品安全险明细也只显示一次险种名称", async ({ page }) => {
+  await page.goto("/");
+  await page.getByLabel("经营面积").fill("260");
+  await chooseProducts(page, ["食品安全责任险"]);
+  await page.getByRole("button", { name: "下一步" }).click();
+  await page.getByLabel("食品安全责任险方案一").check();
+  await page.getByRole("button", { name: "查看报价" }).click();
+
+  await expect(page.getByText("食品安全责任险 · 方案一", { exact: true })).toBeVisible();
+  await expect(page.getByText("食品安全责任险 · 食品安全责任险方案一", { exact: true })).toHaveCount(0);
+});
+
 test("隐藏的险种复选框聚焦时卡片显示焦点环", async ({ page }) => {
   await page.goto("/");
 

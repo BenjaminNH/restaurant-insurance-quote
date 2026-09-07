@@ -12,7 +12,6 @@ export function ResultStep({ result, input, onRestart }: { result: QuoteResult; 
     <div className={`result-hero ${result.status !== "QUOTED" ? "attention" : ""}`}>
       {result.status === "QUOTED" ? <><span className="eyebrow">年度预估合计</span><div className="total-amount">{formatCurrency(result.totalPremium)} <small>/ 年</small></div></> : <h2>{title}</h2>}
       <p>{input.products.length} 个险种 · 1 家门店（{input.area || "—"} ㎡）{input.products.includes("EMPLOYERS") ? ` · ${totalPeople} 名员工` : ""}</p>
-      <p className="rule-version">规则版本：{result.ruleVersion}</p>
     </div>
     {result.status === "NOT_ELIGIBLE" ? <SectionCard className="status-card warning-card"><p>本单共 {totalPeople} 人，低于最低 8 人的承保要求，不转人工报价。</p></SectionCard> : null}
     {result.status === "MANUAL_QUOTE" ? <SectionCard className="status-card warning-card"><p>当前条件超出标准自动报价范围，需人工确认。</p></SectionCard> : null}
@@ -29,7 +28,13 @@ export function ResultStep({ result, input, onRestart }: { result: QuoteResult; 
 
 function ResultItem({ item, input }: { item: QuoteItem; input: QuoteInput }) {
   const plan = item.product === "PUBLIC" ? input.publicPlan : item.product === "FOOD" ? input.foodPlan : input.employerPlan;
-  const planLabel = item.product === "PUBLIC" && plan ? publicPlanCopy[plan as keyof typeof publicPlanCopy] : item.product === "FOOD" && plan ? foodPlanCopy[plan as keyof typeof foodPlanCopy] : plan ? employerPlanCopy[plan as keyof typeof employerPlanCopy] : "";
+  const planLabel = item.product === "PUBLIC" && plan
+    ? publicPlanCopy[plan as keyof typeof publicPlanCopy].replace("公众责任险", "")
+    : item.product === "FOOD" && plan
+      ? foodPlanCopy[plan as keyof typeof foodPlanCopy].replace("食品安全责任险", "")
+      : plan
+        ? employerPlanCopy[plan as keyof typeof employerPlanCopy]
+        : "";
   const reason = item.reasonCode === "AREA_LIMIT" ? "经营面积超出自动报价范围" : item.reasonCode === "AGE_RANGE" ? "员工年龄存在 16–65 周岁范围外情况" : item.reasonCode === "MINIMUM_PEOPLE" ? "总人数不足 8 人" : "";
   return <div className="result-item"><div><strong>{productLabels[item.product]} · {planLabel}</strong><span>{item.calculation ? item.calculation : reason}</span></div><strong>{formatCurrency(item.premium)}</strong></div>;
 }
