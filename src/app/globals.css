@@ -206,6 +206,7 @@ em { background: #16a34a; color: #fff; border-radius: 6px; font-style: normal; f
 .contact-badge { border-radius: 999px; background: var(--color-soft); color: var(--color-primary); padding: 0.25rem 0.625rem; font-size: 0.8125rem; font-weight: 700; }
 .copy-contact-button { width: 100%; margin-top: var(--space-1); }
 .contact-feedback { margin: 0; color: var(--color-action); font-size: 0.875rem; line-height: 1.5; }
+.contact-feedback[data-state="error"] { color: var(--color-error); }
 .recalculate-button { min-height: var(--touch-target); border: 0; background: transparent; color: var(--color-primary); font-size: 1rem; padding: 0 var(--space-2); justify-self: center; }
 .recalculate-button:active { color: #0f2b4a; }
 .result-footer-space { height: 5px; }

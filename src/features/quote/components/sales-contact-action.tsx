@@ -8,12 +8,44 @@ function formatMobileNumber(phone: string) {
   return phone.replace(/^(\d{3})(\d{4})(\d{4})$/, "$1 $2 $3");
 }
 
+type CopyState = "idle" | "success" | "error";
+
+function fallbackCopyText(value: string) {
+  const textarea = document.createElement("textarea");
+  textarea.value = value;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+  document.body.appendChild(textarea);
+  textarea.select();
+  const copied = document.execCommand("copy");
+  textarea.remove();
+  if (!copied) throw new Error("Copy command failed");
+}
+
+async function copyText(value: string) {
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(value);
+      return;
+    } catch {
+      fallbackCopyText(value);
+      return;
+    }
+  }
+  fallbackCopyText(value);
+}
+
 export function SalesContactAction({ contact }: { contact: SalesContact }) {
-  const [copied, setCopied] = useState(false);
+  const [copyState, setCopyState] = useState<CopyState>("idle");
 
   async function handleCopy() {
-    await navigator.clipboard.writeText(contact.phone);
-    setCopied(true);
+    try {
+      await copyText(contact.phone);
+      setCopyState("success");
+    } catch {
+      setCopyState("error");
+    }
   }
 
   return (
@@ -24,10 +56,16 @@ export function SalesContactAction({ contact }: { contact: SalesContact }) {
         {contact.wechatSameAsPhone ? <span className="contact-badge">微信同号</span> : null}
       </div>
       <button type="button" className="primary-button copy-contact-button" onClick={handleCopy}>
-        {copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
-        {copied ? "已复制" : "复制号码"}
+        {copyState === "success" ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
+        {copyState === "success" ? "已复制" : "复制号码"}
       </button>
-      {copied ? <p className="contact-feedback" role="status">号码已复制，可打开微信添加</p> : null}
+      {copyState !== "idle" ? (
+        <p className="contact-feedback" data-state={copyState} role="status">
+          {copyState === "success"
+            ? "号码已复制，可打开微信添加"
+            : "复制失败，请长按号码复制"}
+        </p>
+      ) : null}
     </section>
   );
 }

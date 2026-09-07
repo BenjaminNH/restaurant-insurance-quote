@@ -314,6 +314,37 @@ test("结果页展示微信同号并可复制业务号码", async ({ page }) => 
     .toBe("13800000000");
 });
 
+test("Clipboard API 不可用时回退复制业务号码", async ({ page }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, "clipboard", { configurable: true, value: undefined });
+    Document.prototype.execCommand = (command: string) => {
+      window.sessionStorage.setItem("fallback-copy-command", command);
+      return command === "copy";
+    };
+  });
+  await page.goto("/");
+  await completeThreeProductQuote(page);
+  await page.getByRole("button", { name: "复制号码" }).click();
+  await expect(page.getByRole("status")).toHaveText("号码已复制，可打开微信添加");
+  await expect.poll(() => page.evaluate(() => window.sessionStorage.getItem("fallback-copy-command")))
+    .toBe("copy");
+});
+
+test("复制业务号码失败时提供长按恢复提示", async ({ page }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, "clipboard", {
+      configurable: true,
+      value: { writeText: async () => { throw new Error("denied"); } },
+    });
+    Document.prototype.execCommand = () => false;
+  });
+  await page.goto("/");
+  await completeThreeProductQuote(page);
+  await page.getByRole("button", { name: "复制号码" }).click();
+  await expect(page.getByRole("status")).toHaveText("复制失败，请长按号码复制");
+  await expect(page.getByText("138 0000 0000", { exact: true })).toBeVisible();
+});
+
 test("少于 8 人明确显示不承保且不转人工报价", async ({ page }) => {
   await page.goto("/");
   await page.getByLabel("经营面积").fill("100");
