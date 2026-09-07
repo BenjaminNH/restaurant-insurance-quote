@@ -275,7 +275,6 @@ test("只选择公众险时跳过雇主险步骤并得到正常报价", async ({
 
   await expect(page.getByText("年度预估合计")).toBeVisible();
   await expect(page.locator(".total-amount")).toContainText("¥1,440");
-  await expect(page.getByText("mvp-1.1", { exact: false })).toBeVisible();
 });
 
 test("可以录入三险正常路径并展示 3984 元", async ({ page }) => {

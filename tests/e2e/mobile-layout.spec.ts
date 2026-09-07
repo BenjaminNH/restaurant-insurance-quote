@@ -187,3 +187,24 @@ test("结构性字符图标被替换且结果金额不过度放大", async ({ pa
   const bodyText = await page.locator("body").innerText();
   expect(bodyText).not.toMatch(/[✓ⓘ▧☎→]/);
 });
+
+test("360px 结果页联系方式不溢出且复制按钮可触控", async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 780 });
+  await page.goto("/");
+  await page.getByLabel("经营面积").fill("260");
+  await page.getByLabel("公众责任险", { exact: true }).check();
+  await page.getByRole("button", { name: "下一步" }).click();
+  await page.getByLabel("公众责任险方案 P2").check();
+  await page.getByRole("button", { name: "查看报价" }).click();
+
+  const metrics = await page.evaluate(() => ({
+    viewport: document.documentElement.clientWidth,
+    document: document.documentElement.scrollWidth,
+  }));
+  expect(metrics.document).toBeLessThanOrEqual(metrics.viewport);
+
+  const buttonHeight = await page
+    .getByRole("button", { name: "复制号码" })
+    .evaluate((element) => element.getBoundingClientRect().height);
+  expect(buttonHeight).toBeGreaterThanOrEqual(44);
+});
