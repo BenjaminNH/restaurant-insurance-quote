@@ -199,9 +199,13 @@ em { background: #16a34a; color: #fff; border-radius: 6px; font-style: normal; f
 .detail-list { display: grid; gap: var(--space-2); margin: var(--space-3) 0 0; padding: 0; list-style: none; color: var(--color-muted); }
 .detail-list li { display: grid; grid-template-columns: 1.25rem 1fr; gap: var(--space-1); align-items: start; }
 .detail-list svg { width: 1.125rem; height: 1.125rem; color: var(--color-action); margin-top: 0.125rem; }
-.sales-contact { display: grid; gap: var(--space-1); border: 1px solid var(--color-border); border-radius: var(--radius-card); padding: var(--space-3); background: var(--color-surface); }
-.sales-contact strong { color: var(--color-primary); font-size: 1.125rem; }
-.sales-contact span { color: var(--color-muted); }
+.sales-contact { display: grid; gap: var(--space-2); border: 1px solid var(--color-border); border-radius: var(--radius-card); padding: var(--space-3); background: var(--color-surface); }
+.sales-contact h2 { color: var(--color-primary); }
+.contact-number-row { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-1); }
+.contact-number { color: var(--color-text); font-size: 1.25rem; font-weight: 700; font-variant-numeric: tabular-nums; user-select: all; }
+.contact-badge { border-radius: 999px; background: var(--color-soft); color: var(--color-primary); padding: 0.25rem 0.625rem; font-size: 0.8125rem; font-weight: 700; }
+.copy-contact-button { width: 100%; margin-top: var(--space-1); }
+.contact-feedback { margin: 0; color: var(--color-action); font-size: 0.875rem; line-height: 1.5; }
 .recalculate-button { min-height: var(--touch-target); border: 0; background: transparent; color: var(--color-primary); font-size: 1rem; padding: 0 var(--space-2); justify-self: center; }
 .recalculate-button:active { color: #0f2b4a; }
 .result-footer-space { height: 5px; }

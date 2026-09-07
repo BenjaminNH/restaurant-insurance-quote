@@ -4,8 +4,19 @@ export const siteConfig = {
   brand: "餐饮安心保",
   title: "保费智能预估",
   disclaimer: "预估保费仅供参考，最终以保险公司正式核保与保单为准",
-  salesContact: "餐饮安心保顾问",
 } as const;
+
+export type SalesContact = {
+  displayName: string;
+  phone: string;
+  wechatSameAsPhone: boolean;
+};
+
+export const defaultSalesContact: SalesContact = {
+  displayName: "咨询业务人员",
+  phone: "13800000000",
+  wechatSameAsPhone: true,
+};
 
 export const productCopy: Record<
   Product,
