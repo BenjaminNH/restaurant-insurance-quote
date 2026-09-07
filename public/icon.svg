@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">餐饮安心保</title>
+  <defs>
+    <linearGradient id="background" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f766e"/>
+      <stop offset="1" stop-color="#166534"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#background)"/>
+  <path d="M17 28h30v14a7 7 0 0 1-7 7H24a7 7 0 0 1-7-7V28Z" fill="#fff"/>
+  <path d="M14 25c0-2.2 1.8-4 4-4h28c2.2 0 4 1.8 4 4v5H14v-5Z" fill="#d1fae5"/>
+  <path d="M22 21v-4m10 4v-6m10 6v-4" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="4"/>
+  <path d="m27 38 4 4 7-8" fill="none" stroke="#0f766e" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5"/>
+</svg>
