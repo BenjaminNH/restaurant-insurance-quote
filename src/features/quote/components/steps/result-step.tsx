@@ -20,7 +20,7 @@ export function ResultStep({ result, input, onRestart }: { result: QuoteResult; 
     {result.items.length ? <SectionCard><h2>保费明细</h2><div className="result-items">{result.items.map((item) => <ResultItem key={item.product} item={item} input={input} />)}</div></SectionCard> : null}
     {result.status === "QUOTED" ? <>
       <SectionCard><h2>保障与免赔要点</h2><ul className="detail-list">{input.products.some((product) => product === "PUBLIC" || product === "FOOD") ? <li><CheckCircle aria-hidden="true" />公众 / 食责：免赔 100 元或损失金额 10%，两者取高</li> : null}{input.products.includes("EMPLOYERS") ? <><li><CheckCircle aria-hidden="true" />雇主医疗：免赔 200 元后按 90% 赔付</li><li><CheckCircle aria-hidden="true" />雇主误工：绝对免赔 3 天，单次不超过 90 天，累计不超过 180 天</li><li><CheckCircle aria-hidden="true" />雇主误工费标准：100 元 / 天</li></> : null}</ul></SectionCard>
-      <SectionCard><h2>承保所需资料</h2><ul className="detail-list"><li><FileText aria-hidden="true" />营业执照（副本）</li>{input.products.includes("FOOD") ? <li><FileText aria-hidden="true" />食品生产许可证（投食责险必需）</li> : null}{input.products.includes("EMPLOYERS") ? <li><FileText aria-hidden="true" />员工花名册（含岗位与出生日期）</li> : null}<li><FileText aria-hidden="true" />门店经营面积证明或租赁合同</li></ul></SectionCard>
+      <SectionCard><h2>承保所需资料</h2><ul className="detail-list"><li><FileText aria-hidden="true" />营业执照（副本）</li>{input.products.includes("FOOD") ? <li><FileText aria-hidden="true" />食品生产许可证（投食责险必需）</li> : null}{input.products.includes("EMPLOYERS") ? <li><FileText aria-hidden="true" />员工花名册（需列明姓名、岗位及身份证号）</li> : null}<li><FileText aria-hidden="true" />门店经营面积证明或租赁合同</li></ul></SectionCard>
     </> : null}
     <SalesContactAction contact={defaultSalesContact} />
     <button type="button" className="recalculate-button" onClick={onRestart}>修改条件，重新计算</button>
