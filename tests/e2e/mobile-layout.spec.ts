@@ -207,4 +207,63 @@ test("360px 结果页联系方式不溢出且复制按钮可触控", async ({ pa
     .getByRole("button", { name: "复制号码" })
     .evaluate((element) => element.getBoundingClientRect().height);
   expect(buttonHeight).toBeGreaterThanOrEqual(44);
+
+  const viewCardButtonHeight = await page
+    .getByRole("button", { name: "查看名片" })
+    .evaluate((element) => element.getBoundingClientRect().height);
+  expect(viewCardButtonHeight).toBeGreaterThanOrEqual(44);
+
+  const qrSize = await page
+    .getByRole("img", { name: "张三的微信二维码" })
+    .evaluate((element) => {
+      const box = element.getBoundingClientRect();
+      return { width: box.width, height: box.height };
+    });
+  expect(qrSize.width).toBe(104);
+  expect(qrSize.height).toBe(104);
+
+  const contactVisuals = await page.locator(".sales-contact").evaluate((contact) => {
+    const styles = (selector: string) => getComputedStyle(contact.querySelector(selector)!);
+    return {
+      headingSize: styles("h2").fontSize,
+      nameSize: styles(".contact-name").fontSize,
+      phoneSize: styles(".contact-number").fontSize,
+      badgeSize: styles(".contact-badge").fontSize,
+      copyBackground: styles(".copy-contact-button").backgroundColor,
+      viewBackground: styles(".view-contact-card-button").backgroundColor,
+      viewBorderWidth: styles(".view-contact-card-button").borderTopWidth,
+      copyFontSize: styles(".copy-contact-button").fontSize,
+      copyRadius: styles(".copy-contact-button").borderRadius,
+      viewFontSize: styles(".view-contact-card-button").fontSize,
+      viewRadius: styles(".view-contact-card-button").borderRadius,
+    };
+  });
+  expect(contactVisuals).toEqual({
+    headingSize: "15px",
+    nameSize: "17px",
+    phoneSize: "17px",
+    badgeSize: "10px",
+    copyBackground: "rgb(30, 58, 95)",
+    viewBackground: "rgb(233, 238, 247)",
+    viewBorderWidth: "0px",
+    copyFontSize: "14px",
+    copyRadius: "22px",
+    viewFontSize: "14px",
+    viewRadius: "22px",
+  });
+
+  await page.getByRole("button", { name: "查看名片" }).click();
+  const dialogBox = await page.getByRole("dialog", { name: "业务人员名片" }).boundingBox();
+  if (!dialogBox) throw new Error("Expected the contact card dialog to have a bounding box");
+  expect(dialogBox.width).toBeLessThanOrEqual(327);
+  expect(dialogBox.height).toBeLessThan(780);
+
+  const fullCardSize = await page
+    .getByRole("img", { name: "张三的微信名片" })
+    .evaluate((element) => {
+      const box = element.getBoundingClientRect();
+      return { width: box.width, height: box.height };
+    });
+  expect(fullCardSize.width).toBe(150);
+  expect(fullCardSize.height).toBeLessThanOrEqual(223);
 });

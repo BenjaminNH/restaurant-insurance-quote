@@ -7,15 +7,19 @@ export const siteConfig = {
 } as const;
 
 export type SalesContact = {
-  displayName: string;
+  name: string;
   phone: string;
   wechatSameAsPhone: boolean;
+  qrCodePath: string;
+  fullWechatCardPath: string;
 };
 
 export const defaultSalesContact: SalesContact = {
-  displayName: "咨询业务人员",
+  name: "张三",
   phone: "13800000000",
   wechatSameAsPhone: true,
+  qrCodePath: "/sales-contact-zhangsan-qr.png",
+  fullWechatCardPath: "/sales-contact-zhangsan-wechat-card.png",
 };
 
 export const productCopy: Record<
