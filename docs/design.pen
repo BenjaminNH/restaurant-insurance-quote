@@ -4105,6 +4105,703 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "frame",
+              "id": "ulyn1",
+              "name": "联系人卡片",
+              "width": "fill_container",
+              "fill": "$card",
+              "cornerRadius": 12,
+              "stroke": "$border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "JGZYA",
+                  "name": "卡片标题",
+                  "fill": "$fg",
+                  "content": "业务人员联系方式",
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "Duzmm",
+                  "name": "姓名",
+                  "fill": "$fg",
+                  "content": "张三",
+                  "fontFamily": "$font-body",
+                  "fontSize": 17,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "G9ISBX",
+                  "name": "号码行",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "LjMtW",
+                      "name": "手机号",
+                      "fill": "$primary",
+                      "content": "138 0000 0000",
+                      "fontFamily": "$font-body",
+                      "fontSize": 18,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "zFIMV",
+                      "name": "微信同号徽标",
+                      "fill": "$soft",
+                      "cornerRadius": 999,
+                      "padding": [
+                        3,
+                        8
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "TQckw",
+                          "name": "徽标文字",
+                          "fill": "$primary",
+                          "content": "微信同号",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "AnZNK",
+                  "name": "名片区",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "xCzQb",
+                      "name": "名片承载",
+                      "fill": "$muted",
+                      "cornerRadius": 10,
+                      "stroke": "$border",
+                      "strokeWidth": 1,
+                      "padding": 8,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "IxFsV",
+                          "name": "微信名片图",
+                          "clip": true,
+                          "width": 150,
+                          "height": 223,
+                          "fill": "#FFFFFF",
+                          "cornerRadius": 4,
+                          "layout": "vertical",
+                          "gap": 6,
+                          "padding": 10,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "wOahd",
+                              "name": "微信头像",
+                              "width": 30,
+                              "height": 30,
+                              "fill": "#07C160",
+                              "cornerRadius": 999,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "NewuO",
+                                  "name": "头像图标",
+                                  "width": 16,
+                                  "height": 16,
+                                  "icon": "user",
+                                  "library": "lucide",
+                                  "fill": "#FFFFFF"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "kPM2x",
+                              "name": "微信昵称",
+                              "fill": "$fg",
+                              "content": "张三",
+                              "fontFamily": "$font-body",
+                              "fontSize": 10,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "KUkHv",
+                              "name": "地区信息",
+                              "fill": "$muted-fg",
+                              "content": "广东 · 深圳",
+                              "fontFamily": "$font-body",
+                              "fontSize": 8,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "jnS1c",
+                              "name": "名片二维码",
+                              "width": 92,
+                              "height": 92,
+                              "layout": "none",
+                              "children": [
+                                {
+                                  "type": "rectangle",
+                                  "id": "hOa14",
+                                  "x": 30,
+                                  "y": 6,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "dQhEn",
+                                  "x": 38,
+                                  "y": 6,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "jf12J",
+                                  "x": 30,
+                                  "y": 14,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "ymUIV",
+                                  "x": 38,
+                                  "y": 14,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "m0cdFd",
+                                  "x": 46,
+                                  "y": 14,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "oqgKZ",
+                                  "x": 30,
+                                  "y": 22,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "S0RICZ",
+                                  "x": 14,
+                                  "y": 30,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "nGsNK",
+                                  "x": 30,
+                                  "y": 30,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "uZxNN",
+                                  "x": 46,
+                                  "y": 30,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "zIEXW",
+                                  "x": 62,
+                                  "y": 30,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "wUPhf",
+                                  "x": 6,
+                                  "y": 38,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "I9dUG",
+                                  "x": 30,
+                                  "y": 38,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "X4wUg",
+                                  "x": 38,
+                                  "y": 38,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "R37uM",
+                                  "x": 62,
+                                  "y": 38,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "gHHof",
+                                  "x": 70,
+                                  "y": 38,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "O8VSmY",
+                                  "x": 6,
+                                  "y": 46,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "QR0Ug",
+                                  "x": 14,
+                                  "y": 46,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "E0quYu",
+                                  "x": 22,
+                                  "y": 46,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "XMfLc",
+                                  "x": 30,
+                                  "y": 46,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "YdogG",
+                                  "x": 38,
+                                  "y": 46,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "NXqi6",
+                                  "x": 46,
+                                  "y": 46,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "Snm4l",
+                                  "x": 54,
+                                  "y": 46,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "fjEv1",
+                                  "x": 62,
+                                  "y": 46,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "jHYim",
+                                  "x": 70,
+                                  "y": 46,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "IZes7",
+                                  "x": 30,
+                                  "y": 54,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "rKkF7",
+                                  "x": 54,
+                                  "y": 54,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "PeXEp",
+                                  "x": 62,
+                                  "y": 54,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "b2r2a",
+                                  "x": 30,
+                                  "y": 62,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "RlRig",
+                                  "x": 46,
+                                  "y": 62,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "VIIm1",
+                                  "x": 62,
+                                  "y": 62,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "ghPHb",
+                                  "x": 30,
+                                  "y": 70,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "g5IdoQ",
+                                  "x": 38,
+                                  "y": 70,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "bncp4",
+                                  "x": 62,
+                                  "y": 70,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "QuEjb",
+                                  "x": 70,
+                                  "y": 70,
+                                  "name": "码点",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "KMD9f",
+                                  "x": 4,
+                                  "y": 4,
+                                  "name": "定位角",
+                                  "fill": "$fg",
+                                  "width": 24,
+                                  "height": 24
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "T5Chg",
+                                  "x": 8,
+                                  "y": 8,
+                                  "name": "定位角白",
+                                  "fill": "#FFFFFF",
+                                  "width": 16,
+                                  "height": 16
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "gMMAE",
+                                  "x": 12,
+                                  "y": 12,
+                                  "name": "定位角芯",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "df2o3",
+                                  "x": 68,
+                                  "y": 4,
+                                  "name": "定位角",
+                                  "fill": "$fg",
+                                  "width": 24,
+                                  "height": 24
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "s1S3j",
+                                  "x": 72,
+                                  "y": 8,
+                                  "name": "定位角白",
+                                  "fill": "#FFFFFF",
+                                  "width": 16,
+                                  "height": 16
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "V2CK7",
+                                  "x": 76,
+                                  "y": 12,
+                                  "name": "定位角芯",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "WfStK",
+                                  "x": 4,
+                                  "y": 68,
+                                  "name": "定位角",
+                                  "fill": "$fg",
+                                  "width": 24,
+                                  "height": 24
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "S3BSjy",
+                                  "x": 8,
+                                  "y": 72,
+                                  "name": "定位角白",
+                                  "fill": "#FFFFFF",
+                                  "width": 16,
+                                  "height": 16
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "BK343",
+                                  "x": 12,
+                                  "y": 76,
+                                  "name": "定位角芯",
+                                  "fill": "$fg",
+                                  "width": 8,
+                                  "height": 8
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "nr6Aq",
+                              "name": "名片提示",
+                              "fill": "$muted-fg",
+                              "content": "扫二维码，添加我为朋友",
+                              "fontFamily": "$font-body",
+                              "fontSize": 8,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "r8APs",
+                      "name": "名片说明",
+                      "fill": "$muted-fg",
+                      "content": "点击查看，长按识别",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "e8c4M",
+                  "name": "操作行",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "w4Ypu",
+                      "name": "复制号码按钮",
+                      "width": "fill_container",
+                      "height": 44,
+                      "fill": "$primary",
+                      "cornerRadius": 22,
+                      "gap": 6,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "NweN7",
+                          "name": "复制图标",
+                          "width": 15,
+                          "height": 15,
+                          "icon": "copy",
+                          "library": "lucide",
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "text",
+                          "id": "xK2e5",
+                          "name": "复制文字",
+                          "fill": "#FFFFFF",
+                          "content": "复制号码",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "C78us",
+                      "name": "查看微信名片按钮",
+                      "width": "fill_container",
+                      "height": 44,
+                      "fill": "$soft",
+                      "cornerRadius": 22,
+                      "gap": 6,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "KWtt7",
+                          "name": "查看图标",
+                          "width": 15,
+                          "height": 15,
+                          "icon": "eye",
+                          "library": "lucide",
+                          "fill": "$primary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Mslc0",
+                          "name": "查看文字",
+                          "fill": "$primary",
+                          "content": "查看微信名片",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -4120,40 +4817,6 @@
           "gap": 10,
           "padding": 16,
           "children": [
-            {
-              "type": "frame",
-              "id": "hTalc",
-              "name": "联系销售按钮",
-              "width": "fill_container",
-              "height": 48,
-              "fill": "$accent",
-              "cornerRadius": 24,
-              "gap": 6,
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "icon",
-                  "id": "dkQK0",
-                  "name": "电话",
-                  "width": 16,
-                  "height": 16,
-                  "icon": "phone",
-                  "library": "lucide",
-                  "fill": "#FFFFFF"
-                },
-                {
-                  "type": "text",
-                  "id": "bENrv",
-                  "name": "按钮文字",
-                  "fill": "#FFFFFF",
-                  "content": "联系销售 · 确认方案",
-                  "fontFamily": "$font-body",
-                  "fontSize": 15,
-                  "fontWeight": "600"
-                }
-              ]
-            },
             {
               "type": "frame",
               "id": "Lcxb6",
