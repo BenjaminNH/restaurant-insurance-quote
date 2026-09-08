@@ -22,8 +22,8 @@ test("输出完整的静态社交分享元数据", () => {
       type: "website",
       images: [
         {
-          url: "/share-thumbnail.png",
-          secureUrl: `${siteUrl}share-thumbnail.png`,
+          url: "/share-thumbnail-v2.png",
+          secureUrl: `${siteUrl}share-thumbnail-v2.png`,
           width: 600,
           height: 600,
           type: "image/png",
@@ -55,7 +55,7 @@ test("输出完整的静态社交分享元数据", () => {
 test("社交分享图片和站点图标作为静态资源存在", () => {
   const publicDir = join(process.cwd(), "public");
   const shareCard = join(publicDir, "share-card.png");
-  const shareThumbnail = join(publicDir, "share-thumbnail.png");
+  const shareThumbnail = join(publicDir, "share-thumbnail-v2.png");
 
   expect(existsSync(shareCard)).toBe(true);
   expect(existsSync(shareThumbnail)).toBe(true);
