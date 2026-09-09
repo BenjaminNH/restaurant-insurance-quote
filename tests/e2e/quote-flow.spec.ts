@@ -307,43 +307,15 @@ test("结果页按设计展示业务联系人并可复制业务号码", async ({
   await expect(page.getByText("133 4255 1879", { exact: true })).toBeVisible();
   await expect(page.getByText("微信同号", { exact: true })).toBeVisible();
   await expect(page.getByRole("img", { name: "欧志军的微信二维码" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "查看名片" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "查看名片" })).toHaveCount(0);
+  await expect(page.getByRole("dialog", { name: "业务人员名片" })).toHaveCount(0);
+  await expect(page.locator(".contact-details .copy-contact-button")).toBeVisible();
 
   await page.getByRole("button", { name: "复制号码" }).click();
   await expect(page.getByRole("button", { name: "已复制" })).toBeVisible();
-  await expect(page.getByRole("status")).toHaveText("号码已复制，可打开微信添加");
+  await expect(page.getByRole("status")).toHaveCount(0);
   await expect.poll(() => page.evaluate(() => window.sessionStorage.getItem("copied-contact-number")))
     .toBe("13342551879");
-});
-
-test("查看名片会打开居中弹层并支持关闭与键盘退出", async ({ page }) => {
-  await page.goto("/");
-  await completeThreeProductQuote(page);
-
-  const openButton = page.getByRole("button", { name: "查看名片" });
-  await openButton.click();
-
-  const dialog = page.getByRole("dialog", { name: "业务人员名片" });
-  await expect(dialog).toBeVisible();
-  await expect(dialog.getByText("欧志军", { exact: true })).toBeVisible();
-  await expect(dialog.getByText("133 4255 1879", { exact: true })).toBeVisible();
-  await expect(dialog.getByText("微信同号", { exact: true })).toBeVisible();
-  await expect(dialog.getByRole("img", { name: "欧志军的微信名片" })).toBeVisible();
-  await expect(dialog.getByRole("button", { name: "关闭名片" })).toBeFocused();
-
-  await page.keyboard.press("Tab");
-  await expect(dialog.getByRole("button", { name: "关闭名片" })).toBeFocused();
-  await page.keyboard.press("Shift+Tab");
-  await expect(dialog.getByRole("button", { name: "关闭名片" })).toBeFocused();
-
-  await page.keyboard.press("Escape");
-  await expect(dialog).toHaveCount(0);
-  await expect(openButton).toBeFocused();
-
-  await openButton.click();
-  await page.getByRole("button", { name: "关闭名片" }).click();
-  await expect(page.getByRole("dialog", { name: "业务人员名片" })).toHaveCount(0);
-  await expect(openButton).toBeFocused();
 });
 
 test("Clipboard API 不可用时回退复制业务号码", async ({ page }) => {
@@ -357,12 +329,13 @@ test("Clipboard API 不可用时回退复制业务号码", async ({ page }) => {
   await page.goto("/");
   await completeThreeProductQuote(page);
   await page.getByRole("button", { name: "复制号码" }).click();
-  await expect(page.getByRole("status")).toHaveText("号码已复制，可打开微信添加");
+  await expect(page.getByRole("button", { name: "已复制" })).toBeVisible();
+  await expect(page.getByRole("status")).toHaveCount(0);
   await expect.poll(() => page.evaluate(() => window.sessionStorage.getItem("fallback-copy-command")))
     .toBe("copy");
 });
 
-test("复制业务号码失败时提供长按恢复提示", async ({ page }) => {
+test("复制业务号码失败时只在按钮中反馈并保留可选号码", async ({ page }) => {
   await page.addInitScript(() => {
     Object.defineProperty(navigator, "clipboard", {
       configurable: true,
@@ -373,7 +346,8 @@ test("复制业务号码失败时提供长按恢复提示", async ({ page }) => 
   await page.goto("/");
   await completeThreeProductQuote(page);
   await page.getByRole("button", { name: "复制号码" }).click();
-  await expect(page.getByRole("status")).toHaveText("复制失败，请长按号码复制");
+  await expect(page.getByRole("button", { name: "复制失败" })).toBeVisible();
+  await expect(page.getByRole("status")).toHaveCount(0);
   await expect(page.getByText("133 4255 1879", { exact: true })).toBeVisible();
 });
 

@@ -207,11 +207,9 @@ test("360px 结果页联系方式不溢出且复制按钮可触控", async ({ pa
     .getByRole("button", { name: "复制号码" })
     .evaluate((element) => element.getBoundingClientRect().height);
   expect(buttonHeight).toBeGreaterThanOrEqual(44);
-
-  const viewCardButtonHeight = await page
-    .getByRole("button", { name: "查看名片" })
-    .evaluate((element) => element.getBoundingClientRect().height);
-  expect(viewCardButtonHeight).toBeGreaterThanOrEqual(44);
+  await expect(page.locator(".contact-details .copy-contact-button")).toBeVisible();
+  await expect(page.getByRole("button", { name: "查看名片" })).toHaveCount(0);
+  await expect(page.getByRole("status")).toHaveCount(0);
 
   const qrSize = await page
     .getByRole("img", { name: "欧志军的微信二维码" })
@@ -222,6 +220,19 @@ test("360px 结果页联系方式不溢出且复制按钮可触控", async ({ pa
   expect(qrSize.width).toBe(104);
   expect(qrSize.height).toBe(104);
 
+  const columns = await page.locator(".contact-summary").evaluate((summary) => {
+    const details = summary.querySelector(".contact-details")!.getBoundingClientRect();
+    const qr = summary.querySelector(".contact-qr-code")!.getBoundingClientRect();
+    return {
+      detailsRight: details.right,
+      qrLeft: qr.left,
+      qrRight: qr.right,
+      summaryRight: summary.getBoundingClientRect().right,
+    };
+  });
+  expect(columns.qrLeft).toBeGreaterThanOrEqual(columns.detailsRight);
+  expect(columns.qrRight).toBeLessThanOrEqual(columns.summaryRight);
+
   const contactVisuals = await page.locator(".sales-contact").evaluate((contact) => {
     const styles = (selector: string) => getComputedStyle(contact.querySelector(selector)!);
     return {
@@ -230,12 +241,8 @@ test("360px 结果页联系方式不溢出且复制按钮可触控", async ({ pa
       phoneSize: styles(".contact-number").fontSize,
       badgeSize: styles(".contact-badge").fontSize,
       copyBackground: styles(".copy-contact-button").backgroundColor,
-      viewBackground: styles(".view-contact-card-button").backgroundColor,
-      viewBorderWidth: styles(".view-contact-card-button").borderTopWidth,
       copyFontSize: styles(".copy-contact-button").fontSize,
       copyRadius: styles(".copy-contact-button").borderRadius,
-      viewFontSize: styles(".view-contact-card-button").fontSize,
-      viewRadius: styles(".view-contact-card-button").borderRadius,
     };
   });
   expect(contactVisuals).toEqual({
@@ -244,26 +251,7 @@ test("360px 结果页联系方式不溢出且复制按钮可触控", async ({ pa
     phoneSize: "17px",
     badgeSize: "10px",
     copyBackground: "rgb(30, 58, 95)",
-    viewBackground: "rgb(233, 238, 247)",
-    viewBorderWidth: "0px",
     copyFontSize: "14px",
     copyRadius: "22px",
-    viewFontSize: "14px",
-    viewRadius: "22px",
   });
-
-  await page.getByRole("button", { name: "查看名片" }).click();
-  const dialogBox = await page.getByRole("dialog", { name: "业务人员名片" }).boundingBox();
-  if (!dialogBox) throw new Error("Expected the contact card dialog to have a bounding box");
-  expect(dialogBox.width).toBeLessThanOrEqual(327);
-  expect(dialogBox.height).toBeLessThan(780);
-
-  const fullCardSize = await page
-    .getByRole("img", { name: "欧志军的微信名片" })
-    .evaluate((element) => {
-      const box = element.getBoundingClientRect();
-      return { width: box.width, height: box.height };
-    });
-  expect(fullCardSize.width).toBe(150);
-  expect(fullCardSize.height).toBeLessThanOrEqual(223);
 });
