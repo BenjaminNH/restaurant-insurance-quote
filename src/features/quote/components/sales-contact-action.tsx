@@ -75,8 +75,8 @@ export function SalesContactAction({ contact }: { contact: SalesContact }) {
           className="contact-qr-code"
           src={contact.qrCodePath}
           alt={`${contact.name}的微信二维码`}
-          width={104}
-          height={104}
+          width={120}
+          height={120}
         />
       </div>
     </section>

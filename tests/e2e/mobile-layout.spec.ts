@@ -203,10 +203,13 @@ test("360px 结果页联系方式不溢出且复制按钮可触控", async ({ pa
   }));
   expect(metrics.document).toBeLessThanOrEqual(metrics.viewport);
 
-  const buttonHeight = await page
+  const buttonSize = await page
     .getByRole("button", { name: "复制号码" })
-    .evaluate((element) => element.getBoundingClientRect().height);
-  expect(buttonHeight).toBeGreaterThanOrEqual(44);
+    .evaluate((element) => {
+      const box = element.getBoundingClientRect();
+      return { width: box.width, height: box.height };
+    });
+  expect(buttonSize.height).toBeGreaterThanOrEqual(44);
   await expect(page.locator(".contact-details .copy-contact-button")).toBeVisible();
   await expect(page.getByRole("button", { name: "查看名片" })).toHaveCount(0);
   await expect(page.getByRole("status")).toHaveCount(0);
@@ -217,8 +220,17 @@ test("360px 结果页联系方式不溢出且复制按钮可触控", async ({ pa
       const box = element.getBoundingClientRect();
       return { width: box.width, height: box.height };
     });
-  expect(qrSize.width).toBe(104);
-  expect(qrSize.height).toBe(104);
+  expect(qrSize.width).toBe(120);
+  expect(qrSize.height).toBe(120);
+
+  const phoneWidth = await page
+    .getByText("133 4255 1879", { exact: true })
+    .evaluate((element) => {
+      const range = document.createRange();
+      range.selectNodeContents(element);
+      return range.getBoundingClientRect().width;
+    });
+  expect(Math.abs(buttonSize.width - phoneWidth)).toBeLessThanOrEqual(24);
 
   const columns = await page.locator(".contact-summary").evaluate((summary) => {
     const details = summary.querySelector(".contact-details")!.getBoundingClientRect();
