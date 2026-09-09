@@ -235,14 +235,22 @@ test("360px 结果页联系方式不溢出且复制按钮可触控", async ({ pa
   const columns = await page.locator(".contact-summary").evaluate((summary) => {
     const details = summary.querySelector(".contact-details")!.getBoundingClientRect();
     const qr = summary.querySelector(".contact-qr-code")!.getBoundingClientRect();
+    const phone = summary.querySelector(".contact-number")!;
+    const phoneRange = document.createRange();
+    phoneRange.selectNodeContents(phone);
+    const button = summary.querySelector(".copy-contact-button")!.getBoundingClientRect();
+    const contentRight = Math.max(phoneRange.getBoundingClientRect().right, button.right);
     return {
       detailsRight: details.right,
+      visualGap: qr.left - contentRight,
       qrLeft: qr.left,
       qrRight: qr.right,
       summaryRight: summary.getBoundingClientRect().right,
     };
   });
   expect(columns.qrLeft).toBeGreaterThanOrEqual(columns.detailsRight);
+  expect(columns.visualGap).toBeGreaterThanOrEqual(8);
+  expect(columns.visualGap).toBeLessThanOrEqual(20);
   expect(columns.qrRight).toBeLessThanOrEqual(columns.summaryRight);
 
   const contactVisuals = await page.locator(".sales-contact").evaluate((contact) => {

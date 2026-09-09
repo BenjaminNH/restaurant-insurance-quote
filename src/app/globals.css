@@ -202,7 +202,7 @@ em { background: #16a34a; color: #fff; border-radius: 6px; font-style: normal; f
 .detail-list svg { width: 1.125rem; height: 1.125rem; color: var(--color-action); margin-top: 0.125rem; }
 .sales-contact { display: grid; gap: var(--space-2); border: 1px solid var(--color-border); border-radius: 0.75rem; padding: var(--space-3); background: var(--color-surface); }
 .sales-contact h2 { color: #0f172a; font-size: 0.9375rem; }
-.contact-summary { display: grid; grid-template-columns: minmax(0, 1fr) 7.5rem; align-items: center; gap: var(--space-3); }
+.contact-summary { display: grid; grid-template-columns: 8rem 7.5rem; align-items: center; justify-content: center; gap: var(--space-1); }
 .contact-details { display: grid; min-width: 0; gap: 0.25rem; }
 .contact-name-row { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-1); }
 .contact-name { color: var(--color-text); font-size: 1.0625rem; font-weight: 700; }
