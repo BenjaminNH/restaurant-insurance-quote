@@ -214,7 +214,7 @@ test("360px 结果页联系方式不溢出且复制按钮可触控", async ({ pa
   expect(viewCardButtonHeight).toBeGreaterThanOrEqual(44);
 
   const qrSize = await page
-    .getByRole("img", { name: "张三的微信二维码" })
+    .getByRole("img", { name: "欧志军的微信二维码" })
     .evaluate((element) => {
       const box = element.getBoundingClientRect();
       return { width: box.width, height: box.height };
@@ -259,7 +259,7 @@ test("360px 结果页联系方式不溢出且复制按钮可触控", async ({ pa
   expect(dialogBox.height).toBeLessThan(780);
 
   const fullCardSize = await page
-    .getByRole("img", { name: "张三的微信名片" })
+    .getByRole("img", { name: "欧志军的微信名片" })
     .evaluate((element) => {
       const box = element.getBoundingClientRect();
       return { width: box.width, height: box.height };

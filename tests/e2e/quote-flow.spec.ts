@@ -303,17 +303,17 @@ test("结果页按设计展示业务联系人并可复制业务号码", async ({
   await completeThreeProductQuote(page);
 
   await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toBeVisible();
-  await expect(page.getByText("张三", { exact: true })).toBeVisible();
-  await expect(page.getByText("138 0000 0000", { exact: true })).toBeVisible();
+  await expect(page.getByText("欧志军", { exact: true })).toBeVisible();
+  await expect(page.getByText("133 4255 1879", { exact: true })).toBeVisible();
   await expect(page.getByText("微信同号", { exact: true })).toBeVisible();
-  await expect(page.getByRole("img", { name: "张三的微信二维码" })).toBeVisible();
+  await expect(page.getByRole("img", { name: "欧志军的微信二维码" })).toBeVisible();
   await expect(page.getByRole("button", { name: "查看名片" })).toBeVisible();
 
   await page.getByRole("button", { name: "复制号码" }).click();
   await expect(page.getByRole("button", { name: "已复制" })).toBeVisible();
   await expect(page.getByRole("status")).toHaveText("号码已复制，可打开微信添加");
   await expect.poll(() => page.evaluate(() => window.sessionStorage.getItem("copied-contact-number")))
-    .toBe("13800000000");
+    .toBe("13342551879");
 });
 
 test("查看名片会打开居中弹层并支持关闭与键盘退出", async ({ page }) => {
@@ -325,10 +325,10 @@ test("查看名片会打开居中弹层并支持关闭与键盘退出", async ({
 
   const dialog = page.getByRole("dialog", { name: "业务人员名片" });
   await expect(dialog).toBeVisible();
-  await expect(dialog.getByText("张三", { exact: true })).toBeVisible();
-  await expect(dialog.getByText("138 0000 0000", { exact: true })).toBeVisible();
+  await expect(dialog.getByText("欧志军", { exact: true })).toBeVisible();
+  await expect(dialog.getByText("133 4255 1879", { exact: true })).toBeVisible();
   await expect(dialog.getByText("微信同号", { exact: true })).toBeVisible();
-  await expect(dialog.getByRole("img", { name: "张三的微信名片" })).toBeVisible();
+  await expect(dialog.getByRole("img", { name: "欧志军的微信名片" })).toBeVisible();
   await expect(dialog.getByRole("button", { name: "关闭名片" })).toBeFocused();
 
   await page.keyboard.press("Tab");
@@ -374,7 +374,7 @@ test("复制业务号码失败时提供长按恢复提示", async ({ page }) => 
   await completeThreeProductQuote(page);
   await page.getByRole("button", { name: "复制号码" }).click();
   await expect(page.getByRole("status")).toHaveText("复制失败，请长按号码复制");
-  await expect(page.getByText("138 0000 0000", { exact: true })).toBeVisible();
+  await expect(page.getByText("133 4255 1879", { exact: true })).toBeVisible();
 });
 
 test("少于 8 人明确显示不承保且不转人工报价", async ({ page }) => {

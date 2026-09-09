@@ -15,11 +15,11 @@ export type SalesContact = {
 };
 
 export const defaultSalesContact: SalesContact = {
-  name: "张三",
-  phone: "13800000000",
+  name: "欧志军",
+  phone: "13342551879",
   wechatSameAsPhone: true,
-  qrCodePath: "/sales-contact-zhangsan-qr.png",
-  fullWechatCardPath: "/sales-contact-zhangsan-wechat-card.png",
+  qrCodePath: "/sales-contacts/ou-zhijun/wechat-qr.png",
+  fullWechatCardPath: "/sales-contacts/ou-zhijun/wechat-card.jpg",
 };
 
 export const productCopy: Record<
