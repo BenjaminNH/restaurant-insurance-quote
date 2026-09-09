@@ -202,14 +202,14 @@ em { background: #16a34a; color: #fff; border-radius: 6px; font-style: normal; f
 .detail-list svg { width: 1.125rem; height: 1.125rem; color: var(--color-action); margin-top: 0.125rem; }
 .sales-contact { display: grid; gap: var(--space-2); border: 1px solid var(--color-border); border-radius: 0.75rem; padding: var(--space-3); background: var(--color-surface); }
 .sales-contact h2 { color: #0f172a; font-size: 0.9375rem; }
-.contact-summary { display: grid; grid-template-columns: 8rem 7.5rem; align-items: center; justify-content: center; gap: var(--space-1); }
+.contact-summary { --contact-qr-size: clamp(7.5rem, 34vw, 8.5rem); display: grid; grid-template-columns: 8rem var(--contact-qr-size); align-items: center; gap: var(--space-1); }
 .contact-details { display: grid; min-width: 0; gap: 0.25rem; }
 .contact-name-row { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-1); }
 .contact-name { color: var(--color-text); font-size: 1.0625rem; font-weight: 700; }
 .contact-number { color: var(--color-text); font-size: 1.0625rem; font-weight: 700; font-variant-numeric: tabular-nums; user-select: all; }
 .contact-badge { border-radius: 999px; background: var(--color-soft); color: var(--color-primary); padding: 0.25rem 0.625rem; font-size: 0.625rem; font-weight: 700; }
 .contact-hint { margin: 0; color: var(--color-muted); font-size: 0.6875rem; line-height: 1.5; }
-.contact-qr-code { display: block; width: 7.5rem; height: 7.5rem; border: 0; object-fit: cover; }
+.contact-qr-code { display: block; width: var(--contact-qr-size); height: auto; aspect-ratio: 1; border: 0; object-fit: contain; }
 .copy-contact-button { width: fit-content; justify-self: start; margin-top: 0.25rem; background: #1e3a5f; border-radius: 1.375rem; font-size: 0.875rem; }
 .copy-contact-button:active { background: #142b47; }
 .secondary-button { display: inline-flex; align-items: center; justify-content: center; min-height: var(--touch-target); border: 1px solid var(--color-primary); border-radius: var(--radius-control); background: var(--color-surface); color: var(--color-primary); padding: 0 var(--space-2); font-size: 1rem; font-weight: 700; }

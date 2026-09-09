@@ -220,8 +220,8 @@ test("360px 结果页联系方式不溢出且复制按钮可触控", async ({ pa
       const box = element.getBoundingClientRect();
       return { width: box.width, height: box.height };
     });
-  expect(qrSize.width).toBe(120);
-  expect(qrSize.height).toBe(120);
+  expect(qrSize.width).toBeGreaterThan(120);
+  expect(qrSize.height).toBe(qrSize.width);
 
   const phoneWidth = await page
     .getByText("133 4255 1879", { exact: true })
@@ -241,6 +241,8 @@ test("360px 结果页联系方式不溢出且复制按钮可触控", async ({ pa
     const button = summary.querySelector(".copy-contact-button")!.getBoundingClientRect();
     const contentRight = Math.max(phoneRange.getBoundingClientRect().right, button.right);
     return {
+      summaryLeft: summary.getBoundingClientRect().left,
+      detailsLeft: details.left,
       detailsRight: details.right,
       visualGap: qr.left - contentRight,
       qrLeft: qr.left,
@@ -248,6 +250,7 @@ test("360px 结果页联系方式不溢出且复制按钮可触控", async ({ pa
       summaryRight: summary.getBoundingClientRect().right,
     };
   });
+  expect(Math.abs(columns.detailsLeft - columns.summaryLeft)).toBeLessThanOrEqual(1);
   expect(columns.qrLeft).toBeGreaterThanOrEqual(columns.detailsRight);
   expect(columns.visualGap).toBeGreaterThanOrEqual(8);
   expect(columns.visualGap).toBeLessThanOrEqual(20);
@@ -274,4 +277,17 @@ test("360px 结果页联系方式不溢出且复制按钮可触控", async ({ pa
     copyFontSize: "14px",
     copyRadius: "22px",
   });
+
+  await page.setViewportSize({ width: 440, height: 956 });
+  const largePhoneBalance = await page.locator(".contact-summary").evaluate((summary) => {
+    const details = summary.querySelector(".contact-details")!.getBoundingClientRect();
+    const qr = summary.querySelector(".contact-qr-code")!.getBoundingClientRect();
+    return {
+      detailsHeight: details.height,
+      qrWidth: qr.width,
+      qrHeight: qr.height,
+    };
+  });
+  expect(largePhoneBalance.qrWidth).toBeLessThanOrEqual(136);
+  expect(Math.abs(largePhoneBalance.qrHeight - largePhoneBalance.detailsHeight)).toBeLessThanOrEqual(20);
 });
