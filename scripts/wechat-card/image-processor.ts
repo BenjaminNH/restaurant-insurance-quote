@@ -11,6 +11,11 @@ export interface ExtractedWechatQr {
   method: "detected" | "template";
 }
 
+interface StyledQrFallback {
+  data: string;
+  qr: Buffer;
+}
+
 async function normalizeImage(image: Buffer) {
   return sharp(image).autoOrient().png().toBuffer();
 }
@@ -44,6 +49,70 @@ export async function decodeQrImage(image: Buffer): Promise<QRCode | null> {
   return scanQrPixels(highContrast);
 }
 
+function rgbToHex(red: number, green: number, blue: number) {
+  return `#${[red, green, blue]
+    .map((channel) => Math.round(channel * 0.45).toString(16).padStart(2, "0"))
+    .join("")}`;
+}
+
+async function normalizeStyledQr(
+  source: Buffer,
+  imageSize: ImageSize,
+): Promise<StyledQrFallback | null> {
+  const region = calculateTemplateCrop(imageSize);
+  const { data, info } = await sharp(source)
+    .extract(region)
+    .toColourspace("srgb")
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const modules = 37;
+  const outputSize = 512;
+  const quietZone = 0;
+  const moduleSize = 10;
+  const startX = Math.round(region.width * 0.055);
+  const startY = Math.round(region.height * 0.09);
+  const sourceModuleSize = region.width * 0.0243;
+  const cells: string[] = [];
+
+  for (let row = 0; row < modules; row += 1) {
+    for (let column = 0; column < modules; column += 1) {
+      const sampleX = Math.min(
+        info.width - 1,
+        Math.round(startX + (column + 0.5) * sourceModuleSize),
+      );
+      const sampleY = Math.min(
+        info.height - 1,
+        Math.round(startY + (row + 0.5) * sourceModuleSize),
+      );
+      const offset = (sampleY * info.width + sampleX) * info.channels;
+      const red = data[offset];
+      const green = data[offset + 1];
+      const blue = data[offset + 2];
+      const isColoredModule = (red + green + blue) / 3 < 220;
+
+      if (isColoredModule) {
+        cells.push(
+          `<rect x="${quietZone + column * moduleSize}" y="${quietZone + row * moduleSize}" width="${moduleSize}" height="${moduleSize}" fill="${rgbToHex(red, green, blue)}"/>`,
+        );
+      }
+    }
+  }
+
+  const qr = await sharp(
+    Buffer.from(
+      `<svg xmlns="http://www.w3.org/2000/svg" width="${outputSize}" height="${outputSize}"><rect width="100%" height="100%" fill="white"/>${cells.join("")}</svg>`,
+    ),
+  )
+    .extract({ left: 0, top: 0, width: modules * moduleSize, height: modules * moduleSize })
+    .resize(outputSize, outputSize, { fit: "fill", kernel: "nearest" })
+    .png({ compressionLevel: 9 })
+    .toBuffer();
+  const decoded = await decodeQrImage(qr);
+
+  return decoded ? { data: decoded.data, qr } : null;
+}
+
 export async function extractWechatQr(
   source: Buffer,
 ): Promise<ExtractedWechatQr> {
@@ -58,21 +127,25 @@ export async function extractWechatQr(
     height: metadata.height,
   };
   const sourceQr = await decodeQrImage(normalized);
-  const method = sourceQr ? "detected" : "template";
+  const styledQr = sourceQr ? null : await normalizeStyledQr(normalized, imageSize);
+  const method = sourceQr || styledQr ? "detected" : "template";
   const region = sourceQr
     ? calculateQrCrop(sourceQr.location, imageSize)
     : calculateTemplateCrop(imageSize);
-  const qr = await sharp(normalized)
-    .extract(region)
-    .resize(512, 512, { fit: "fill", kernel: "nearest" })
-    .png({ compressionLevel: 9 })
-    .toBuffer();
+  const qr = styledQr
+    ? styledQr.qr
+    : await sharp(normalized)
+      .extract(region)
+      .resize(512, 512, { fit: "fill", kernel: "nearest" })
+      .png({ compressionLevel: 9 })
+      .toBuffer();
   const verifiedQr = await decodeQrImage(qr);
 
   if (!verifiedQr) {
     throw new Error("裁切后的二维码无法识别");
   }
-  if (sourceQr && verifiedQr.data !== sourceQr.data) {
+  const sourceData = sourceQr?.data ?? styledQr?.data;
+  if (sourceData && verifiedQr.data !== sourceData) {
     throw new Error("裁切前后的二维码内容不一致");
   }
 
