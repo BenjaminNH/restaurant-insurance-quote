@@ -3,7 +3,7 @@
 import { Check, Copy } from "@phosphor-icons/react";
 import Image from "next/image";
 import { useState } from "react";
-import type { SalesContact } from "@/config/site";
+import type { SalesContact } from "@/config/sales-contacts";
 
 function formatMobileNumber(phone: string) {
   return phone.replace(/^(\d{3})(\d{4})(\d{4})$/, "$1 $2 $3");
@@ -74,11 +74,11 @@ export function SalesContactAction({ contact }: { contact: SalesContact }) {
           <Image
             className="contact-qr-code"
             src={contact.qrCodePath}
-            alt={`${contact.name}的微信二维码`}
+            alt={contact.qrAlt ?? `${contact.name}的微信二维码`}
             width={160}
             height={160}
           />
-          <p className="contact-hint">长按识别加微信</p>
+          <p className="contact-hint">{contact.qrHint ?? "长按识别加微信"}</p>
         </div>
       </div>
     </section>

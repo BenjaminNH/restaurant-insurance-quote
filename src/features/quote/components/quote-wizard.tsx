@@ -27,7 +27,7 @@ const defaults: QuoteInput = {
 };
 
 const stepMeta: Record<QuoteStep, { title: string }> = {
-  STORE: { title: "保费智能预估" },
+  STORE: { title: "保费智能报价" },
   EMPLOYER_PLAN: { title: "选择雇主险档位" },
   EMPLOYEES: { title: "填写员工人数" },
   LIABILITY_PLANS: { title: "选择保障方案" },

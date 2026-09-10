@@ -36,7 +36,7 @@ async function openEmployeeStep(page: Page) {
 test("顶部标题与步骤同排且勾选险种不会使进度倒退", async ({ page }) => {
   await page.goto("/");
   const header = page.locator(".header-row");
-  await expect(header.getByRole("heading", { name: "保费智能预估" })).toBeVisible();
+  await expect(header.getByRole("heading", { name: "保费智能报价" })).toBeVisible();
   await expect(header.getByText("第 1 / 2 步", { exact: true })).toBeVisible();
   await expect(page.getByText("餐饮安心保", { exact: true })).toHaveCount(0);
 
@@ -68,7 +68,7 @@ test("显示紧凑进度、免责声明与移动端表单语义", async ({ page 
   await page.goto("/");
 
   await expect(
-    page.getByRole("heading", { name: "保费智能预估" }),
+    page.getByRole("heading", { name: "保费智能报价" }),
   ).toBeVisible();
   await expect(page.getByText("第 1 / 2 步", { exact: true })).toBeVisible();
   await expect(page.getByRole("progressbar", { name: "报价进度" })).toHaveAttribute("aria-valuenow", "0");
@@ -316,6 +316,60 @@ test("结果页按设计展示业务联系人并可复制业务号码", async ({
   await expect(page.getByRole("status")).toHaveCount(0);
   await expect.poll(() => page.evaluate(() => window.sessionStorage.getItem("copied-contact-number")))
     .toBe("13342551879");
+});
+
+test("ref=ozj 完成报价后显示对应的业务联系人", async ({ page }) => {
+  await page.goto("/?from=wechat&ref=ozj&campaign=autumn");
+  await completeThreeProductQuote(page);
+
+  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toBeVisible();
+  await expect(page.getByText("欧志军", { exact: true })).toBeVisible();
+  await expect(page.getByText("133 4255 1879", { exact: true })).toBeVisible();
+});
+
+test("ref=demo 完成报价后显示演示联系人与演示二维码提示", async ({ page }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, "clipboard", {
+      configurable: true,
+      value: {
+        writeText: async (value: string) => {
+          window.sessionStorage.setItem("copied-demo-contact-number", value);
+        },
+      },
+    });
+  });
+  await page.goto("/?from=wechat&ref=demo&campaign=autumn");
+  await completeThreeProductQuote(page);
+
+  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toBeVisible();
+  await expect(page.getByText("演示顾问", { exact: true })).toBeVisible();
+  await expect(page.getByText("138 0013 8000", { exact: true })).toBeVisible();
+  await expect(page.getByText("演示二维码 · 扫码打开本页", { exact: true })).toBeVisible();
+  await expect(page.getByText("长按识别加微信", { exact: true })).toHaveCount(0);
+  const demoQr = page.getByRole("img", { name: "演示顾问的演示二维码" });
+  await expect(demoQr).toBeVisible();
+  await expect(demoQr).toHaveAttribute("src", /\/sales-contacts\/demo\/wechat-qr\.png$/);
+
+  await page.getByRole("button", { name: "复制号码" }).click();
+  await expect.poll(() => page.evaluate(() => window.sessionStorage.getItem("copied-demo-contact-number")))
+    .toBe("13800138000");
+});
+
+test("重复 ref 只使用第一个值", async ({ page }) => {
+  await page.goto("/?ref=demo&ref=ozj");
+  await completeThreeProductQuote(page);
+
+  await expect(page.getByText("演示顾问", { exact: true })).toBeVisible();
+  await expect(page.getByText("欧志军", { exact: true })).toHaveCount(0);
+});
+
+test("未知 ref 完成报价后回退默认业务联系人", async ({ page }) => {
+  await page.goto("/?from=wechat&ref=unknown&campaign=autumn");
+  await completeThreeProductQuote(page);
+
+  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toBeVisible();
+  await expect(page.getByText("欧志军", { exact: true })).toBeVisible();
+  await expect(page.getByText("133 4255 1879", { exact: true })).toBeVisible();
 });
 
 test("Clipboard API 不可用时回退复制业务号码", async ({ page }) => {

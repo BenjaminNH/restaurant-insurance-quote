@@ -3,7 +3,7 @@
 import { X } from "@phosphor-icons/react";
 import Image from "next/image";
 import { type RefObject, useEffect, useRef } from "react";
-import type { SalesContact } from "@/config/site";
+import type { SalesContact } from "@/config/sales-contacts";
 
 function formatMobileNumber(phone: string) {
   return phone.replace(/^(\d{3})(\d{4})(\d{4})$/, "$1 $2 $3");
