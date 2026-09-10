@@ -4,7 +4,7 @@ import { expect, test } from "vitest";
 import { metadata } from "@/app/layout";
 
 const siteUrl = "https://restaurant-insurance-quote.netlify.app/";
-const title = "餐饮安心保｜餐饮门店责任险保费智能预估";
+const title = "餐饮安心保｜餐饮门店责任险保费智能报价";
 const description = "快速预估公众责任险、食品安全责任险和雇主责任险保费";
 
 test("输出完整的静态社交分享元数据", () => {
@@ -27,7 +27,7 @@ test("输出完整的静态社交分享元数据", () => {
           width: 600,
           height: 600,
           type: "image/png",
-          alt: "餐饮安心保餐饮门店责任险保费智能预估",
+          alt: "餐饮安心保餐饮门店责任险保费智能报价",
         },
         {
           url: "/share-card.png",
@@ -35,7 +35,7 @@ test("输出完整的静态社交分享元数据", () => {
           width: 1200,
           height: 630,
           type: "image/png",
-          alt: "餐饮安心保餐饮门店责任险保费智能预估",
+          alt: "餐饮安心保餐饮门店责任险保费智能报价",
         },
       ],
     },
