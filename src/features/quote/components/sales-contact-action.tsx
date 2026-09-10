@@ -51,15 +51,14 @@ export function SalesContactAction({ contact }: { contact: SalesContact }) {
 
   return (
     <section className="sales-contact" aria-labelledby="sales-contact-title">
-      <h2 id="sales-contact-title">业务人员联系方式</h2>
       <div className="contact-summary">
         <div className="contact-details">
+          <h2 id="sales-contact-title">业务人员联系方式</h2>
           <div className="contact-name-row">
             <span className="contact-name">{contact.name}</span>
             {contact.wechatSameAsPhone ? <span className="contact-badge">微信同号</span> : null}
           </div>
           <span className="contact-number">{formatMobileNumber(contact.phone)}</span>
-          <p className="contact-hint">长按二维码识别添加微信</p>
           <button type="button" className="primary-button copy-contact-button" onClick={handleCopy}>
             {copyState === "success" ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
             <span aria-live="polite">
@@ -71,13 +70,16 @@ export function SalesContactAction({ contact }: { contact: SalesContact }) {
             </span>
           </button>
         </div>
-        <Image
-          className="contact-qr-code"
-          src={contact.qrCodePath}
-          alt={`${contact.name}的微信二维码`}
-          width={120}
-          height={120}
-        />
+        <div className="contact-qr-group">
+          <Image
+            className="contact-qr-code"
+            src={contact.qrCodePath}
+            alt={`${contact.name}的微信二维码`}
+            width={160}
+            height={160}
+          />
+          <p className="contact-hint">长按识别加微信</p>
+        </div>
       </div>
     </section>
   );

@@ -253,7 +253,7 @@ test("360px 结果页联系方式不溢出且复制按钮可触控", async ({ pa
   expect(Math.abs(columns.detailsLeft - columns.summaryLeft)).toBeLessThanOrEqual(1);
   expect(columns.qrLeft).toBeGreaterThanOrEqual(columns.detailsRight);
   expect(columns.visualGap).toBeGreaterThanOrEqual(8);
-  expect(columns.visualGap).toBeLessThanOrEqual(20);
+  expect(columns.visualGap).toBeLessThanOrEqual(32);
   expect(columns.qrRight).toBeLessThanOrEqual(columns.summaryRight);
 
   const contactVisuals = await page.locator(".sales-contact").evaluate((contact) => {
@@ -282,12 +282,14 @@ test("360px 结果页联系方式不溢出且复制按钮可触控", async ({ pa
   const largePhoneBalance = await page.locator(".contact-summary").evaluate((summary) => {
     const details = summary.querySelector(".contact-details")!.getBoundingClientRect();
     const qr = summary.querySelector(".contact-qr-code")!.getBoundingClientRect();
+    const qrGroup = summary.querySelector(".contact-qr-group")!.getBoundingClientRect();
     return {
       detailsHeight: details.height,
       qrWidth: qr.width,
-      qrHeight: qr.height,
+      qrGroupHeight: qrGroup.height,
     };
   });
-  expect(largePhoneBalance.qrWidth).toBeLessThanOrEqual(136);
-  expect(Math.abs(largePhoneBalance.qrHeight - largePhoneBalance.detailsHeight)).toBeLessThanOrEqual(20);
+  expect(largePhoneBalance.qrWidth).toBeGreaterThanOrEqual(144);
+  expect(largePhoneBalance.qrWidth).toBeLessThanOrEqual(160);
+  expect(Math.abs(largePhoneBalance.qrGroupHeight - largePhoneBalance.detailsHeight)).toBeLessThanOrEqual(1);
 });
