@@ -188,7 +188,7 @@ test("结构性字符图标被替换且结果金额不过度放大", async ({ pa
   expect(bodyText).not.toMatch(/[✓ⓘ▧☎→]/);
 });
 
-test("360px 结果页联系方式不溢出且复制按钮可触控", async ({ page }) => {
+test("360px 结果页隐藏联系方式后不溢出", async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 780 });
   await page.goto("/");
   await page.getByLabel("经营面积").fill("260");
@@ -203,93 +203,6 @@ test("360px 结果页联系方式不溢出且复制按钮可触控", async ({ pa
   }));
   expect(metrics.document).toBeLessThanOrEqual(metrics.viewport);
 
-  const buttonSize = await page
-    .getByRole("button", { name: "复制号码" })
-    .evaluate((element) => {
-      const box = element.getBoundingClientRect();
-      return { width: box.width, height: box.height };
-    });
-  expect(buttonSize.height).toBeGreaterThanOrEqual(44);
-  await expect(page.locator(".contact-details .copy-contact-button")).toBeVisible();
-  await expect(page.getByRole("button", { name: "查看名片" })).toHaveCount(0);
-  await expect(page.getByRole("status")).toHaveCount(0);
-
-  const qrSize = await page
-    .getByRole("img", { name: "欧志军的微信二维码" })
-    .evaluate((element) => {
-      const box = element.getBoundingClientRect();
-      return { width: box.width, height: box.height };
-    });
-  expect(qrSize.width).toBeGreaterThan(120);
-  expect(qrSize.height).toBe(qrSize.width);
-
-  const phoneWidth = await page
-    .getByText("133 4255 1879", { exact: true })
-    .evaluate((element) => {
-      const range = document.createRange();
-      range.selectNodeContents(element);
-      return range.getBoundingClientRect().width;
-    });
-  expect(Math.abs(buttonSize.width - phoneWidth)).toBeLessThanOrEqual(24);
-
-  const columns = await page.locator(".contact-summary").evaluate((summary) => {
-    const details = summary.querySelector(".contact-details")!.getBoundingClientRect();
-    const qr = summary.querySelector(".contact-qr-code")!.getBoundingClientRect();
-    const phone = summary.querySelector(".contact-number")!;
-    const phoneRange = document.createRange();
-    phoneRange.selectNodeContents(phone);
-    const button = summary.querySelector(".copy-contact-button")!.getBoundingClientRect();
-    const contentRight = Math.max(phoneRange.getBoundingClientRect().right, button.right);
-    return {
-      summaryLeft: summary.getBoundingClientRect().left,
-      detailsLeft: details.left,
-      detailsRight: details.right,
-      visualGap: qr.left - contentRight,
-      qrLeft: qr.left,
-      qrRight: qr.right,
-      summaryRight: summary.getBoundingClientRect().right,
-    };
-  });
-  expect(Math.abs(columns.detailsLeft - columns.summaryLeft)).toBeLessThanOrEqual(1);
-  expect(columns.qrLeft).toBeGreaterThanOrEqual(columns.detailsRight);
-  expect(columns.visualGap).toBeGreaterThanOrEqual(8);
-  expect(columns.visualGap).toBeLessThanOrEqual(32);
-  expect(columns.qrRight).toBeLessThanOrEqual(columns.summaryRight);
-
-  const contactVisuals = await page.locator(".sales-contact").evaluate((contact) => {
-    const styles = (selector: string) => getComputedStyle(contact.querySelector(selector)!);
-    return {
-      headingSize: styles("h2").fontSize,
-      nameSize: styles(".contact-name").fontSize,
-      phoneSize: styles(".contact-number").fontSize,
-      badgeSize: styles(".contact-badge").fontSize,
-      copyBackground: styles(".copy-contact-button").backgroundColor,
-      copyFontSize: styles(".copy-contact-button").fontSize,
-      copyRadius: styles(".copy-contact-button").borderRadius,
-    };
-  });
-  expect(contactVisuals).toEqual({
-    headingSize: "15px",
-    nameSize: "17px",
-    phoneSize: "17px",
-    badgeSize: "10px",
-    copyBackground: "rgb(30, 58, 95)",
-    copyFontSize: "14px",
-    copyRadius: "22px",
-  });
-
-  await page.setViewportSize({ width: 440, height: 956 });
-  const largePhoneBalance = await page.locator(".contact-summary").evaluate((summary) => {
-    const details = summary.querySelector(".contact-details")!.getBoundingClientRect();
-    const qr = summary.querySelector(".contact-qr-code")!.getBoundingClientRect();
-    const qrGroup = summary.querySelector(".contact-qr-group")!.getBoundingClientRect();
-    return {
-      detailsHeight: details.height,
-      qrWidth: qr.width,
-      qrGroupHeight: qrGroup.height,
-    };
-  });
-  expect(largePhoneBalance.qrWidth).toBeGreaterThanOrEqual(144);
-  expect(largePhoneBalance.qrWidth).toBeLessThanOrEqual(160);
-  expect(Math.abs(largePhoneBalance.qrGroupHeight - largePhoneBalance.detailsHeight)).toBeLessThanOrEqual(1);
+  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toHaveCount(0);
+  await expect(page.locator(".sales-contact")).toHaveCount(0);
 });

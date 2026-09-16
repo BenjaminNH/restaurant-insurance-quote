@@ -4,6 +4,9 @@ export const siteConfig = {
   brand: "餐饮安心保",
   title: "保费智能报价",
   disclaimer: "预估保费仅供参考，最终以保险公司正式核保与保单为准",
+  features: {
+    salesContactCard: false,
+  },
 } as const;
 
 export const productCopy: Record<

@@ -287,122 +287,44 @@ test("可以录入三险正常路径并展示 3984 元", async ({ page }) => {
   await expect(page.getByText("食品生产许可证", { exact: false })).toBeVisible();
 });
 
-test("结果页按设计展示业务联系人并可复制业务号码", async ({ page }) => {
-  await page.addInitScript(() => {
-    Object.defineProperty(navigator, "clipboard", {
-      configurable: true,
-      value: {
-        writeText: async (value: string) => {
-          window.sessionStorage.setItem("copied-contact-number", value);
-        },
-      },
-    });
-  });
-
+test("结果页默认不公开展示业务联系人", async ({ page }) => {
   await page.goto("/");
   await completeThreeProductQuote(page);
 
-  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toBeVisible();
-  await expect(page.getByText("欧志军", { exact: true })).toBeVisible();
-  await expect(page.getByText("133 4255 1879", { exact: true })).toBeVisible();
-  await expect(page.getByText("微信同号", { exact: true })).toBeVisible();
-  await expect(page.getByRole("img", { name: "欧志军的微信二维码" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "查看名片" })).toHaveCount(0);
-  await expect(page.getByRole("dialog", { name: "业务人员名片" })).toHaveCount(0);
-  await expect(page.locator(".contact-details .copy-contact-button")).toBeVisible();
-
-  await page.getByRole("button", { name: "复制号码" }).click();
-  await expect(page.getByRole("button", { name: "已复制" })).toBeVisible();
-  await expect(page.getByRole("status")).toHaveCount(0);
-  await expect.poll(() => page.evaluate(() => window.sessionStorage.getItem("copied-contact-number")))
-    .toBe("13342551879");
+  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toHaveCount(0);
+  await expect(page.locator(".sales-contact")).toHaveCount(0);
 });
 
-test("ref=ozj 完成报价后显示对应的业务联系人", async ({ page }) => {
+test("ref=ozj 完成报价后暂不展示业务联系人", async ({ page }) => {
   await page.goto("/?from=wechat&ref=ozj&campaign=autumn");
   await completeThreeProductQuote(page);
 
-  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toBeVisible();
-  await expect(page.getByText("欧志军", { exact: true })).toBeVisible();
-  await expect(page.getByText("133 4255 1879", { exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toHaveCount(0);
+  await expect(page.locator(".sales-contact")).toHaveCount(0);
 });
 
-test("ref=demo 完成报价后显示演示联系人与演示二维码提示", async ({ page }) => {
-  await page.addInitScript(() => {
-    Object.defineProperty(navigator, "clipboard", {
-      configurable: true,
-      value: {
-        writeText: async (value: string) => {
-          window.sessionStorage.setItem("copied-demo-contact-number", value);
-        },
-      },
-    });
-  });
+test("ref=demo 完成报价后暂不展示演示联系人", async ({ page }) => {
   await page.goto("/?from=wechat&ref=demo&campaign=autumn");
   await completeThreeProductQuote(page);
 
-  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toBeVisible();
-  await expect(page.getByText("演示顾问", { exact: true })).toBeVisible();
-  await expect(page.getByText("138 0013 8000", { exact: true })).toBeVisible();
-  await expect(page.getByText("演示二维码 · 扫码打开本页", { exact: true })).toBeVisible();
-  await expect(page.getByText("长按识别加微信", { exact: true })).toHaveCount(0);
-  const demoQr = page.getByRole("img", { name: "演示顾问的演示二维码" });
-  await expect(demoQr).toBeVisible();
-  await expect(demoQr).toHaveAttribute("src", /\/sales-contacts\/demo\/wechat-qr\.png$/);
-
-  await page.getByRole("button", { name: "复制号码" }).click();
-  await expect.poll(() => page.evaluate(() => window.sessionStorage.getItem("copied-demo-contact-number")))
-    .toBe("13800138000");
+  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toHaveCount(0);
+  await expect(page.locator(".sales-contact")).toHaveCount(0);
 });
 
-test("重复 ref 只使用第一个值", async ({ page }) => {
+test("重复 ref 不影响结果页且不展示联系人", async ({ page }) => {
   await page.goto("/?ref=demo&ref=ozj");
   await completeThreeProductQuote(page);
 
-  await expect(page.getByText("演示顾问", { exact: true })).toBeVisible();
-  await expect(page.getByText("欧志军", { exact: true })).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toHaveCount(0);
+  await expect(page.locator(".sales-contact")).toHaveCount(0);
 });
 
-test("未知 ref 完成报价后回退默认业务联系人", async ({ page }) => {
+test("未知 ref 完成报价后仍不展示联系人", async ({ page }) => {
   await page.goto("/?from=wechat&ref=unknown&campaign=autumn");
   await completeThreeProductQuote(page);
 
-  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toBeVisible();
-  await expect(page.getByText("欧志军", { exact: true })).toBeVisible();
-  await expect(page.getByText("133 4255 1879", { exact: true })).toBeVisible();
-});
-
-test("Clipboard API 不可用时回退复制业务号码", async ({ page }) => {
-  await page.addInitScript(() => {
-    Object.defineProperty(navigator, "clipboard", { configurable: true, value: undefined });
-    Document.prototype.execCommand = (command: string) => {
-      window.sessionStorage.setItem("fallback-copy-command", command);
-      return command === "copy";
-    };
-  });
-  await page.goto("/");
-  await completeThreeProductQuote(page);
-  await page.getByRole("button", { name: "复制号码" }).click();
-  await expect(page.getByRole("button", { name: "已复制" })).toBeVisible();
-  await expect(page.getByRole("status")).toHaveCount(0);
-  await expect.poll(() => page.evaluate(() => window.sessionStorage.getItem("fallback-copy-command")))
-    .toBe("copy");
-});
-
-test("复制业务号码失败时只在按钮中反馈并保留可选号码", async ({ page }) => {
-  await page.addInitScript(() => {
-    Object.defineProperty(navigator, "clipboard", {
-      configurable: true,
-      value: { writeText: async () => { throw new Error("denied"); } },
-    });
-    Document.prototype.execCommand = () => false;
-  });
-  await page.goto("/");
-  await completeThreeProductQuote(page);
-  await page.getByRole("button", { name: "复制号码" }).click();
-  await expect(page.getByRole("button", { name: "复制失败" })).toBeVisible();
-  await expect(page.getByRole("status")).toHaveCount(0);
-  await expect(page.getByText("133 4255 1879", { exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toHaveCount(0);
+  await expect(page.locator(".sales-contact")).toHaveCount(0);
 });
 
 test("少于 8 人明确显示不承保且不转人工报价", async ({ page }) => {
@@ -416,7 +338,7 @@ test("少于 8 人明确显示不承保且不转人工报价", async ({ page }) 
   await page.getByRole("button", { name: "查看报价" }).click();
 
   await expect(page.getByRole("heading", { name: "不符合承保条件" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toHaveCount(0);
   await expect(page.getByText("不转人工报价", { exact: false })).toBeVisible();
   await expect(page.getByText("年度预估合计")).toHaveCount(0);
 });
@@ -434,11 +356,11 @@ test("部分报价只展示已知小计而不展示最终总价", async ({ page 
   await expect(page.getByText(/已知保费小计 ¥2,100/)).toHaveCount(1);
   await expect(page.getByText("暂不展示最终总价", { exact: false })).toBeVisible();
   await expect(page.getByRole("heading", { name: "部分需人工确认" })).toHaveCount(1);
-  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toHaveCount(0);
   await expect(page.getByText("年度预估合计")).toHaveCount(0);
 });
 
-test("人工报价结果也展示业务联系方式", async ({ page }) => {
+test("人工报价结果暂不展示业务联系方式", async ({ page }) => {
   await page.goto("/");
   await page.getByLabel("经营面积").fill("3500");
   await chooseProducts(page, ["公众责任险"]);
@@ -447,7 +369,7 @@ test("人工报价结果也展示业务联系方式", async ({ page }) => {
   await page.getByRole("button", { name: "查看报价" }).click();
 
   await expect(page.getByRole("heading", { name: "需人工报价" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toHaveCount(0);
 });
 
 test("刷新后恢复当前会话输入", async ({ page }) => {
@@ -475,7 +397,7 @@ test("取消险种后不保留或展示该险种方案", async ({ page }) => {
   await expect(page.getByRole("group", { name: "食品安全责任险" })).toBeVisible();
 });
 
-test("结果页保留销售联系扩展点并可重新计算", async ({ page }) => {
+test("隐藏销售联系卡片后仍可重新计算", async ({ page }) => {
   await page.goto("/");
   await page.getByLabel("经营面积").fill("99.99");
   await chooseProducts(page, ["食品安全责任险"]);
@@ -484,7 +406,7 @@ test("结果页保留销售联系扩展点并可重新计算", async ({ page }) 
   await page.getByRole("button", { name: "查看报价" }).click();
 
   await expect(page.getByText("¥640", { exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "业务人员联系方式" })).toHaveCount(0);
   await page.getByRole("button", { name: "修改条件，重新计算" }).click();
   await expect(page.getByLabel("经营面积")).toHaveValue("99.99");
 });
