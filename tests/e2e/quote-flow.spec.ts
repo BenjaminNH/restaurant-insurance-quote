@@ -155,13 +155,13 @@ test("员工和方案选择阶段逐步累计底栏金额", async ({ page }) => 
   const summary = page.locator(".bottom-summary");
   await page.getByRole("spinbutton", { name: "服务员人数" }).fill("8");
   await expect(summary).toContainText("雇主险当前预估");
-  await expect(summary).toContainText("¥864");
+  await expect(summary).toContainText("¥1,120");
 
   await page.getByRole("button", { name: "下一步" }).click();
   await page.getByLabel("公众责任险方案 P2").check();
-  await expect(summary).toContainText("¥2,304");
+  await expect(summary).toContainText("¥2,560");
   await page.getByLabel("食品安全责任险方案一").check();
-  await expect(summary).toContainText("¥3,504");
+  await expect(summary).toContainText("¥3,760");
   await expect(summary).toContainText("预估合计");
 });
 
@@ -277,12 +277,12 @@ test("只选择公众险时跳过雇主险步骤并得到正常报价", async ({
   await expect(page.locator(".total-amount")).toContainText("¥1,440");
 });
 
-test("可以录入三险正常路径并展示 3984 元", async ({ page }) => {
+test("可以录入三险正常路径并展示 4482 元", async ({ page }) => {
   await page.goto("/");
   await completeThreeProductQuote(page);
 
   await expect(page.getByText("年度预估合计")).toBeVisible();
-  await expect(page.locator(".total-amount")).toContainText("¥3,984");
+  await expect(page.locator(".total-amount")).toContainText("¥4,482");
   await expect(page.getByText("3 个险种", { exact: false })).toBeVisible();
   await expect(page.getByText("食品生产许可证", { exact: false })).toBeVisible();
 });

@@ -3,8 +3,8 @@ import rawRules from "../../docs/餐饮保险报价器-MVP规则.json";
 import { quoteRulesSchema } from "@/features/quote/schemas/quote-rules-schema";
 
 describe("quoteRulesSchema", () => {
-  test("接受已确认的 mvp-1.1 规则", () => {
-    expect(quoteRulesSchema.parse(rawRules).schema_version).toBe("mvp-1.1");
+  test("接受已确认的 mvp-1.2 规则", () => {
+    expect(quoteRulesSchema.parse(rawRules).schema_version).toBe("mvp-1.2");
   });
 
   test("拒绝缺失基础保费的公众险方案", () => {

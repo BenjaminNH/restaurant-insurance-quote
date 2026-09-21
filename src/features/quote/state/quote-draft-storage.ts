@@ -3,7 +3,7 @@ import type { QuoteInput } from "@/features/quote/types";
 
 export const QUOTE_DRAFT_STORAGE_KEY = "restaurant-quote:draft:v1";
 export const QUOTE_DRAFT_VERSION = 1 as const;
-export const QUOTE_RULE_VERSION = "mvp-1.1" as const;
+export const QUOTE_RULE_VERSION = "mvp-1.2" as const;
 
 // sessionStorage is session-scoped, but retaining a bounded age prevents a
 // restored tab from using an unexpectedly stale quote after a long pause.

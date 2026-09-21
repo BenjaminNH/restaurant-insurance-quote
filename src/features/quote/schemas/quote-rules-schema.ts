@@ -42,7 +42,7 @@ const employerPlanSchema = z.object({
 
 export const quoteRulesSchema = z
   .object({
-    schema_version: z.literal("mvp-1.1"),
+    schema_version: z.literal("mvp-1.2"),
     rule_status: z.literal("MVP_CONFIRMED"),
     currency: z.literal("CNY"),
     disclaimer: z.string().min(1),

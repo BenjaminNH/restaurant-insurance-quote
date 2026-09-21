@@ -30,7 +30,7 @@ test("保存并恢复同规则版本草稿", () => {
   expect(JSON.parse(sessionStorage.getItem(storageKey) ?? "null")).toMatchObject(
     {
       draftVersion: 1,
-      ruleVersion: "mvp-1.1",
+      ruleVersion: "mvp-1.2",
       values: draft,
     },
   );
@@ -41,7 +41,7 @@ test("旧草稿没有年龄字段时恢复为默认合规", () => {
     storageKey,
     JSON.stringify({
       draftVersion: 1,
-      ruleVersion: "mvp-1.1",
+      ruleVersion: "mvp-1.2",
       savedAt: new Date().toISOString(),
       values: {
         products: ["EMPLOYERS"],
@@ -86,7 +86,7 @@ test("无法通过输入校验的草稿会被清除", () => {
     storageKey,
     JSON.stringify({
       draftVersion: 1,
-      ruleVersion: "mvp-1.1",
+      ruleVersion: "mvp-1.2",
       savedAt: new Date().toISOString(),
       values: { ...draft, area: -1 },
     }),
@@ -102,7 +102,7 @@ test("过期草稿返回 null 并自动清除", () => {
     storageKey,
     JSON.stringify({
       draftVersion: 1,
-      ruleVersion: "mvp-1.1",
+      ruleVersion: "mvp-1.2",
       savedAt: expiredAt,
       values: draft,
     }),

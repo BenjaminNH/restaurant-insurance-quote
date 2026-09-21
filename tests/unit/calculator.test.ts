@@ -102,15 +102,15 @@ describe("雇主责任险", () => {
     );
   });
 
-  test("设计正常路径雇主险为 1344 元", () => {
+  test("设计正常路径雇主险为 1842 元", () => {
     expect(calculateEmployersLiability("UPGRADED", counts, true, quoteRules).premium).toBe(
-      1344,
+      1842,
     );
   });
 });
 
 describe("整体报价", () => {
-  test("设计正常路径总价为 3984 元", () => {
+  test("设计正常路径总价为 4482 元", () => {
     const result = calculateQuote(
       {
         products: ["PUBLIC", "FOOD", "EMPLOYERS"],
@@ -126,12 +126,12 @@ describe("整体报价", () => {
 
     expect(result).toMatchObject({
       status: "QUOTED",
-      knownSubtotal: 3984,
-      totalPremium: 3984,
+      knownSubtotal: 4482,
+      totalPremium: 4482,
     });
   });
 
-  test("规则文档示例总价为 5432 元", () => {
+  test("规则文档示例总价为 5804 元", () => {
     const result = calculateQuote(
       {
         products: ["PUBLIC", "FOOD", "EMPLOYERS"],
@@ -145,7 +145,7 @@ describe("整体报价", () => {
       quoteRules,
     );
 
-    expect(result.totalPremium).toBe(5432);
+    expect(result.totalPremium).toBe(5804);
   });
 
   test("食责险超面积时保留其他险种小计但不显示最终总价", () => {
@@ -233,7 +233,7 @@ describe("渐进报价预览", () => {
       allEmployeesAgeEligible: true,
     }, quoteRules);
 
-    expect(preview.knownSubtotal).toBe(864);
+    expect(preview.knownSubtotal).toBe(1120);
     expect(preview.items).toHaveLength(1);
     expect(preview.missingProductCount).toBe(2);
     expect(preview.employerPeopleShortfall).toBe(0);
@@ -277,7 +277,7 @@ describe("渐进报价预览", () => {
       allEmployeesAgeEligible: true,
     }, quoteRules);
 
-    expect(preview.knownSubtotal).toBe(2964);
+    expect(preview.knownSubtotal).toBe(3220);
     expect(preview.manualQuoteCount).toBe(1);
     expect(preview.missingProductCount).toBe(0);
   });

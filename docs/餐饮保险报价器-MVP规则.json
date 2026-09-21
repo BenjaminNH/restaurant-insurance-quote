@@ -1,7 +1,9 @@
 {
-  "schema_version": "mvp-1.1",
+  "schema_version": "mvp-1.2",
   "rule_status": "MVP_CONFIRMED",
   "confirmed_at": "2026-09-01",
+  "revised_at": "2026-09-21",
+  "revision": "雇主责任险升级版（30+3）岗位年费率调整为：内勤/收银 105 元、服务员 140 元、厨师/保洁 198 元。",
   "source_date": "2026-08",
   "currency": "CNY",
   "disclaimer": "当前规则仅用于客户保费预估，不替代正式核保或出单。",
@@ -73,7 +75,7 @@
     "unmapped_role_result": "MANUAL_QUOTE",
     "plans": {
       "BASIC": {"death_disability_limit_10k_per_person": 10, "medical_limit_10k_per_person": 1, "annual_rate_by_role": {"BACK_OFFICE_OR_CASHIER": 38, "WAITER": 56, "CHEF_OR_CLEANER": 76}},
-      "UPGRADED": {"death_disability_limit_10k_per_person": 30, "medical_limit_10k_per_person": 3, "annual_rate_by_role": {"BACK_OFFICE_OR_CASHIER": 76, "WAITER": 108, "CHEF_OR_CLEANER": 136}},
+      "UPGRADED": {"death_disability_limit_10k_per_person": 30, "medical_limit_10k_per_person": 3, "annual_rate_by_role": {"BACK_OFFICE_OR_CASHIER": 105, "WAITER": 140, "CHEF_OR_CLEANER": 198}},
       "PREMIUM": {"death_disability_limit_10k_per_person": 50, "medical_limit_10k_per_person": 5, "annual_rate_by_role": {"BACK_OFFICE_OR_CASHIER": 188, "WAITER": 266, "CHEF_OR_CLEANER": 365}},
       "ULTIMATE": {"death_disability_limit_10k_per_person": 80, "medical_limit_10k_per_person": 8, "annual_rate_by_role": {"BACK_OFFICE_OR_CASHIER": 288, "WAITER": 388, "CHEF_OR_CLEANER": 588}}
     },
